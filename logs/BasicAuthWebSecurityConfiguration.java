@@ -16,9 +16,11 @@
  */
 package io.paletaweb.security;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -39,8 +41,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  * 
  * @author atolomei@novamens.com (Alejandro Tolomei)
  */
-@Configuration
-//@EnableWebSecurity
+ @Configuration
+ @EnableWebSecurity
 public class BasicAuthWebSecurityConfiguration {
 
 	@JsonIgnore

@@ -5,7 +5,7 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>3.2.4</version> <!--  -->
-		<relativePath>..</relativePath>
+		<!--relativePath>..</relativePath-->
 		<!-- relativePath  lookup parent from repository -->
   </parent>
 
@@ -39,14 +39,16 @@
     
 	<maven-javadoc-plugin-version>3.6.3</maven-javadoc-plugin-version>
 	<maven-jar-plugin-version>3.3.0</maven-jar-plugin-version>
+
+	<okhttp.version>4.12.0</okhttp.version> 								<!--  5/2023 3.13.1 -->
 	
 	<paletaweb-version>0.0.1-beta</paletaweb-version>
 	
 	<junit-jupiter.version>5.3.2</junit-jupiter.version>
 	
 	 <wicket-version>10.0.0</wicket-version>
+	 <wktui-version>0.1-beta</wktui-version>
 	 
-	
   </properties>
   
   
@@ -61,6 +63,7 @@
 			<url>https://maven.novamens.com/nexus/content/repositories/releases/</url>
 		</repository>
 	</repositories>
+
 
 	<developers>
         <developer>
@@ -108,6 +111,7 @@
 		</dependency>
 		
 		<!-- https://mvnrepository.com/artifact/commons-logging/commons-logging -->
+
 		<dependency>
 		    <groupId>commons-logging</groupId>
 		    <artifactId>commons-logging</artifactId>
@@ -117,7 +121,6 @@
 
 		<!-- e. LOGGING ========================================================  -->
 		
-
 
 		<!-- s. JACKSON JSON ===================================================  -->
 		<dependency>
@@ -140,6 +143,8 @@
 		</dependency>
 		
 		<!-- e. JACKSON JSON ===================================================  -->
+	    
+	    
 	    
 	    
 	    
@@ -179,16 +184,15 @@
 			<artifactId>spring-boot-starter-log4j2</artifactId>
 		</dependency>
 		
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
 
-		<dependency>
+		<!--dependency>
 		    <groupId>org.springframework.boot</groupId>
 		    <artifactId>spring-boot-starter-security</artifactId>
-		</dependency>
+		</ dependency-->
 
 		
 		<dependency>
@@ -198,9 +202,7 @@
 	
 		<!-- e. SPRING BOOT ====================================================  -->
 	
-		<!-- Wicket is a Java server-side web component-oriented framework that aims at simplifying building web interfaces by introducing patterns known from desktop UI development. -->
-
-
+			<!-- Wicket is a Java server-side web component-oriented framework that aims at simplifying building web interfaces by introducing patterns known from desktop UI development. -->
 
 			<dependency>
 			  <groupId>org.hibernate</groupId>
@@ -208,22 +210,32 @@
 			  <version>6.1.2.Final</version>
 			</dependency>
 
-
-
  		<dependency>
 	        <groupId>io.dropwizard.metrics</groupId>
 	        <artifactId>metrics-core</artifactId>
 	    </dependency>
-	    
 
+		<!-- s. okhttp3 =====================================================  -->
 
-		<!-- s. WICKET ====================================================  -->
+			<dependency>
+			    <groupId>com.squareup.okhttp3</groupId>
+			    <artifactId>okhttp</artifactId>
+			</dependency>
 
+		<!-- s. okhttp3 =====================================================  -->
+		
 		<dependency>
-		    <groupId>org.apache.wicket</groupId>
-		    <artifactId>wicket-core</artifactId>
-		    <version>${wicket-version}</version>
+		    <groupId>io</groupId>
+		    <artifactId>wktui</artifactId>
+		    <version>${wktui-version}</version>
 		</dependency>
+
+		
+		
+		<!-- e. WKTUI =====================================================  -->
+				
+
+		<!-- s. WICKET  SPRING ====================================================  -->
 
 		<!--  
 			Enables and configures Apache Wicket from within a Spring Boot Application.
@@ -235,65 +247,18 @@
 		    <version>4.0.0</version>
 		</dependency>
 
+		<!-- e. WICKET  SPRING ====================================================  -->
+
+
 
 		<dependency>
-			<groupId>org.wicketstuff</groupId>
-			<artifactId>wicketstuff-annotation</artifactId>
-			<version>${wicket-version}</version>
+			<groupId>io</groupId>
+			<artifactId>paleta-model</artifactId>			
+			<version>0.1-beta</version>
 		</dependency>
-
-		<!--dependency>
-			<groupId>org.wicketstuff</groupId>
-			<artifactId>wicketstuff-htmlcompressor</artifactId>
-			<version>${wicket-version}</version>					
-		</dependency-->
-		
-		<!--dependency>
-			<The YUI Compressor is a JavaScript compressor which, 
-			in addition to removing comments and white-spaces, obfuscates 
-			local variables using the smallest possible variable name. 
-			This obfuscation is safe, even when using constructs 
-			such as 'eval' or 'with' (although the compression 
-			is not optimal is those cases) Compared to jsmin, 
-			the average savings is around 20%.
-			
-			
-			<groupId>com.yahoo.platform.yui</groupId>
-			<artifactId>yuicompressor</artifactId>
-			 <version>2.4.8</version>
-		</dependency -->
-		
-		<dependency>
-			<groupId>org.apache.wicket</groupId>
-			<artifactId>wicket-extensions</artifactId>
-			<version>${wicket-version}</version>
-		</dependency>
-		
-		<dependency>
-			<groupId>org.apache.wicket</groupId>
-			<artifactId>wicket-bean-validation</artifactId>
-			<version>${wicket-version}</version>
-		</dependency>
-		
-		<!--dependency>
-			<groupId>org.wicketstuff</groupId>
-			<artifactId>wicketstuff-serializer-fast2</artifactId>
-			<version>${wicket-version}</version>
-		</dependency -->
-		
-		<dependency>
-			<groupId>org.wicketstuff</groupId>
-			<artifactId>wicketstuff-restannotations</artifactId>
-			<version>${wicket-version}</version>
-		</dependency>
-		
-		<dependency>
-			<!-- Use wicketstuff-annotation to use Java Annotations and class path searching to mount your Wicket pages. -->
-			<groupId>org.wicketstuff</groupId>
-			<artifactId>wicketstuff-restannotations-json</artifactId>
-			<version>${wicket-version}</version>
-		</dependency>
-		
+	
+	
+					
 					
 		<!-- s. TEST ====================================================  -->
 		
@@ -338,7 +303,6 @@
 	
 	
 	<build>
-		
 		<resources>
 		  <resource>
 		    <directory>src/main/resources</directory>

@@ -25,7 +25,8 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.core.env.PropertiesPropertySource;
 
-import io.paletaweb.logging.Logger;
+import io.paleta.logging.Logger;
+
 
 
 

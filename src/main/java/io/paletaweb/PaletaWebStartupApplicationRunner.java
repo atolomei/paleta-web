@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import io.paletaweb.logging.Logger;
+import io.paleta.logging.Logger;
 
 
 

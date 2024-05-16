@@ -1,11 +1,12 @@
 package io.paletaweb;
 
+import org.apache.wicket.Application;
 import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
-import io.paletaweb.logging.Logger;
+import io.paleta.logging.Logger;
 import jakarta.annotation.PostConstruct;
 
 
@@ -30,6 +31,7 @@ public class PaletaWebApplication {
 		application.run(args);
 		
 	  }
+	
 	
 	
 	@PostConstruct

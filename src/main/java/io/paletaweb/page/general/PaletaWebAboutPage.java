@@ -1,4 +1,4 @@
-package io.paletaweb.page.home;
+package io.paletaweb.page.general;
 
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
@@ -12,24 +12,22 @@ import io.paletaweb.component.GlobalTopPanel;
 import io.paletaweb.page.BasePage;
 
 
-@WicketHomePage
-@MountPath("home")
-public class PaletaWebHomePage extends BasePage {
+@MountPath("about")
+public class PaletaWebAboutPage extends BasePage {
 
 	private static final long serialVersionUID = 1L;
-
 	
-	static private Logger logger = Logger.getLogger(PaletaWebHomePage.class.getName());
+	static private Logger logger = Logger.getLogger(PaletaWebAboutPage.class.getName());
 	
 	
-	public  PaletaWebHomePage(PageParameters parameters) {
+	public  PaletaWebAboutPage(PageParameters parameters) {
 		 super(parameters);
 		 
 		 logger.info("here ss");
 		 
 	 }
 	
-	public  PaletaWebHomePage() {
+	public  PaletaWebAboutPage() {
 		 super();
 	  
 		 
@@ -45,7 +43,7 @@ public class PaletaWebHomePage extends BasePage {
 		
 		add(new GlobalTopPanel("top-panel"));
 		add(new GlobalFooterPanel("footer-panel"));
-	
+		
 		
 	}
 

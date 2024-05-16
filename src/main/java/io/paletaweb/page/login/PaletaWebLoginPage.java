@@ -10,20 +10,20 @@ import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.wicketstuff.annotation.mount.MountPath;
-
 import com.giffing.wicket.spring.boot.context.scan.WicketSignInPage;
 
-import io.paletaweb.logging.Logger;
+import io.paleta.logging.Logger;
 
 
-//@WicketSignInPage
-//@MountPath("login")
+
+@WicketSignInPage
+@MountPath("login")
 public class PaletaWebLoginPage extends WebPage {
 
 	private static final long serialVersionUID = 1L;
-
 	
 	static private Logger logger = Logger.getLogger(PaletaWebLoginPage.class.getName());
+	
 	
 	
 	public PaletaWebLoginPage(PageParameters parameters) {
@@ -38,6 +38,8 @@ public class PaletaWebLoginPage extends WebPage {
 	
 	private class LoginForm extends StatelessForm<LoginForm> {
 
+		private static final long serialVersionUID = 1L;
+		
 		private String username;
 		private String password;
 
