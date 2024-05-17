@@ -7,7 +7,7 @@ import com.giffing.wicket.spring.boot.context.extensions.WicketApplicationInitCo
 
 
 @ApplicationInitExtension
-public class PaletaWebConfiguration implements WicketApplicationInitConfiguration {
+public class PaletaWebWicketConfiguration implements WicketApplicationInitConfiguration {
 
 	@Override
 	public void init(WebApplication webApplication) {

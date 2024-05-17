@@ -10,6 +10,7 @@ import org.wicketstuff.annotation.mount.MountPath;
 
 import io.paletaweb.component.GlobalFooterPanel;
 import io.paletaweb.component.GlobalTopPanel;
+import io.paletaweb.component.MainHeaderPanel;
 import io.paletaweb.page.BasePage;
 import wktui.list.ListPanel;
 
@@ -38,6 +39,9 @@ public class PaletaWebClubesPage extends BasePage {
 		super.onInitialize();
 		
 		add(new GlobalTopPanel("top-panel"));
+		
+		add(new MainHeaderPanel("main-header-panel", new Model<String>("Clubes")));
+		
 		add(new GlobalFooterPanel("footer-panel"));
 		
 		/**

@@ -1,6 +1,7 @@
 package io.paletaweb.page.general;
 
 import org.apache.wicket.markup.html.WebPage;
+import org.apache.wicket.model.Model;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.wicketstuff.annotation.mount.MountPath;
 
@@ -9,6 +10,7 @@ import com.giffing.wicket.spring.boot.context.scan.WicketHomePage;
 import io.paleta.logging.Logger;
 import io.paletaweb.component.GlobalFooterPanel;
 import io.paletaweb.component.GlobalTopPanel;
+import io.paletaweb.component.MainHeaderPanel;
 import io.paletaweb.page.BasePage;
 
 
@@ -40,6 +42,8 @@ public class PaletaWebAboutPage extends BasePage {
 	@Override
 	public void onInitialize() {
 		super.onInitialize();
+
+		add(new MainHeaderPanel("main-header-panel", new Model<String>("Federación Metropolitana de Pelota")));
 		
 		add(new GlobalTopPanel("top-panel"));
 		add(new GlobalFooterPanel("footer-panel"));

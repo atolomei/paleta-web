@@ -44,9 +44,13 @@ public class GlobalTopPanel extends BasePanel {
 		
 	}
 	
-	
+
+	/**
+	 * 
+	 * 
+	 * @return
+	 */
 	private NavDropDownMenu<Void> getFixtureMenu() {
-		
 		
 		NavDropDownMenu<Void> menu = new NavDropDownMenu<Void>("item", null, new Model<String>("Torneo Metropolitano"));
 
@@ -64,7 +68,7 @@ public class GlobalTopPanel extends BasePanel {
 					
 					@Override
 					public void onClick() {
-						setResponsePage(new RedirectPage("http://google.com"));
+						setResponsePage(new RedirectPage("/about"));
 					}
 
 					@Override
@@ -316,6 +320,36 @@ public class GlobalTopPanel extends BasePanel {
 						@Override
 						public IModel<String> getLabel() {
 							return new Model<String>("Jugadores");
+						}
+
+						@Override
+						public String getBeforeClick() {
+							return null;
+						}
+					};
+				}
+			});
+
+
+			menu.addItem(new io.wktui.nav.menu.MenuItemFactory<Void>() {
+
+				private static final long serialVersionUID = 1L;
+
+				@Override
+				public MenuItemPanel<Void> getItem(String id) {
+
+					return new  LinkMenuItem<Void>(id) {
+
+						private static final long serialVersionUID = 1L;
+						
+						@Override
+						public void onClick() {
+							setResponsePage(new RedirectPage("http://google.com"));
+						}
+
+						@Override
+						public IModel<String> getLabel() {
+							return new Model<String>("Jueces");
 						}
 
 						@Override

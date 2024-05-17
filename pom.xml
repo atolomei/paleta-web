@@ -1,5 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   
    <parent>
 		<groupId>org.springframework.boot</groupId>
@@ -25,6 +24,8 @@
 <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
+	<commons-validator.version>1.8.0</commons-validator.version> 	<!--  01 /2024  -->
+	
     <disruptor-version>3.4.4</disruptor-version> 			<!--  01 /2024 version 4.0.0 did not work with LogManager  --> 
 	<jackson-version>2.17.0</jackson-version> 				<!--  01 /2024  2.16.0 -->
 	<java-version>17</java-version>
@@ -121,6 +122,25 @@
 
 		<!-- e. LOGGING ========================================================  -->
 		
+
+
+			<!-- https://mvnrepository.com/artifact/commons-validator/commons-validator -->
+			<dependency>
+			    <groupId>commons-validator</groupId>
+			    <artifactId>commons-validator</artifactId>
+			    <version>${commons-validator.version}</version>
+			    
+			     <exclusions>
+				   	<exclusion>
+						<artifactId>commons-logging</artifactId>
+						<groupId>commons-logging</groupId>
+					</exclusion>
+				  </exclusions>
+			</dependency>
+			
+			
+			
+
 
 		<!-- s. JACKSON JSON ===================================================  -->
 		<dependency>
@@ -258,6 +278,8 @@
 		</dependency>
 	
 	
+					
+					
 					
 					
 		<!-- s. TEST ====================================================  -->
