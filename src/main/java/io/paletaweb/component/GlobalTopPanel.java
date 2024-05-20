@@ -11,9 +11,10 @@ import io.wktui.nav.menu.NavBar;
 import io.wktui.nav.menu.NavDropDownMenu;
 import io.wktui.nav.menu.SeparatorMenuItem;
 import wktui.base.BasePanel;
+import wktui.base.ModelPanel;
 
 
-public class GlobalTopPanel extends BasePanel {
+public class GlobalTopPanel<T> extends ModelPanel<T> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -21,7 +22,7 @@ public class GlobalTopPanel extends BasePanel {
 		this(id, null);
 	}
 	
-	public GlobalTopPanel(String id, IModel<?> model) {
+	public GlobalTopPanel(String id, IModel<T> model) {
 		super(id, model);
 	}
 
@@ -101,7 +102,7 @@ public class GlobalTopPanel extends BasePanel {
 					
 					@Override
 					public void onClick() {
-						setResponsePage(new RedirectPage("http://google.com"));
+						setResponsePage(new RedirectPage("/tabla"));
 					}
 
 					@Override
@@ -133,7 +134,7 @@ public class GlobalTopPanel extends BasePanel {
 					
 					@Override
 					public void onClick() {
-						setResponsePage(new RedirectPage("http://google.com"));
+						setResponsePage(new RedirectPage("/tabla"));
 					}
 
 					@Override
@@ -314,7 +315,7 @@ public class GlobalTopPanel extends BasePanel {
 						
 						@Override
 						public void onClick() {
-							setResponsePage(new RedirectPage("http://google.com"));
+							setResponsePage(new RedirectPage("/clubes"));
 						}
 
 						@Override
@@ -430,7 +431,7 @@ public class GlobalTopPanel extends BasePanel {
 					private static final long serialVersionUID = 1L;
 					@Override
 					public void onClick() {
-						setResponsePage(new RedirectPage("http://google.com"));
+						setResponsePage(new RedirectPage("/clubes"));
 					}
 
 					@Override
@@ -456,7 +457,7 @@ public class GlobalTopPanel extends BasePanel {
 					private static final long serialVersionUID = 1L;
 					@Override
 					public void onClick() {
-						setResponsePage(new RedirectPage("http://google.com"));
+						setResponsePage(new RedirectPage("/clubes"));
 					}
 
 					@Override
@@ -481,7 +482,7 @@ public class GlobalTopPanel extends BasePanel {
 					private static final long serialVersionUID = 1L;
 					@Override
 					public void onClick() {
-						setResponsePage(new RedirectPage("http://google.com"));
+						setResponsePage(new RedirectPage("/clubes"));
 					}
 
 					@Override
@@ -507,7 +508,7 @@ public class GlobalTopPanel extends BasePanel {
 					private static final long serialVersionUID = 1L;
 					@Override
 					public void onClick() {
-						setResponsePage(new RedirectPage("http://google.com"));
+						setResponsePage(new RedirectPage("/clubes"));
 					}
 
 					@Override

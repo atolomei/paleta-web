@@ -5,23 +5,22 @@ import org.apache.wicket.markup.html.pages.RedirectPage;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
-import io.wkyui.breadcrumb.BCElement;
-import io.wkyui.breadcrumb.BreadCrumb;
+import io.wktui.nav.breadcrumb.BCElement;
+import io.wktui.nav.breadcrumb.BreadCrumb;
 import wktui.base.BasePanel;
+import wktui.base.ModelPanel;
 
-public class MainHeaderPanel extends BasePanel {
+public class MainHeaderPanel<T> extends ModelPanel<T> {
 
 	IModel<String> title;
 	
 	public MainHeaderPanel() {
-		this("main-header", null);
-
+		this("main-header", null, null);
 	}
 
-	public MainHeaderPanel(String id, IModel<String> title) {
-		super(id);
+	public MainHeaderPanel(String id, IModel<T> model, IModel<String> title) {
+		super(id, model);
 		this.title=title;
-
 	}
 
 	
@@ -34,6 +33,7 @@ public class MainHeaderPanel extends BasePanel {
 		
 		
 		Label t = new Label ("title", getTitle()) {
+			private static final long serialVersionUID = 1L;
 			public boolean isVisible() {
 				return getTitle()!=null;
 			};

@@ -47,8 +47,6 @@ public class PaletaWebConfigurationService extends BaseService implements System
 		
 		
 		
-		
-		
 	/**
 	 * 
 	 */

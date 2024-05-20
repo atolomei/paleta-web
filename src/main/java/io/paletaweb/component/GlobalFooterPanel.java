@@ -9,13 +9,14 @@ import io.wktui.nav.menu.MenuItemPanel;
 import io.wktui.nav.menu.NavBar;
 import wktui.base.BasePanel;
 import wktui.base.LabelPanel;
+import wktui.base.ModelPanel;
 
 
 /**
  * 
  * 
  */
-public class GlobalFooterPanel extends BasePanel {
+public class GlobalFooterPanel<T> extends ModelPanel<T> {
 			
 	private static final long serialVersionUID = 1L;
 
@@ -23,7 +24,7 @@ public class GlobalFooterPanel extends BasePanel {
 		this(id, null);
 	}
 	
-	public GlobalFooterPanel(String id, IModel<?> model) {
+	public GlobalFooterPanel(String id, IModel<T> model) {
 		super(id, model);
 	}
 

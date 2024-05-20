@@ -1,6 +1,5 @@
 package io.paletaweb;
 
-import org.apache.wicket.Application;
 import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -31,8 +30,6 @@ public class PaletaWebApplication {
 		application.run(args);
 		
 	  }
-	
-	
 	
 	@PostConstruct
 	public void onInitialize() {

@@ -12,7 +12,7 @@ import io.paletaweb.component.GlobalFooterPanel;
 import io.paletaweb.component.GlobalTopPanel;
 import io.paletaweb.component.MainHeaderPanel;
 import io.paletaweb.page.BasePage;
-import wktui.list.ListPanel;
+import io.wktui.struct.list.ListPanel;
 
 
 /**
@@ -38,11 +38,9 @@ public class PaletaWebClubesPage extends BasePage {
 	public void onInitialize() {
 		super.onInitialize();
 		
-		add(new GlobalTopPanel("top-panel"));
-		
-		add(new MainHeaderPanel("main-header-panel", new Model<String>("Clubes")));
-		
-		add(new GlobalFooterPanel("footer-panel"));
+		add(new GlobalTopPanel<Void>("top-panel"));
+		add(new MainHeaderPanel<Void>("main-header-panel", null, new Model<String>("Clubes")));
+		add(new GlobalFooterPanel<Void>("footer-panel"));
 		
 		/**
 		NavBar<Void> nav = new NavBar<Void>("navbar");
