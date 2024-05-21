@@ -57,6 +57,9 @@ public abstract class BasePage extends WebPage {
 	private static final ResourceReference BOOTSTRAP_JS  =Bootstrap.getJavaScriptResourceReference();
 	
 	
+											
+	private static final ResourceReference FONT_AWESOME_CSS = new CssResourceReference(BasePage.class, "./paleta.css");
+	
 	private static final ResourceReference PALETA_CSS = new CssResourceReference(BasePage.class, "./paleta.css");
 																					
 	

@@ -126,8 +126,10 @@ public class PaletaWebClubesPage extends BasePage {
 		list.add( new Model<String>("GEBA"));
 		list.add( new Model<String>("Belgrano Social"));
 		list.add( new Model<String>("Gure Echea"));
+		list.add( new Model<String>("Navarro"));
 		
 		ListPanel<String> clubes = new ListPanel<String>("clubes");
+		clubes.setHasExpander(true);
 		clubes.setListModel(list);
 		add(clubes);
 

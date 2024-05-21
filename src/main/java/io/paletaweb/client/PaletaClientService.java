@@ -1,55 +1,73 @@
 package io.paletaweb.client;
 
-
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.RandomAccessFile;
+import java.net.ConnectException;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.security.NoSuchAlgorithmException;
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Base64;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.google.common.collect.Multimap;
 
+import io.paleta.logging.Logger;
 import io.paleta.model.SharedConstant;
 import io.paleta.util.Check;
 import io.paletaweb.PaletaWebConfigurationService;
+import io.paletaweb.PaletaWebVersion;
 import io.paletaweb.SystemService;
 import jakarta.annotation.PostConstruct;
 import okhttp3.Cache;
 import okhttp3.HttpUrl;
+import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Protocol;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 
 @Service
-public class PaletaClient implements SystemService {
-
+public class PaletaClientService implements SystemService {
+			
 	private static final int BUFFER_SIZE = 8192;
 	
-	/** 
-	 * 	MONITOR  
+	private static final Logger logger = Logger.getLogger(PaletaClientService.class.getName());
 
-	private static final String API_PING 									[] = {"ping"};
-	private static final String API_METRICS									[] = {"metrics"};
-	private static final String API_SYSTEM_INFO								[] = {"systeminfo"};
-	 */	
 	/** 
-	 * 	BUCKET 
+	 * 	CLUB
+	 */
 
-	private static final String API_BUCKET_LIST 							[] = {"bucket", "list"};
-	private static final String API_BUCKET_GET	 							[] = {"bucket", "get"};
-	private static final String API_BUCKET_EXISTS 							[] = {"bucket", "exists"};
-	private static final String API_BUCKET_CREATE	 						[] = {"bucket", "create"};
-	private static final String API_BUCKET_DELETE	 						[] = {"bucket", "delete"};
-	private static final String API_BUCKET_ISEMPTY							[] = {"bucket", "isempty"};
-	private static final String API_BUCKET_LIST_OBJECTS						[] = {"bucket", "objects"};
-								
-	private static final String API_BUCKET_DELETE_ALL_PREVIOUS_VERSION		[] = {"bucket", "deleteallpreviousversion"};
-	 */	
+	private static final String API_CLUB_GETBYNAME							[] = {"club", "getbyname"};
+	private static final String API_CLUB_LIST								[] = {"club", "list"};
+	private static final String API_CLUB_GETBYID							[] = {"club", "get"};
+	private static final String API_CLUB_SAVE								[] = {"club", "save"};
+	private static final String API_CLUB_CREATE								[] = {"club", "create"};
+	private static final String API_CLUB_EXISTS								[] = {"exists", "exists"};
 	
+	/** 
+	 * 	TABLA
+	 */
+	 	
+		
 	
 	/** ---------------------------------------------------- */
 	
@@ -58,8 +76,7 @@ public class PaletaClient implements SystemService {
 	
     /** default network I/O timeout is 15 minutes */
 	public static final int DEFAULT_CONNECTION_TIMEOUT = 15 * 60;
-	public static final String DEFAULT_USER_AGENT = "PaletaWeb (" + System.getProperty("os.arch") + "; " + System.getProperty("os.arch") + ") paletaweb-java/" + 
-	"#OdilonClientProperties.INSTANCE.getVersion()";
+	public static final String DEFAULT_USER_AGENT = "PaletaWeb (" + System.getProperty("os.arch") + "; " + System.getProperty("os.arch") + ") paletaweb-java/" + PaletaWebVersion.VERSION;
 	
 	/** default expiration for a presigned URL is 7 days in seconds */
 	//private static final int DEFAULT_EXPIRY_TIME = SharedConstant.DEFAULT_EXPIRY_TIME;
@@ -68,7 +85,8 @@ public class PaletaClient implements SystemService {
 	private static final DateTimeFormatter http_date = DateTimeFormatter.RFC_1123_DATE_TIME;	  
 	  
 	/** private static final String NULL_STRING = "(null)"; */
-	private static final String END_HTTP = "----------END-HTTP----------";
+	private static final String END_HTTP =   "----------END-HTTP----------";
+	private static final String START_HTTP = "----------START-HTTP--------";
 
 	private static final String linux_home   = (new File(System.getProperty("user.dir"))).getPath();
 	private static final String windows_home = System.getProperty("user.dir");
@@ -104,10 +122,12 @@ public class PaletaClient implements SystemService {
 	 private PaletaWebConfigurationService paletaWebConfigurationService;
 	 
 	 
-	public  PaletaClient() {
-	}
 	
-		
+	 public PaletaClientService() {
+	 }
+	
+	
+	 
 	@PostConstruct
 	private void initialize() {
 	
@@ -183,6 +203,238 @@ public class PaletaClient implements SystemService {
 	  }
 
 		
+
+	private Request createRequest(
+				String relativePath[], 
+				Method method, 
+				Multimap<String,String> headerMap, 
+				Multimap<String,String> queryParamMap,
+				final String contentType,
+				Object body,
+				int length,
+				boolean multiPart) throws NoSuchAlgorithmException, IOException {
+
+				HttpUrl.Builder urlBuilder = this.baseUrl.newBuilder();
+					
+				if (relativePath!=null) {
+					for (String str: relativePath) 
+					urlBuilder.addEncodedPathSegment(str);
+				}
+					
+				if (queryParamMap != null) {
+					for (Map.Entry<String,String> entry : queryParamMap.entries()) {
+						urlBuilder.addEncodedQueryParameter(entry.getKey(), entry.getValue());
+					}
+				}
+					
+				HttpUrl url = urlBuilder.build();
+					
+				Request.Builder requestBuilder = new Request.Builder();
+					
+				requestBuilder.url(url);
+					
+				String sha256 = null;
+					
+				if (body != null) {
+				// body must be byte[] or 
+					sha256 = Digest.sha256Hash(body, length);
+				}
+					
+				if (this.accessKey != null && this.secretKey != null) {
+						String encoding = Base64.getEncoder().encodeToString((accessKey + ":" + secretKey).getBytes());
+						String authHeader = "Basic " + encoding;
+						requestBuilder.header("Authorization", authHeader);
+				}
+					
+				if (sha256 != null)
+					requestBuilder.header("ETag", sha256);
+					
+				requestBuilder.header("Host", this.shouldOmitPortInHostHeader(url) ? url.host() : (url.host() + ":" + url.port()));
+				requestBuilder.header("User-Agent", this.userAgent);
+				requestBuilder.header("Accept", APPLICATION_JSON);
+				requestBuilder.header("Accept-Charset", "utf-8");
+				requestBuilder.header("Accept-Encoding", "gzip, deflate");
+				requestBuilder.header("Date", http_date.format(OffsetDateTime.now()));
+				
+				if (multiPart) {
+					requestBuilder.header("Transfer-Encoding", "gzip, chunked");
+				}
+					
+				if (headerMap != null) {
+						for (Map.Entry<String,String> entry : headerMap.entries()) {
+							requestBuilder.header(entry.getKey(), entry.getValue());
+						}
+				}
+					
+				if (body != null) {
+							RequestBody requestBody = null;
+							requestBody = new HttpRequestBody(contentType, body, length);
+							if (multiPart) {
+								String fileName = queryParamMap.get("filename").toString();
+								MultipartBody multipartBody = new MultipartBody.Builder()
+								.setType(MultipartBody.FORM)  // Header to show we are sending a Multipart Form Data
+								.addFormDataPart("file", fileName, requestBody) // file param
+								.addFormDataPart("Content-Type", contentType) // other string params can be like userId, name or something
+								.build();
+								requestBuilder.method(method.toString(), multipartBody);
+							}
+							else {
+								requestBuilder.method(method.toString(), requestBody);
+							}
+					}
+					else {
+						requestBuilder.method(method.toString(), null);
+					}
+					return requestBuilder.build();
+	}
+	
+	
+	private HttpResponse executeReq(	String relativePath[], 
+										Method method, 
+										Multimap<String,String> headerMap, 
+										Multimap<String, String> queryParamMap,
+										Object body, 
+										int length, 
+										boolean multiPart)  {
+	
+		String contentType = null;
+		
+		if (headerMap != null && headerMap.get("Content-Type") != null) {
+			contentType = String.join(" ", headerMap.get("Content-Type"));
+		}
+		
+		if (body != null && !(body instanceof InputStream || body instanceof RandomAccessFile || body instanceof byte[])) {
+			byte[] bytes = body.toString().getBytes(StandardCharsets.UTF_8);
+			body = bytes;
+			length = bytes.length;
+		}
+		
+		Request request = null;
+		
+		try {
+		request = createRequest(relativePath, method, headerMap, queryParamMap, contentType, body, length, multiPart);
+		
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+		
+		
+		if (logger.isDebugEnabled()) {
+			logger.debug(START_HTTP);
+			String encodedPath = request.url().encodedPath();
+			String encodedQuery = request.url().encodedQuery();
+			if (encodedQuery != null) {
+				encodedPath += "?" + encodedQuery;
+		}
+			logger.debug(request.method() + " " + encodedPath + " HTTP/1.1");
+			String headers = request.headers().toString()
+			.replaceAll("Signature=([0-9a-f]+)", "Signature=*REDACTED*")
+			.replaceAll("Credential=([^/]+)", "Credential=*REDACTED*");
+			logger.debug(headers);
+			logger.debug();
+		}
+
+		Response response;
+
+
+				try {
+					response = this.httpClient.newCall(request).execute();
+				
+				} catch (Exception e) {
+					throw new RuntimeException(e);
+				}
+				
+		
+				if (logger.isDebugEnabled()) {
+					logger.debug(response.protocol().toString().toUpperCase(Locale.US) + " " + response.code());
+					logger.debug(response.headers());
+				}
+		
+				ResponseHeader header = new ResponseHeader();
+				HeaderParser.set(response.headers(), header);
+		
+				if (response.isSuccessful()) {
+				
+					if (logger.isDebugEnabled()) 
+						logger.debug(END_HTTP);
+					
+					return new HttpResponse(header, response);
+				}
+		
+		/** if response is not successful -> throw OdilonException  ---------------------------- */
+
+				
+		
+		String str;
+		
+		try {
+		
+			str = response.body().string();
+			
+			if (logger.isDebugEnabled()) {
+				logger.debug("error response body -> " + (str!=null?str:"null"));
+			}
+		
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+		
+		int httpCode = response.code();
+		
+		throw new RuntimeException(String.valueOf(httpCode));
+		
+		//if (httpCode==ODHttpStatus.UNAUTHORIZED.value()) 
+		//	throw new ODClientException(	ODHttpStatus.UNAUTHORIZED.value(), ErrorCode.AUTHENTICATION_ERROR.value(), ErrorCode.AUTHENTICATION_ERROR.getMessage());
+		//
+		//if (httpCode==ODHttpStatus.INTERNAL_SERVER_ERROR.value()) { 
+		//throw new ODClientException(ODHttpStatus.INTERNAL_SERVER_ERROR.value(), ErrorCode.INTERNAL_ERROR.value(), response.toString());
+		//}
+		//
+		//if (httpCode==ODHttpStatus.FORBIDDEN.value()) { 
+		//throw new ODClientException(ODHttpStatus.INTERNAL_SERVER_ERROR.value(), ErrorCode.ACCESS_DENIED.value(), response.toString());
+		//}
+		
+		//try {
+		//OdilonErrorProxy proxy = this.objectMapper.readValue(str, OdilonErrorProxy.class);
+		//ODClientException ex = new ODClientException(proxy.getHttpStatus(), proxy.getErrorCode(), proxy.getMessage());
+		//Map<String, String> context = new HashMap<String, String>();
+		//context.put( "bucketName",bucketName.orElse("null"));
+		//context.put( "objectName",objectName.orElse("null"));
+		//
+		//if (queryParamMap!=null) {
+		//	queryParamMap.asMap().forEach( (k,v) -> context.put(k, v.toString()) );
+		//}
+		//ex.setContext(context);
+		//
+		//throw(ex);
+		//
+		//} catch (JsonProcessingException e) {
+		//throw new InternalCriticalException(e, str!=null? str:"");
+		//}
+}
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	private String getCacheWorkDir() {									
  		return getHomeDirAbsolutePath() + File.separator + "tmp";
@@ -229,7 +481,21 @@ public class PaletaClient implements SystemService {
 			      }
 			    }
 			    return true;
-		}	 
+		}
+		
+		  /**
+		   * <p>Checks whether port should be omitted in Host header.
+		   * HTTP Spec (rfc2616) defines that port should be omitted in Host header
+		   * when port and service matches (i.e HTTP -> 80, HTTPS -> 443)
+		   *</p>
+		   * @param url Url object
+		   */
+		  private boolean shouldOmitPortInHostHeader(HttpUrl url) {
+		    return (url.scheme().equals("http") && url.port() == 80)
+		      || (url.scheme().equals("https") && url.port() == 443);
+		  }
+		  
+
 	 
 	
 }

@@ -11,3 +11,9 @@ body.paleta {margin:0; padding:0; color:#171818; font-family: Segoe UI, Montserr
 .global-footer .menu-item a {padding:15px 30px; color: var(--bs-navbar-active-color); text-decoration:none;}
 
 .text {font-size:1.1rem; line-height:1.75rem;}
+
+
+
+.icon-expander {width:2em; float:left;}
+.icon-collapsed {width:1em; float:left;}
+.icon-expanded {width:1em; float:left;}

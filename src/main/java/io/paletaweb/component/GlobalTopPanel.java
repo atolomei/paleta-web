@@ -11,6 +11,7 @@ import io.wktui.nav.menu.NavBar;
 import io.wktui.nav.menu.NavDropDownMenu;
 import io.wktui.nav.menu.SeparatorMenuItem;
 import wktui.base.BasePanel;
+import wktui.base.LabelPanel;
 import wktui.base.ModelPanel;
 
 
@@ -32,7 +33,12 @@ public class GlobalTopPanel<T> extends ModelPanel<T> {
 		
 		NavBar<Void> nav = new NavBar<Void>("navbar");
 		
-		nav.addCollapse(getFixtureMenu());
+		
+		LabelPanel logo = new LabelPanel("item", new Model<String>("[   P  ]"));
+		
+		nav.addNoCollapseLeft(logo);
+		
+		nav.addCollapse(getTorneoMenu());
 		nav.addCollapse(getClubesMenu());
 		nav.addCollapse(getAdminMenu());
 		nav.addCollapse(getAcercaMenu());
@@ -51,7 +57,7 @@ public class GlobalTopPanel<T> extends ModelPanel<T> {
 	 * 
 	 * @return
 	 */
-	private NavDropDownMenu<Void> getFixtureMenu() {
+	private NavDropDownMenu<Void> getTorneoMenu() {
 		
 		NavDropDownMenu<Void> menu = new NavDropDownMenu<Void>("item", null, new Model<String>("Torneo Metropolitano"));
 
@@ -69,7 +75,7 @@ public class GlobalTopPanel<T> extends ModelPanel<T> {
 					
 					@Override
 					public void onClick() {
-						setResponsePage(new RedirectPage("/about"));
+						setResponsePage(new RedirectPage("/torneo/info"));
 					}
 
 					@Override
@@ -85,7 +91,7 @@ public class GlobalTopPanel<T> extends ModelPanel<T> {
 			}
 		});
 
-		
+
 		
 		
 		
@@ -102,7 +108,7 @@ public class GlobalTopPanel<T> extends ModelPanel<T> {
 					
 					@Override
 					public void onClick() {
-						setResponsePage(new RedirectPage("/tabla"));
+						setResponsePage(new RedirectPage("/torneo/fixture"));
 					}
 
 					@Override
@@ -134,7 +140,7 @@ public class GlobalTopPanel<T> extends ModelPanel<T> {
 					
 					@Override
 					public void onClick() {
-						setResponsePage(new RedirectPage("/tabla"));
+						setResponsePage(new RedirectPage("/torneo/tabla"));
 					}
 
 					@Override
@@ -149,6 +155,75 @@ public class GlobalTopPanel<T> extends ModelPanel<T> {
 				};
 			}
 		});
+
+		menu.addItem(new io.wktui.nav.menu.MenuItemFactory<Void>() {
+			private static final long serialVersionUID = 1L;
+			@Override
+			public MenuItemPanel<Void> getItem(String id) {
+				return new  SeparatorMenuItem(id);
+			}
+		});
+		
+		menu.addItem(new io.wktui.nav.menu.MenuItemFactory<Void>() {
+
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public MenuItemPanel<Void> getItem(String id) {
+
+				return new  LinkMenuItem<Void>(id) {
+
+					private static final long serialVersionUID = 1L;
+					
+					@Override
+					public void onClick() {
+						setResponsePage(new RedirectPage("/torneo/reglamento"));
+					}
+
+					@Override
+					public IModel<String> getLabel() {
+						return new Model<String>("Reglamento");
+					}
+
+					@Override
+					public String getBeforeClick() {
+						return null;
+					}
+				};
+			}
+		});
+
+		
+		menu.addItem(new io.wktui.nav.menu.MenuItemFactory<Void>() {
+
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public MenuItemPanel<Void> getItem(String id) {
+
+				return new  LinkMenuItem<Void>(id) {
+
+					private static final long serialVersionUID = 1L;
+					
+					@Override
+					public void onClick() {
+						setResponsePage(new RedirectPage("/torneo/inscripcion"));
+					}
+
+					@Override
+					public IModel<String> getLabel() {
+						return new Model<String>("Inscripcion");
+					}
+
+					@Override
+					public String getBeforeClick() {
+						return null;
+					}
+				};
+			}
+		});
+
+
 		
 		menu.addItem(new io.wktui.nav.menu.MenuItemFactory<Void>() {
 			private static final long serialVersionUID = 1L;
@@ -202,7 +277,7 @@ public class GlobalTopPanel<T> extends ModelPanel<T> {
 					
 					@Override
 					public void onClick() {
-						setResponsePage(new RedirectPage("http://google.com"));
+						setResponsePage(new RedirectPage("/clubes"));
 					}
 
 					@Override
@@ -242,12 +317,12 @@ public class GlobalTopPanel<T> extends ModelPanel<T> {
 					
 					@Override
 					public void onClick() {
-						setResponsePage(new RedirectPage("http://google.com"));
+						setResponsePage(new RedirectPage("/clubes"));
 					}
 
 					@Override
 					public IModel<String> getLabel() {
-						return new Model<String>("Planillas de juego");
+						return new Model<String>("Carga de Formulario de Juego");
 					}
 
 					@Override
@@ -555,7 +630,9 @@ public class GlobalTopPanel<T> extends ModelPanel<T> {
 	}
 	
 	private  NavDropDownMenu<Void> getAcercaMenu() {
+
 		NavDropDownMenu<Void> menu = new NavDropDownMenu<Void>("item", null, new Model<String>("Acerca"));
+		
 		menu.addItem(new io.wktui.nav.menu.MenuItemFactory<Void>() {
 
 			private static final long serialVersionUID = 1L;
@@ -585,6 +662,37 @@ public class GlobalTopPanel<T> extends ModelPanel<T> {
 			}
 		});
 
+
+		menu.addItem(new io.wktui.nav.menu.MenuItemFactory<Void>() {
+
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public MenuItemPanel<Void> getItem(String id) {
+
+				return new  LinkMenuItem<Void>(id) {
+
+					private static final long serialVersionUID = 1L;
+					
+					@Override
+					public void onClick() {
+						setResponsePage(new RedirectPage("/contacto"));
+					}
+
+					@Override
+					public IModel<String> getLabel() {
+						return new Model<String>("Contáctenos");
+					}
+
+					@Override
+					public String getBeforeClick() {
+						return null;
+					}
+				};
+			}
+		});
+
+		
 		return menu;
 	}
 	

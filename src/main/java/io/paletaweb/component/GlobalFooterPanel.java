@@ -61,7 +61,7 @@ public class GlobalFooterPanel<T> extends ModelPanel<T> {
 			
 			@Override
 			public void onClick() {
-				setResponsePage(new RedirectPage("/fixture"));
+				setResponsePage(new RedirectPage("/torneo/fixture"));
 			}
 
 			@Override
@@ -83,7 +83,7 @@ public class GlobalFooterPanel<T> extends ModelPanel<T> {
 			
 			@Override
 			public void onClick() {
-				setResponsePage(new RedirectPage("/tabla"));
+				setResponsePage(new RedirectPage("/torneo/tabla"));
 			}
 
 			@Override
@@ -104,7 +104,7 @@ public class GlobalFooterPanel<T> extends ModelPanel<T> {
 			
 			@Override
 			public void onClick() {
-				setResponsePage(new RedirectPage("/contact"));
+				setResponsePage(new RedirectPage("/contacto"));
 			}
 
 			@Override

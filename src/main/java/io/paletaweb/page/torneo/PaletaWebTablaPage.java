@@ -12,7 +12,7 @@ import org.apache.wicket.extensions.markup.html.repeater.data.table.DataTable;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.PropertyColumn;
 import org.apache.wicket.extensions.markup.html.repeater.util.SortableDataProvider;
-
+import org.apache.wicket.markup.html.pages.RedirectPage;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.wicketstuff.annotation.mount.MountPath;
@@ -23,6 +23,8 @@ import io.paletaweb.component.GlobalFooterPanel;
 import io.paletaweb.component.GlobalTopPanel;
 import io.paletaweb.component.MainHeaderPanel;
 import io.paletaweb.page.BasePage;
+import io.wktui.nav.breadcrumb.BCElement;
+import io.wktui.nav.breadcrumb.BreadCrumb;
 
 
 
@@ -35,7 +37,7 @@ import io.paletaweb.page.BasePage;
  * Jugador
  * 
  */
-@MountPath("tabla")
+@MountPath("torneo/tabla")
 public class PaletaWebTablaPage extends BasePage {
 	
 	private static final long serialVersionUID = 1L;
@@ -127,8 +129,28 @@ public class PaletaWebTablaPage extends BasePage {
 	public void onInitialize() {
 		super.onInitialize();
 		
+		
+		BreadCrumb<Void> bc = new BreadCrumb<Void>();
+		
+		BCElement b1 = new BCElement(new Model<String>("Portada")) {
+			private static final long serialVersionUID = 1L;
+			@Override
+			public void onClick() {
+				setResponsePage( new RedirectPage("/home"));
+			}
+		};
+		
+		bc.addElement(b1);
+		
+		BCElement b2 = new BCElement(new Model<String>("Torneo Metropolintano"));
+		bc.addElement(b2);
+		
+		BCElement b3 = new BCElement(new Model<String>("Tabla"));
+		bc.addElement(b3);
+
+		
 		add(new GlobalTopPanel<Void>("top-panel"));
-		add(new MainHeaderPanel<Void>("main-header-panel", null, new Model<String>("Clubes")));
+		add(new MainHeaderPanel<Void>("main-header-panel", null, new Model<String>("Clubes"), bc));
 		add(new GlobalFooterPanel<Void>("footer-panel"));
 		
 		// ServiceLocator.getInstance().getApplicationContext().getBean();
@@ -163,8 +185,6 @@ public class PaletaWebTablaPage extends BasePage {
 		 columns.add(new PropertyColumn<TablaPosicion, Integer>(new Model<String>("Ganados"), "partidosGanados"));
 		 columns.add(new PropertyColumn<TablaPosicion, Integer>(new Model<String>("Perdidos"), "partidosPerdidos"));
 		 
-
-		 
 		 columns.add(new PropertyColumn<TablaPosicion, Integer>(new Model<String>("Set Ganados"), "partidosJugados"));
 		 columns.add(new PropertyColumn<TablaPosicion, Integer>(new Model<String>("Set Perdidos"), "partidosGanados"));
 		 columns.add(new PropertyColumn<TablaPosicion, Integer>(new Model<String>("Dif Sets"), "partidosPerdidos"));
@@ -172,7 +192,6 @@ public class PaletaWebTablaPage extends BasePage {
 		 
 		 columns.add(new PropertyColumn<TablaPosicion, Integer>(new Model<String>("Desc."), "partidosGanados"));
 		 columns.add(new PropertyColumn<TablaPosicion, Integer>(new Model<String>("Reprog."), "partidosPerdidos"));
-
 		 
 		 return columns;
 		
