@@ -31,7 +31,6 @@ import io.paleta.logging.Logger;
 
 
 /**
- * 
  * @author atolomei@novamens.com (Alejandro Tolomei)
  */
 public class PaletaWebPropertiesListener implements ApplicationListener<ApplicationEnvironmentPreparedEvent> {

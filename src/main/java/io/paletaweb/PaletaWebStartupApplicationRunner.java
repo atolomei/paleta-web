@@ -5,6 +5,7 @@ package io.paletaweb;
 import java.time.OffsetDateTime;
 import java.util.Locale;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.ApplicationContext;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Component;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import io.paleta.logging.Logger;
+import io.paletaweb.torneo.TorneoCuba;
 
 
 
@@ -26,12 +28,21 @@ public class PaletaWebStartupApplicationRunner implements ApplicationRunner {
 	
 	static public final String SEPARATOR = "---------------------------------";
 	
+	@Autowired
 	@JsonIgnore
 	private final ApplicationContext appContext;
 
-	public PaletaWebStartupApplicationRunner(ApplicationContext appContext) {
+	
+	@Autowired
+	@JsonIgnore
+	private final TorneoCuba torneo;
+	
+	
+	public PaletaWebStartupApplicationRunner(ApplicationContext appContext, TorneoCuba torneo) {
 		this.appContext = appContext;
+		this.torneo=torneo;
 	}
+	
 	
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
@@ -51,6 +62,14 @@ public class PaletaWebStartupApplicationRunner implements ApplicationRunner {
 		startupLogger.info	(SEPARATOR);
 		
 		startupLogger.info	("Startup at -> " + OffsetDateTime.now().toString());
+		startupLogger.info	("done");
+		
+		
+		//TorneoCuba torneo = new TorneoCuba("Torneo fin de año CUBA"); 
+		
+		
+		torneo.execute();
+		
 	}
 	
 	

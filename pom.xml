@@ -24,6 +24,8 @@
 <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
+	<apache-freemaker-version>2.3.33</apache-freemaker-version>
+
 	<commons-validator.version>1.8.0</commons-validator.version> 	<!--  01 /2024  -->
 	
     <disruptor-version>3.4.4</disruptor-version> 			<!--  01 /2024 version 4.0.0 did not work with LogManager  --> 
@@ -310,6 +312,12 @@
             <artifactId>junit-jupiter-api</artifactId>
             <scope>test</scope>
         </dependency>
+
+		<dependency>
+		  <groupId>org.freemarker</groupId>
+		  <artifactId>freemarker</artifactId>
+			<version>${apache-freemaker-version}</version>		  
+		</dependency>
         
         <!--dependency>
 			<groupId>org.apache.wicket</groupId>

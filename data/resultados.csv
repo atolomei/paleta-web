@@ -1,0 +1,12 @@
+
+#     1     2      3          4                        5         6         7    8  
+# Fecha, Zona, Local, Visitante,  resultado (L, V, E), set1 L-V, set2 L-V, ... 
+# --------------------------------------------------------------------------------
+
+today, Zona A, CUBA A, Cuba C, 1, 15-10, 12-15, 15-14
+today, Zona A, CUBA A, Ferro B, 2, 12-25
+today, Zona A, CUBA A, Pilar, 1, 25-22
+
+
+
+
