@@ -84,6 +84,13 @@
 			<appender-ref ref="paletaweb"/>
 			<AppenderRef ref="Console"/>
 		</Asynclogger>´
+		
+		
+		<Asynclogger name="io.paletaweb.importer"  level="debug" additivity="false">
+			<appender-ref ref="paletaweb"/>
+			<AppenderRef ref="Console"/>
+		</Asynclogger>´
+		
  
 		
 	</loggers>

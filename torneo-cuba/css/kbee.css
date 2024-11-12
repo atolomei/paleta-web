@@ -1,0 +1,180 @@
+@charset "UTF-8";
+
+
+
+/**@font-face {font-family: Montserrat;  src: url('../fonts/montserrat/Montserrat-Thin.ttf');  font-weight:	200;}**/
+@font-face {font-family: Montserrat;  src: url('../fonts/montserrat/Montserrat-Regular.ttf');  font-weight:	normal;}
+@font-face {font-family: Montserrat;  src: url('../fonts/montserrat/Montserrat-Light.ttf');  font-weight:	300;}
+@font-face {font-family: Montserrat;  src: url('../fonts/montserrat/Montserrat-Bold.ttf');  font-weight:	bold;}
+
+
+/* BANNER  -----------------------  
+
+linear-gradient(110deg,#caca9d,#b7d04a,#606744,#000000)
+linear-gradient(110deg,#ff6673,#ff6673,#cc25e4,#7c00ff) #ef67b2
+linear-gradient(160deg,#420b32, #bb6796,#7664ad, #dcef86)
+background-image: linear-gradient(160deg,#ef67b2, #ef67b2,#9fad64,#dcef86)
+
+*/
+
+body.kbee {margin:0; box-sizing: border-box; padding:0; font-family: Montserrat,  Arial, serif; font-size:24px; color:black; line-height: 1.5em; font-weight: 300;}
+
+.kbee h1 {font-size: 3.3em; margin: 0; text-align:center; line-height: 1.5em;}    
+.kbee h2 {font-size: 2.3em; margin: 0; text-align:center;  font-weight:bold; line-height: 1.5em; color: inherit;}   
+.kbee h3 {font-size: 1.85em;  margin: 3em 0 1em 0; text-align:center; font-weight:bold; line-height: 1.25em;}
+.kbee h4 {font-size: 1.3em;  margin:2em 0 0.5em 0; text-align:center; font-weight:bold; line-height: 1.25em;}
+.kbee h3 a.link {color: inherit; font-weight: inherit;}
+
+ul		{margin: 0; padding: 0; float: left;}
+ul li 	{list-style: none outside none;}
+
+
+.main-menu {float:right;}
+.odilon-logo {float:left;}
+
+.image-banner-container {background: url(../images/flor7.jpg) no-repeat 0 0 scroll; background-size: cover; float:left; width:100%;}
+
+.centered {position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); display: block;}
+.centered-x {position: absolute;   left: 50%; transform: translateX(-50%); display: block;}
+.screenshot {height: 40vh; float:left; width:100%; background: #eeeeee;}
+.main-canvas {float:left; width:100%; min-height: calc( 100vh - 150px);}
+
+.group-list {padding: 1em 3em;}
+.list-item {padding: 0.2em 0;}
+
+.quote {font-size: 0.9em; font-style: italic;}
+
+/**- ---------------------------------------------------------------------------------- - */
+.info-pill {width:50%; padding:0 1em; float:left;}
+.info-pill-payload {float:left; width:100%; padding: 1.5em; float:left; border-radius: 6px; height: 25em; min-height: 450px; overflow:auto;}
+
+
+.info-pill h3 {margin:0;}
+.info-pill .image-container {width:100%; height: 200px; float:left; overflow: hidden; position: relative; border-radius:6px;}
+
+
+.info-pill .longb {height: 38em;}
+.info-pill .longb .image-container {height:400px;}
+
+.info-pill .longb_extra {height: 1200px;}
+
+
+/**- ---------------------------------------------------------------------------------- - */
+
+.code {padding:0; line-height:1.5em; float:left; width:100%;  border-radius:4px; font-size:0.82em;}
+
+.code  .hljs-tag .hljs-name,
+.code  .hljs-name {color: #9f3d92;}
+
+	
+
+nav, div {box-sizing: border-box;}
+p {font-size:1em; text-align: center;}
+
+
+.section {float:left; width:100%;}
+.section-internal-container {max-width: 1600px; margin: auto; float:none; }
+.section-content {padding: 2em 2em; min-height: 50vh; float:left; width:100%; max-width: inherit;}
+
+ 
+a.link {color: #0c6490; text-decoration:none; font-weight: 300;}
+						
+
+.light {background: white; color: #1d1d1f;}
+.dark {background: #f4f5f6; color:#1d1d1f;}
+
+
+.toolbar  {font-size: 18px; color: white; font-weight: 300; width:100%; float:left; padding: 0px 30px;  line-height: 1.65em;}
+.toolbar-item { float:left; display:inline;  text-transform:uppercase; padding:20px 20px;}
+
+.button-toolbar-item a,
+.toolbar-item a {text-decoration:none; color: inherit; }
+.button-toolbar-item { float:left; display:inline;  text-transform:uppercase; padding:18px 0 18px 20px;}
+.button-toolbar-item  .btn  {padding:10px 30px; line-height:1em; font-size:0.88em; color:white;}
+
+
+
+
+
+.btn-primary {background: #0c6490; padding: 5px 40px; border:none; font-size:1em; font-family: inherit; border-radius: 6px; color:white;}
+
+.footer {width:100%; float:left; padding: 20px 30px; background: #f6f7f8;}
+
+
+
+/**- ---------------------------------------------------------------------------------- - */
+
+.banner {float:left; width:100%;}
+
+.banner .canvas-container {width:100%; float:left; height: 25vh; min-height: 340px; border-radius: 6px; display:block; background: white; margin-top: 0px;}
+	  
+.banner .image-container {width:45%; float:left; padding:	0px; margin:0 0 0 0;  display:block; height:100%; position:relative;}
+
+
+/**.banner .image-container img {max-width: 100%; max-height: 100%; margin-top:0em;	    position: absolute;    left: 50%;    transform: translateX(-50%);    display: block; bottom:0;}**/
+
+.banner .text-container {width:100%; float:left; position:relative; height: 100%; position:relative; margin:0 0 0 0;}
+.banner .text-container .text {width:100%; min-width: 400px;}
+
+
+							
+.banner  h2.main-banner {font-size: 54px;    line-height: 1.2em;    font-weight: 800;    letter-spacing: -0.005em;	text-transform:none;    font-family: Montserrat, Lato,sans-serif;    -webkit-text-fill-color: transparent;	background-image: linear-gradient(160deg,white, white,white, white);	text-align: center;     top: 0%;	-webkit-background-clip: text;    background-clip: text;    box-decoration-break: clone;}
+
+
+
+
+
+/**- ---------------------------------------------------------------------------------- - */
+.dropbtn {
+  background-color: inherit;
+  border: none;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none; 
+  min-width: 380px; 
+  position: absolute;
+  text-transform:none;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  background: white;
+}
+
+.dropdown-content a {
+  padding: 20px 30px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #f4f4f4;}
+.dropdown:hover .dropdown-content {display: block;}
+.dropdown:hover .dropbtn {background-color: inherit; cursor: pointer;}
+
+
+
+.hidden-lg {display:none;}
+
+				
+.integer   		{text-align: right;}
+.center	 		{text-align: center;}
+.align-right	 {text-align: right;}
+tr.separator 		{background-color:#eeeeef; height:2em;}
+
+tr.separator th {background-color:transparent;}
+tr.separator td {background-color:transparent;}
+
+
+.kbee h5 {	font-size: 1.2em;
+    		margin: 1.2em 0 0.1em 0;
+    		text-align: center;
+    		font-weight: bold;
+    		line-height: 1.25em;
+}
+
+
+

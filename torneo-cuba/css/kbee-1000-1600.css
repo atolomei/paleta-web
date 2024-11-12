@@ -1,0 +1,136 @@
+@charset "UTF-8";
+
+/**- ---------------------------------------------------------------------------------- - */
+
+@media (min-width: 1000px) and (max-width: 1300px) {
+
+											
+.image-banner-container {background: url(../images/flor7-phone.jpg) no-repeat 0 0 scroll; background-size: cover; float:left; width:100%;}
+	
+body.kbee {font-size:20px; color:black; line-height: 1.5em; font-weight: 300;}
+
+h1.kbee {font-size: 2.7em; margin: 0; text-align:center; line-height: 1.25em;}    
+h2.kbee {font-size: 1.9em; margin: 0; text-align:center;  font-weight:bold; line-height: 1.5em; color: inherit;}   
+h3.kbee {font-size: 1.4em;  margin: 3em 0 1em 0; text-align:center;}
+h4.kbee {font-size: 1.2em;  margin:0; text-align:center;}
+
+.section-content {padding: 2em 4em;}
+
+.banner {float:left; width:100%;}
+
+.banner .canvas-container {width:100%; float:left; height: 30vh; min-height: 280px; max-height: 700px; border-radius: 6px; display:block; background: white; margin-top: 0px;}
+
+.banner .image-container {width:40%; float:left; padding:	0px; margin:0 0 0 0;  display:block; height:100%; position:relative;}
+
+/**.banner .image-container img {max-width: 100%; max-height: 100%; margin-top:0em;	    position: absolute;    left: 50%;    transform: translateX(-50%);    display: block; bottom:0;}**/
+
+
+.banner .text-container {width:100%; float:left; position:relative; height: 100%; position:relative; margin:0 0 0 0;}
+.banner .text-container .text {width:100%; }
+.banner  h2.main-banner {font-size: 56px;    line-height: 1.3em;    font-weight: 800;    letter-spacing: -0.005em;	text-transform:none;    font-family: Montserrat, Lato,sans-serif;    -webkit-text-fill-color: transparent;	background-image: linear-gradient(160deg,white, white,white, white);	text-align: center;     bottom:0%;	-webkit-background-clip: text;    background-clip: text;    box-decoration-break: clone;}
+
+
+.info-pill-payload {height: 29em; min-height: 580px;}
+.info-pill .longb {height: 50em;}
+.info-pill .longb .image-container {height:250px;}
+.list-item {padding: 0.2em 0;}
+
+
+
+
+}
+
+
+
+/**- ----------------------------------------------------------------------------------- */
+
+
+@media (max-width: 1000px) {
+
+.odilon-logo {float:left; width:100%;font-size:1em;}
+.main-menu {float:left; width:100%; font-size:0.8em;}
+
+.odilon-logo .toolbar-item,
+.main-menu .toolbar-item {width:100%; text-align:center; padding: 5px 0px;}
+
+
+.image-banner-container {background: url(../images/flor7-phone.jpg) no-repeat 0 0 scroll; background-size: cover; float:left; width:100%;}
+
+
+body.kbee {font-size:18px; }
+h1.kbee {font-size: 2.5em; margin: 0; text-align:center; line-height: 1.25em;}    
+h2.kbee {font-size: 1.8em; }   
+h3.kbee {font-size: 1.25em;  margin: 3em 0 1em 0; text-align:center;}
+h4.kbee {font-size: 1em;  margin:0; text-align:center;}
+
+
+.banner {float:left; width:100%;}
+
+.banner .canvas-container {width:100%; float:left; height: auto; min-height: 200px; max-height: 280px; border-radius: 6px; display:block; background: white; margin-top: 0px;}
+	  
+.banner .image-container {width:100%; float:left; padding:	0px; margin:0 0 0 0;  display:block; height: calc( 100% - 280px); position:relative;}
+
+.banner .image-container img {max-height: 100%;}
+
+
+.banner .text-container {width:100%; float:left; position:relative; height: 152px; position:relative; margin:0 0 0 0;}
+.banner .text-container .text {width:90%; min-width: 400px;}
+
+
+.banner  h2.main-banner {font-size: 42px;    
+line-height: 1.3em;    font-weight: 800;    
+letter-spacing: -0.005em;	text-transform:none;   
+ font-family: Montserrat, Lato,sans-serif;    
+ -webkit-text-fill-color: transparent;	
+ background-image: linear-gradient(160deg,white, white,white, white);	
+ text-align: center;     	-webkit-background-clip: text;    
+ background-clip: text;    box-decoration-break: clone;
+}
+ 
+
+
+.info-pill {width:100%; padding:1em 0; float:left;}
+.info-pill-payload {float:left; width:100%; padding: 1.5em; float:left; border-radius: 6px; height: initial; min-height: 200px;}
+.image-container {width:100%; height: 160px; float:left; overflow: hidden; position: relative; border-radius:6px;}
+
+.info-pill .longb {height: initial;}
+.info-pill .longb .image-container {height:250px;}
+.list-item {padding: 0.2em 0;}
+}
+
+
+
+@media (max-width: 600px) {
+
+	body.kbee {font-size:14px; }
+	h2.kbee {font-size: 1.75em; }   
+	
+	
+	.image-banner-container {background: url(../images/flor7-phone.jpg) no-repeat 0 0 scroll; background-size: cover; float:left; width:100%;}
+	
+	.hidden-lg {display:block;}
+	.hidden-xs {display:none;}
+	.dropdown {width: 100%;}
+		
+	.dropdown-content {    position:absolute;	min-width: initial; 	left:0;    width: initial;	float:left;	box-sizing: border-box;	box-shadow:none;	font-weight:normal;	border:1px solid #eeeeee;	margin:0;	}
+	
+	.dropdown-content a {border-bottom: 1px solid #eeeeee;}
+	.button-toolbar-item .btn{width:100%; float:left; margin: 0;    box-sizing: border-box; text-align:center;}
+	.button-toolbar-item {width:100%;}
+	.toolbar-item {width:100%; float:left; text-align:center;  font-weight:300; padding: 5px 10px;}
+	
+	.info-pill .longb {height: initial;}
+	.info-pill .longb .image-container {height:200px;}
+	
+	
+	.banner .text-container .text {min-width: initial;}
+	.banner  h2.main-banner {font-size: 42px; }
+	.banner .canvas-container {padding: 0 1em; height: 200px; min-height: initial; }
+	.banner .image-container img {height: 320px; width:initial;}
+
+	.group-list {padding: 1em 0;}
+	.list-item {padding: 0.2em 0;}
+
+
+}
+	
