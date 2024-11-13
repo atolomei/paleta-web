@@ -13,7 +13,7 @@
     <meta name="description" content="Torneo Paleta CUBA Viamonte." />
     <meta name="Keywords" content="torneo, paleta, cuba" />
 
-    <meta name="Language" content="Spanixh" />
+    <meta name="Language" content="Spanish" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=yes"
