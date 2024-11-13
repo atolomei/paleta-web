@@ -32,9 +32,25 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap" rel="stylesheet"/>
 
     <!-- ANALYTICS -->
+    
+    
+    
+    <!-- Google tag (gtag.js) -->
+    
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-FFGEDJZC3F"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+	
+	  gtag('config', 'G-FFGEDJZC3F');
+	</script>
+
+    
   </head>
 
   <body class="kbee">
+    
     <!-- TOP TOOLBAR -------------------------------------------------------- -->
 
     <section class="image-banner-container">
@@ -112,8 +128,9 @@ Jueves 12 de Diciembre de 2024<br>
 <h4>Clasificación</h4>
 <p>
 10 equipos en dos zonas de 5, cada equipo juega contra los otros de su zona.<br>
-Partidos a 25 puntos, sin extensión.<br>
+Partidos a 25 puntos, sin alargue.<br>
 Clasifican 2 primeros de cada zona, desempate por diferencia de sets, diferencia de tantos, tantos a favor, sorteo.<br>
+Semifinales y Final se juegan a 3 sets de 15, 15 y 10.
 </p>
 
 <h4>Finales</h4>
@@ -413,96 +430,77 @@ Luego comida en CUBA</p>
 			  </div>
 	 	     </div>
 	
-	<div class="row">
-		  
-	  <div class="col-lg-12 col-md-12 col-xs-12">
-			  <#list grouptable.table>
-			  <table class="table table-responsive table-bordered table-hover">
-						<thead class="table-dark">
-							<tr>
-							  <th scope="col">#</th>
-							  <th scope="col">Equipo</th>
-							  <th scope="col" class="center">Pts</th>							  
-							  <th class="hidden-sm hidden-md hidden-lg" scope="col" title="Jugados | Ganados | Perdidos">J | G | P</th>							  
-							  <th class="hidden-xs center" scope="col" title="Jugados">Jug</th>
-							  <th class="hidden-xs center" scope="col" title="Gandos">Gan</th>
-							  <th class="hidden-xs center" scope="col" title="Perdidos">Per</th>
-							  
-							  <th class="hidden-sm hidden-md hidden-lg" scope="col" title="Sets ganados | Sets Perdidos | Diferencia Sets">Sets ( F | C | Dif )</th>
-							  <th class="hidden-xs center" scope="col" title="Sets ganados">SG</th>
-							  <th class="hidden-xs center" scope="col" title="Sets perdidos">SP</th>
-							  <th class="hidden-xs center" scope="col" title="Diferencia Sets">SDif</th>
-
-
-  							  <th class="hidden-sm hidden-md hidden-lg" scope="col" title="Tantos a favor | Tantos en contra | Diferencia tantos">Tantos ( F | C | Dif )</th>
-							  <th class="hidden-xs center" scope="col" title="Tantos a favor">TF</th>
-							  <th class="hidden-xs center" scope="col" title="Tantos en contra">TC</th>
-							  <th class="hidden-xs center" scope="col" title="Diferencia tantos">TDif</th>
-							  
-							</tr>
-						</thead>
-						
-						<tbody>
-						
-						<#items as tablePosition>
-						
-							<tr>
-							  <th scope="row">${tablePosition?index+1}</th>
-							  
-							  <td>${tablePosition.team.name}</td>
-							                
-							  <td class="integer">${tablePosition.puntos}</td>              
-							  							  
-							  <td class="hidden-sm hidden-md hidden-lg" scope="col">${tablePosition.partidosJugados} | ${tablePosition.partidosGanados} | ${tablePosition.partidosPerdidos} </td>
-							  <td class="hidden-xs integer" scope="col">${tablePosition.partidosJugados}</td>              
-							  <td class="hidden-xs integer" scope="col">${tablePosition.partidosGanados}</td>              
-							  <td class="hidden-xs integer" scope="col">${tablePosition.partidosPerdidos}</td>              
-
-							  <td class="hidden-sm hidden-md hidden-lg" scope="col">${tablePosition.setGanados} | ${tablePosition.setPerdidos} | ${tablePosition.difSets} </td>
-							  <td class="hidden-xs integer" scope="col">${tablePosition.setGanados}</td>              
-							  <td class="hidden-xs integer" scope="col">${tablePosition.setPerdidos}</td>              
-							  <td class="hidden-xs integer" scope="col">${tablePosition.difSets}</td>              
-
-							  <td class="hidden-sm hidden-md hidden-lg" scope="col">${tablePosition.tantosFavor} | ${tablePosition.tantosContra} | ${tablePosition.difTantos} </td>
-							  <td class="hidden-xs integer" scope="col">${tablePosition.tantosFavor}</td>              
-							  <td class="hidden-xs integer" scope="col">${tablePosition.tantosContra}</td>              
-							  <td class="hidden-xs integer" scope="col">${tablePosition.difTantos}</td>              
-							  
-							</tr>
-						</#items>
-							
-						</tbody>
-					</table>
-					
-					<#else>
-    					<p>No hay equipos en la tabla</p>
-					</#list>
-					
-			  </div>
-		</div>			
-		 
-		 </#items>
-		 
-		</#list>
-		 	
-				
-				 
+			<div class="row">
 				  
-				   
-				    
-				     
-				      
-				       
-				        
-				         
-				          
-				           
-				            
-				             
-				              
-				               
-				                 
-			
+			  <div class="col-lg-12 col-md-12 col-xs-12">
+					  <#list grouptable.table>
+					  <table class="table table-responsive table-bordered table-hover">
+								<thead class="table-dark">
+									<tr>
+									  <th scope="col">#</th>
+									  <th scope="col">Equipo</th>
+									  <th scope="col" class="center">Pts</th>							  
+									  <th class="hidden-sm hidden-md hidden-lg" scope="col" title="Jugados | Ganados | Perdidos">J | G | P</th>							  
+									  <th class="hidden-xs center" scope="col" title="Jugados">Jug</th>
+									  <th class="hidden-xs center" scope="col" title="Gandos">Gan</th>
+									  <th class="hidden-xs center" scope="col" title="Perdidos">Per</th>
+									  
+									  <th class="hidden-sm hidden-md hidden-lg" scope="col" title="Sets ganados | Sets Perdidos | Diferencia Sets">Sets ( F | C | Dif )</th>
+									  <th class="hidden-xs center" scope="col" title="Sets ganados">SG</th>
+									  <th class="hidden-xs center" scope="col" title="Sets perdidos">SP</th>
+									  <th class="hidden-xs center" scope="col" title="Diferencia Sets">SDif</th>
+		
+		
+		  							  <th class="hidden-sm hidden-md hidden-lg" scope="col" title="Tantos a favor | Tantos en contra | Diferencia tantos">Tantos ( F | C | Dif )</th>
+									  <th class="hidden-xs center" scope="col" title="Tantos a favor">TF</th>
+									  <th class="hidden-xs center" scope="col" title="Tantos en contra">TC</th>
+									  <th class="hidden-xs center" scope="col" title="Diferencia tantos">TDif</th>
+									  
+									</tr>
+								</thead>
+								
+								<tbody>
+								
+								<#items as tablePosition>
+								
+									<tr>
+									  <th scope="row">${tablePosition?index+1}</th>
+									  
+									  <td>${tablePosition.team.name}</td>
+									                
+									  <td class="integer">${tablePosition.puntos}</td>              
+									  							  
+									  <td class="hidden-sm hidden-md hidden-lg" scope="col">${tablePosition.partidosJugados} | ${tablePosition.partidosGanados} | ${tablePosition.partidosPerdidos} </td>
+									  <td class="hidden-xs integer" scope="col">${tablePosition.partidosJugados}</td>              
+									  <td class="hidden-xs integer" scope="col">${tablePosition.partidosGanados}</td>              
+									  <td class="hidden-xs integer" scope="col">${tablePosition.partidosPerdidos}</td>              
+		
+									  <td class="hidden-sm hidden-md hidden-lg" scope="col">${tablePosition.setGanados} | ${tablePosition.setPerdidos} | ${tablePosition.difSets} </td>
+									  <td class="hidden-xs integer" scope="col">${tablePosition.setGanados}</td>              
+									  <td class="hidden-xs integer" scope="col">${tablePosition.setPerdidos}</td>              
+									  <td class="hidden-xs integer" scope="col">${tablePosition.difSets}</td>              
+		
+									  <td class="hidden-sm hidden-md hidden-lg" scope="col">${tablePosition.tantosFavor} | ${tablePosition.tantosContra} | ${tablePosition.difTantos} </td>
+									  <td class="hidden-xs integer" scope="col">${tablePosition.tantosFavor}</td>              
+									  <td class="hidden-xs integer" scope="col">${tablePosition.tantosContra}</td>              
+									  <td class="hidden-xs integer" scope="col">${tablePosition.difTantos}</td>              
+									  
+									</tr>
+								</#items>
+									
+								</tbody>
+							</table>
+							
+							<#else>
+		    					<p>No hay equipos en la tabla</p>
+							</#list>
+							
+					  </div>
+				</div>			
+				 
+				 </#items>
+				 
+				</#list>
 			</div>
 		</div>
 	</section>
@@ -570,8 +568,6 @@ Luego comida en CUBA</p>
             href="./jugadores.html"
             ><span style="font-size: 0.8em; padding: 0 1em">Lista de Jugadores</span></a
           >
-
-
 
           <a
             class="link"
