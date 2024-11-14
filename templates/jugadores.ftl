@@ -165,8 +165,8 @@
 			          <#items as contact>
 			          <li>
 			          <p>
-			            ${contact.name}<br>
-			            ${contact.contactmethod}<br>
+			            ${contact.name!""}<br>
+			            ${contact.contactmethod!""}<br>
 			          </p>
 			          </li>
 		          	</#items>
