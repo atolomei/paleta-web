@@ -41,7 +41,10 @@ public class PlayersExporter extends BaseExporter {
 		root.put("exportdir", getSettings().getIndexExportDir());
 		root.put("teams", getTorneo().getTeams());
 		root.put("dateexported", full_spa.format(now));
+		
 		root.put("alert", getTorneo().getAlert());
+		root.put("contacts", getTorneo().getContacts());
+		
 		
 		Template template = cfg.getTemplate(getTemplateFile());
 	     

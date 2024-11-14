@@ -54,7 +54,10 @@ public class IndexExporter extends BaseExporter {
 		
 		
 		root.put("alert", getTorneo().getAlert());
+		root.put("contacts", getTorneo().getContacts());
+		
 		root.put("torneo", getTorneo());
+		
 		
 		
 		
