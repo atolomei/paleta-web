@@ -1,5 +1,8 @@
 package io.paletaweb.exporter;
 
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -12,7 +15,9 @@ import io.paletaweb.torneo.TorneoCuba;
 
 public class BaseExporter extends JsonObject {
 
-static private Logger logger = Logger.getLogger(BaseExporter.class.getName());
+	static private Logger logger = Logger.getLogger(BaseExporter.class.getName());
+
+	static final public DateTimeFormatter full_spa = DateTimeFormatter.ofPattern("dd MMM YYYY HH:mm", Locale.forLanguageTag("es"));
 
 	@Autowired
 	@JsonIgnore

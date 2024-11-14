@@ -25,6 +25,11 @@ body.kbee {margin:0; box-sizing: border-box; padding:0; font-family: Montserrat,
 .kbee h4 {font-size: 1.3em;  margin:2em 0 0.5em 0; text-align:center; font-weight:bold; line-height: 1.25em;}
 .kbee h3 a.link {color: inherit; font-weight: inherit;}
 
+.kbee .alert h5 {margin: 0 0 0.25em 0; font-size: 1em;text-transform: uppercase;font-weight: bold;}
+
+.kbee .alert-container {min-height:auto; padding-top:0; padding-bottom:0; margin:1em 0 0 0; text-align:center;}
+
+
 ul		{margin: 0; padding: 0; float: left;}
 ul li 	{list-style: none outside none;}
 

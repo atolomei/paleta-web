@@ -2,12 +2,10 @@ package io.paletaweb.importer;
 
 
 import java.io.File;
-import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,7 +14,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import io.paleta.logging.Logger;
 import io.paleta.service.BaseService;
-import io.paleta.util.Check;
 import io.paletaweb.service.HTMLExportService;
 import io.paletaweb.service.SettingsService;
 import io.paletaweb.torneo.TorneoCuba;
@@ -27,7 +24,6 @@ public class SiteExportService extends BaseService {
 	
 	static public Logger logger = Logger.getLogger(SiteExportService.class.getName());
 	static private Logger startupLogger = Logger.getLogger("StartupLogger");
-
 
 	@JsonIgnore
 	private ExportAgent agent;
@@ -43,41 +39,51 @@ public class SiteExportService extends BaseService {
 	@Autowired
 	@JsonIgnore
 	HTMLExportService htmlExportService;
-	
 
 	@JsonIgnore
 	private Map<File, Long> map = new HashMap<File, Long>();
 	
-	
 	public SiteExportService() {
 	}
 	
-	
 	public void execute() {
-	
 	}
-	
-	
 	
 	@PostConstruct
 	public void init() {
-
-		//List<File> files = new ArrayList<File>();
 	
-		File dataDir = new File( getSettings().getDataDir() );
-		
-		if (dataDir.exists() && dataDir.isDirectory()) {
+		{
+			File dataDir = new File(getSettings().getDataDir());
 			
-			File files[] = dataDir.listFiles();
-			
-			for (File fi:files) {
-				if (!fi.isDirectory()) {
-					if ( fi.getName().endsWith(".csv")) {
-						map.put(fi,  Long.MIN_VALUE);
+			if (dataDir.exists() && dataDir.isDirectory()) {
+				File files[] = dataDir.listFiles();
+				for (File fi:files) {
+					if (!fi.isDirectory()) {
+						if (fi.getName().endsWith(".csv") || fi.getName().endsWith(".txt")) {
+							map.put(fi,  Long.MIN_VALUE);
+						}
 					}
 				}
 			}
 		}
+		
+		
+		{
+			File dataDir = new File(getSettings().getTemplatesDir());
+			if (dataDir.exists() && dataDir.isDirectory()) {
+				File files[] = dataDir.listFiles();
+				for (File fi:files) {
+					if (!fi.isDirectory()) {
+						if ( fi.getName().endsWith(".ftl")) {
+							map.put(fi,  Long.MIN_VALUE);
+						}
+					}
+				}
+			}
+		}
+
+		
+		
 		
 		startupLogger.info("Starting -> " + ExportAgent.class.getSimpleName());
 		
@@ -95,24 +101,33 @@ public class SiteExportService extends BaseService {
 		
 	}
 
-
-	
 	protected boolean requiresUpdate() {
 		
-		
-		File dataDir = new File( getSettings().getDataDir() );
-		
 		List<File> list = new ArrayList<File>();
-		File files[] = dataDir.listFiles();
-		for (File fi:files) {
-			if (!fi.isDirectory()) {
-				if (fi.getName().endsWith(".csv")) {
-					list.add(fi);
+		{
+			File dataDir = new File( getSettings().getDataDir());
+			File files[] = dataDir.listFiles();
+			for (File fi:files) {
+				if (!fi.isDirectory()) {
+					if (fi.getName().endsWith(".csv") || fi.getName().endsWith(".txt")) {
+						list.add(fi);
+					}
 				}
 			}
 		}
-			
 		
+		{
+			File dataDir = new File( getSettings().getTemplatesDir());
+			File files[] = dataDir.listFiles();
+			for (File fi:files) {
+				if (!fi.isDirectory()) {
+					if (fi.getName().endsWith(".ftl")) {
+						list.add(fi);
+					}
+				}
+			}
+		}
+
 		if (list.size()!=map.size())
 			return true;
 		
@@ -123,7 +138,7 @@ public class SiteExportService extends BaseService {
 			}
 			else {
 				long modified = file.lastModified();
-				if (map.get(file).longValue()<modified) {
+				if (map.get(file).longValue() < modified) {
 					return true;
 				}
 			}
@@ -137,33 +152,32 @@ public class SiteExportService extends BaseService {
 		}
 		
 		return false;
-			
 	}
 	
-
-	
+	/**
+	 * 
+	 * 
+	 */
 	protected synchronized void processExport() {
 		
-		
-		if (!requiresUpdate())
+		if (!requiresUpdate()) {
+			logger.debug("Update not required");
 			return;
+		}
 		
-		logger.debug("Torneo execute");
-		
-		
+		logger.debug("About to execute import - export");
 		
 		getTorneo().execute();
+		
+		logger.debug("export done");
 		
 		final Long now = Long.valueOf(System.currentTimeMillis());
 		
 		List<File> files = new ArrayList<File>();
 		map.keySet().forEach( f -> files.add(f));
-		files.forEach( f -> map.put(f, now));
-		
-		
+		files.forEach(f -> map.put(f, now));
 	}
 	
-
 	public SettingsService getSettings() {
 		return settings;
 	}
@@ -171,19 +185,14 @@ public class SiteExportService extends BaseService {
 	public void setSettings(SettingsService settings) {
 		this.settings = settings;
 	}
-
-	
-	
 	
 	public TorneoCuba getTorneo() {
 		return torneo;
 	}
 
-
 	public void setTorneo(TorneoCuba torneo) {
 		this.torneo = torneo;
 	}
-
 
 	public HTMLExportService getHtmlExportService() {
 		return htmlExportService;
@@ -192,6 +201,5 @@ public class SiteExportService extends BaseService {
 	public void setHtmlExportService(HTMLExportService htmlExportService) {
 		this.htmlExportService = htmlExportService;
 	}
-
 	
 }

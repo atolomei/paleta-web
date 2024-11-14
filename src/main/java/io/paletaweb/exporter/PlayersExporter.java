@@ -5,6 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
+import java.time.OffsetDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -35,9 +36,12 @@ public class PlayersExporter extends BaseExporter {
 		
 		Map<String, Object> root = new HashMap<>();
 
+		OffsetDateTime now = OffsetDateTime.now();
+		
 		root.put("exportdir", getSettings().getIndexExportDir());
 		root.put("teams", getTorneo().getTeams());
-		
+		root.put("dateexported", full_spa.format(now));
+		root.put("alert", getTorneo().getAlert());
 		
 		Template template = cfg.getTemplate(getTemplateFile());
 	     
@@ -47,10 +51,10 @@ public class PlayersExporter extends BaseExporter {
 		html.flush();
         html.close();
 
-	    Writer out = new OutputStreamWriter(System.out);
-    	template.process(root, out);
-    	out.flush();
-    	out.close();
+	    //Writer out = new OutputStreamWriter(System.out);
+    	//template.process(root, out);
+    	//out.flush();
+    	//out.close();
 
 	}
 

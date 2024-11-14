@@ -16,13 +16,11 @@
     <meta name="Language" content="Spanish" />
     <meta
       name="viewport"
-      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=yes"
-    />
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=yes"/>
     <meta name="robots" content="all" />
 
     <link rel="stylesheet" type="text/css" href="./css/kbee.css" />
     <link rel="stylesheet" type="text/css" href="./css/kbee-1000-1600.css" />
-
 
     <link rel="stylesheet" type="text/css" href="./css/bootstrap-5.3.3-dist/css/bootstrap.css" />
     
@@ -32,8 +30,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap" rel="stylesheet"/>
 
     <!-- ANALYTICS -->
-    
-    
     
     <!-- Google tag (gtag.js) -->
     
@@ -45,7 +41,6 @@
 	
 	  gtag('config', 'G-FFGEDJZC3F');
 	</script>
-
     
   </head>
 
@@ -58,18 +53,8 @@
         <div class="odilon-logo">
           <div class="toolbar-item">
             <div style="float: left; width: initial; width: 100%">
-              <a
-                href="index.html"
-                style="float: left; display: block; width: 100%"
-              >
-                <span
-                  style="
-                    display: inline-block;
-                    float: left;
-                    font-weight: bold;
-                    width: 100%;
-                  "
-                >
+              <a href="index.html" style="float: left; display: block; width: 100%">
+                <span style="display: inline-block;float: left;font-weight: bold;width: 100%;">
                   CUBA
                 </span>
               </a>
@@ -90,10 +75,9 @@
           <div class="toolbar-item"><a href="./index.html">Portada</a></div>
 		  <div class="toolbar-item"><a href="./jugadores.html">Jugadores</a></div>
         </div>
-
       </nav>
 
-      <!-- TOP TOOLBAR -------------------------------------------------------- -->
+      <!-- TOP TOOLBAR -------------------------------------------- -->
 
       <div id="banner" class="banner">
         <div class="canvas-container" style="background: transparent">
@@ -106,109 +90,125 @@
       </div>
     </section>
 
-    <!-- -------------------------------------------------------- -->
-
-  <section id="torneo" class="section light">
-					<div class="section-internal-container">
-						<div class="section-content">
-							<h2>El Torneo</h2>
-							
-<p>Torneo de Paleta en CUBA Viamonte<br>
-<a href="https://maps.app.goo.gl/7uwQc7W8cM9SiqsR6" target="_blank">Viamonte 1560, CABA</a>
-</p>
-
-<p>
-Miércoles y Viernes de 19.00 a 20.30 hs<br>
-excepto semis y final que es un Jueves
-</p>
-<h4>Inicio</h4>
-<p>
-Viernes 22 de Noviembre de 2024 <br>
-</p>
-
-<h4>Fin</h4>
-<p>
-Jueves 12 de Diciembre de 2024<br>
-</p>
-
-<h4>Clasificación</h4>
-<p>
-10 equipos en dos zonas de 5, cada equipo juega contra los otros de su zona.<br>
-Partidos a 25 puntos, sin alargue.<br>
-Clasifican 2 primeros de cada zona, desempate por diferencia de sets, diferencia de tantos, tantos a favor, sorteo.<br>
-Semifinales y Final se juegan a 3 sets de 15, 15 y 10.
-</p>
-
-<h4>Finales</h4>
-<p>
-Semis y final jueves 12 Diciembre 2024<br>
-Luego comida en CUBA</p>
-
-
-						</div>
+	<!-- ALERTAS -------------------------------------------------- -->
+	
+	<#if alert?has_content>
+	<section id="alert" class="section light">
+			<div class="section-internal-container">
+				<div class="section-content alert-container">
+					<div class="row">
+						  	<div class="col-lg-12 col-md-12 col-xs-12">
+							  		
+							  		<div class="alert ${alert.alertClass}" role="alert">
+								 		<#if alert.title?has_content>
+								 		<h5>${alert.title}</h5>
+								 		</#if>	
+								 		<#if alert.text?has_content>
+								 			${alert.text}
+								 		</#if>
+								 	</div>
+						 	</div>
 					</div>
-		</section>
+				</div>
+			</div>
+	</section>
+	</#if>			 
+	
+	<!-- INFO -------------------------------------------------------- -->
+				 
+	<section id="torneo" class="section light">
+						<div class="section-internal-container">
+							<div class="section-content">
+								<h2>El Torneo</h2>
+								<p>Torneo de Paleta en CUBA Viamonte<br>
+								<a href="https://maps.app.goo.gl/7uwQc7W8cM9SiqsR6" target="_blank">Viamonte 1560, CABA</a>
+								</p>
+								<p>
+								Miércoles y Viernes de 19.00 a 20.30 hs<br>
+								excepto semis y final que es un Jueves
+								</p>
+								<h4>Inicio</h4>
+								<p>
+								Viernes 22 de Noviembre de 2024 <br>
+								</p>
+								<h4>Fin</h4>
+								<p>
+								Jueves 12 de Diciembre de 2024<br>
+								</p>
+								<h4>Clasificación</h4>
+								<p>
+								10 equipos en dos zonas de 5, cada equipo juega contra los otros de su zona.<br>
+								Partidos a 25 puntos, sin alargue.<br>
+								Clasifican 2 primeros de cada zona, desempate por diferencia de sets, diferencia de tantos, tantos a favor, sorteo.<br>
+								Semifinales y Final se juegan a 3 sets de 15, 15 y 10.
+								</p>
+								<h4>Finales</h4>
+								<p>
+								Semis y final jueves 12 Diciembre 2024<br>
+								Luego comida en CUBA
+								</p>
+							</div>
+						</div>
+						
+	</section>
 		
     <!-- ZONAS -------------------------------------------------------- -->
     
     <section id="zonas" class="section dark">
-      <div class="section-internal-container">
-        <div class="section-content">
-          
-		  
-		  <div class="row">
-			  <div class="col-lg-12 col-md-12 col-xs-12">
-			  <h2>Zonas</h2>
+
+        <div class="section-internal-container">
+	        <div class="section-content">
+			  <div class="row">
+				  <div class="col-lg-12 col-md-12 col-xs-12">
+				  <h2>Zonas</h2>
+				  </div>
 			  </div>
-		  </div>
-		  
-		  <div class="row">
-			<#list groups>
-		  	  	<#items as group>
-					  <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
-						<h4>${group.name}</h4>
-						<#list group.teams>
-							<table class="table table-bordered table-hover table-responsive">
-							  <thead class="table-dark">
-								<tr>
-								  <th scope="col">#</th>
-								  <th scope="col">Equipo</th>
-								</tr>
-							  </thead>
-								<tbody>
-								<#items as team>
-									<tr>
-									  <th scope="row">${team?index+1}</th>
-									  <td>${team.name}</td>              
-									</tr>
-								</#items>
-								</tbody>
-							</table>
-						
-						<#else>
-			    			<p>No hay equipos en la zona</p>
+			  <div class="row">
+						<#list groups>
+					  	  	<#items as group>
+								  <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+									<h4>${group.name}</h4>
+									<#list group.teams>
+										<table class="table table-bordered table-hover table-responsive">
+										  <thead class="table-dark">
+											<tr>
+											  <th scope="col">#</th>
+											  <th scope="col">Equipo</th>
+											</tr>
+										  </thead>
+											<tbody>
+											<#items as team>
+												<tr>
+												  <th scope="row">${team?index+1}</th>
+												  <td>${team.name}</td>              
+												</tr>
+											</#items>
+											</tbody>
+										</table>
+									<#else>
+						    			<p>No hay equipos en la zona</p>
+									</#list>
+						    		</div>		
+					    	</#items>
 						</#list>
-			    		</div>		
-		    	</#items>
-			</#list>
-		    </div>
-		    
-		    <div class="row">
-		    	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:1em;">
-		    		<p>
-		    			<a href="jugadores.html" title="lista de jugadores">Lista de jugadores</a>
-		    		</p>
-		    	</div>
-		    </div>
-		    
-         </div>
+			    </div>
+			    
+			    <div class="row">
+			    	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:1em;">
+			    		<p>
+			    			<a href="jugadores.html" title="lista de jugadores">Lista de jugadores</a>
+			    		</p>
+			    	</div>
+			    </div>
+			    
+	         </div>
       </div>
     </section>
 
 
     <!-- -------------------------------------------------------- -->
 
-<section id="fixture" class="section light">
+	<section id="fixture" class="section light">
       <div class="section-internal-container">
         <div class="section-content">
           <div class="row">
@@ -402,33 +402,14 @@ Luego comida en CUBA</p>
 					  		<div class="alert alert-success" role="alert" style="margin:2em 0;">
 						 		<p>Felicitaciones al equipo de <b>${torneo.winner.name}</b> <br/>campeón de la Copa Viamonte 2024.</p>
 						 	</div>
-					 	
 				 </div>
 			 </#if>
 		  </div>
-			
-        </div>
+	    </div>
       </div>
     </section>
 
-		 
-		 		 		 
-		  
-		   
-		    
-		     
-		      
-		       
-		        
-		         
-		          
-		           
-		            
-		             
-		              
-		               
 	<!-- TABLA -------------------------------------------------- -->
-
 
     <section id="tabla" class="section dark">
 
@@ -469,12 +450,10 @@ Luego comida en CUBA</p>
 									  <th class="hidden-xs center" scope="col" title="Sets perdidos">SP</th>
 									  <th class="hidden-xs center" scope="col" title="Diferencia Sets">SDif</th>
 		
-		
 		  							  <th class="hidden-sm hidden-md hidden-lg" scope="col" title="Tantos a favor | Tantos en contra | Diferencia tantos">Tantos ( F | C | Dif )</th>
 									  <th class="hidden-xs center" scope="col" title="Tantos a favor">TF</th>
 									  <th class="hidden-xs center" scope="col" title="Tantos en contra">TC</th>
 									  <th class="hidden-xs center" scope="col" title="Diferencia tantos">TDif</th>
-									  
 									</tr>
 								</thead>
 								
@@ -523,87 +502,89 @@ Luego comida en CUBA</p>
 			</div>
 		</div>
 	</section>
-		  
 
 
+    
+   <!-- CONTACTS ---------------------------------- -->
 
-
-    <!-- -------------------------------------------------------- -->
-
+	<#if contacts?has_content>
 	<section id="contacto" class="section light">
       <div class="section-internal-container">
         <div class="section-content">
           <h2>Contacto</h2>
-
-          <p>
-            Alejandro Tolomei<br>
-
-            +54 911 6119.4075<br>
-          </p>
-
-          <p>
-            Luis Font<br>
-            +54 9 11 5804-0446<br>
-          </p>
+	         	 <#list contacts>
+	          	  <ul>	
+			          <#items as contact>
+			          <li>
+			          <p>
+			            ${contact.name}<br>
+			            ${contact.contactmethod}<br>
+			          </p>
+			          </li>
+		          	</#items>
+		          </ul>
+	          </#list>
         </div>
       </div>
     </section>
+    </#if>
+                                                      
+                                                                
+                                                                    
+                                                                        
+                                                                            
+                                                                                
+                                                                                        
     <!-- ------------------- footer ---------------------------- -->
 
     <section class="section-footer" id="footer">
       <div
         class="footer"
-        style="
-          padding-top: 1em;
+        style="padding-top: 1em;
           padding-bottom: 1em;
           float: left;
           width: 100%;
-          text-align: center;
           background: #03152b;
-          color: white;
-        "
-      >
-        <div style="display: inline; float: none">
-          <a
-            class="link"
-            style="color: white"
-            title="Torneo"
-            href="#torneo"
-            ><span style="font-size: 0.8em; padding: 0 1em">El Torneo</span></a
-          >
+          color: white;">
           
-          <a
-            class="link"
-            style="color: white"
-            title="Tabla"
-            href="#table"
-            ><span style="font-size: 0.8em; padding: 0 1em">Tabla</span></a
-          >
           
-          <a
-            class="link"
-            style="color: white"
-            title="Jugadores"
-            href="./jugadores.html"
-            ><span style="font-size: 0.8em; padding: 0 1em">Lista de Jugadores</span></a
-          >
-
-          <a
-            class="link"
-            style="color: white"
-            title="Fixture"
-            href="#fixture"
-            ><span style="font-size: 0.8em; padding: 0 1em">Fixture</span></a
-          >
-          <a
-            class="link"
-            style="color: white"
-            title="Contacto"
-            href="#contact"
-            ><span style="font-size: 0.8em; padding: 0 1em">contacto</span></a
-          >
-        </div>
+	        <div style="display: block; float: left;">
+	          <a class="link"
+	            style="color: white"
+	            title="Torneo"
+	            href="#torneo">
+	            	<span style="font-size: 0.8em; padding: 0 1em">El Torneo</span>
+	            </a>
+	          
+	          <a class="link"
+	            style="color: white"
+	            title="Tabla"
+	            href="#table"><span style="font-size: 0.8em; padding: 0 1em">Tabla</span></a>
+	          
+	          <a
+	            class="link"
+	            style="color: white"
+	            title="Jugadores"
+	            href="./jugadores.html"><span style="font-size: 0.8em; padding: 0 1em">Jugadores</span></a>
+	
+	          <a
+	            class="link"
+	            style="color: white"
+	            title="Fixture"
+	            href="#fixture"><span style="font-size: 0.8em; padding: 0 1em">Fixture</span></a>
+	          <a
+	            class="link"
+	            style="color: white"
+	            title="Contacto"
+	            href="#contact"><span style="font-size: 0.8em; padding: 0 1em">Contacto</span></a>
+	        </div>
+      
+		     <div style="display: block; float: right; font-size:0.7em;">
+		      		<span style="color:#cccccc;"> ${dateexported}</span>
+		     </div>
       </div>
+      
+      
     </section>
     <!-- ------------------- footer ---------------------------- -->
   </body>

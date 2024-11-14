@@ -46,6 +46,15 @@ public class ScheduleImporter extends BaseImporter {
 	static int SET_4 	= 9;
 	static int SET_5 	= 10;
 	
+	static  final int NA = -1;
+	static  final int CLASI = 0;
+	static  final int SEMI = 1;
+	static  final int FINAL = 2;
+	
+
+	
+	private int state = CLASI;
+	
 	protected String src;
 	protected Schedule schedule;
 	
@@ -81,8 +90,6 @@ public class ScheduleImporter extends BaseImporter {
 	}
 
 	
-
-	
 	private Schedule getSchedule() {
 		return this.schedule;
 	}
@@ -91,23 +98,23 @@ public class ScheduleImporter extends BaseImporter {
 	private void setState( int state) {
 		this.state=state;
 	}
+	
 	private int getState() {
 		return state;
 	}
 	
 	
-	final int NA = -1;
-	final int CLASI = 0;
-	final int SEMI = 1;
-	final int FINAL = 2;
-	
-	int state = CLASI;
-
-	
 	
 	public Schedule execute() throws IOException {
 		
+		
+		File f = new File( getSettings().getDataDir() + File.separator + getSource());
+		
+		if (!f.exists())
+			return null;
+		
 		List<List<String>> records;
+		
 		
 		this.schedule = new Schedule();
 		
@@ -117,8 +124,6 @@ public class ScheduleImporter extends BaseImporter {
 						   .map(line -> Arrays.asList(line.split(",")))
 					       .collect(Collectors.toList());
 		}
-		
-		
 		
 		
 		records.forEach( li -> {

@@ -93,8 +93,34 @@
       </div>
     </section>
 
-    <!-- -------------------------------------------------------- -->
-					
+    
+
+	<!-- ALERTAS -------------------------------------------------- -->
+	
+	<#if alert?has_content>
+	<section id="alert" class="section light">
+			<div class="section-internal-container">
+				<div class="section-content alert-container">
+					<div class="row">
+						  	<div class="col-lg-12 col-md-12 col-xs-12">
+							  		
+							  		<div class="alert ${alert.alertClass}" role="alert">
+								 		<#if alert.title?has_content>
+								 		<h5>${alert.title}</h5>
+								 		</#if>	
+								 		<#if alert.text?has_content>
+								 			${alert.text}
+								 		</#if>
+								 	</div>
+						 	</div>
+					</div>
+				</div>
+			</div>
+	</section>
+	</#if>		
+	
+	<!-- JUGADORES -------------------------------------------------- -->
+															
     <section id="jugadores" class="section light">
       <div class="section-internal-container">
         <div class="section-content">
@@ -125,77 +151,84 @@
       </div>
     </section>
 
-    <!-- -------------------------------------------------------- -->
+    
 
+ 	<!-- CONTACTS ---------------------------------- -->
+
+	<#if contacts?has_content>
 	<section id="contacto" class="section dark">
       <div class="section-internal-container">
         <div class="section-content">
           <h2>Contacto</h2>
-          <p>Alejandro Tolomei<br>
-            +54 911 6119.4075<br>
-          </p>
-          <p>Luis Font<br>
-            +54 9 11 5804-0446<br>
-          </p>
+	         	 <#list contacts>
+	          	  <ul>	
+			          <#items as contact>
+			          <li>
+			          <p>
+			            ${contact.name}<br>
+			            ${contact.contactmethod}<br>
+			          </p>
+			          </li>
+		          	</#items>
+		          </ul>
+	          </#list>
         </div>
       </div>
     </section>
+    </#if>    
+    
     <!-- ------------------- footer ---------------------------- -->
 
     <section class="section-footer" id="footer">
       <div
         class="footer"
-        style="
-          padding-top: 1em;
+        style="padding-top: 1em;
           padding-bottom: 1em;
           float: left;
           width: 100%;
-          text-align: center;
           background: #03152b;
-          color: white;
-        "
-      >
-        <div style="display: inline; float: none">
-          <a
-            class="link"
-            style="color: white"
-            title="Torneo"
-            href="./index.html#torneo"
-            ><span style="font-size: 0.8em; padding: 0 1em">El Torneo</span></a
-          >
-          <a
-            class="link"
-            style="color: white"
-            title="Tabla"
-            href="./index.html#tabla"
-            ><span style="font-size: 0.8em; padding: 0 1em">Tabla</span></a
-          >
+          color: white;">
           
-             <a
-            class="link"
-            style="color: white"
-            title="Jugadores"
-            href="./jugadores.html"
-            ><span style="font-size: 0.8em; padding: 0 1em">Lista de Jugadores</span></a
-          >
           
-          <a
-            class="link"
-            style="color: white"
-            title="Fixture"
-            href="./index.html#fixture"
-            ><span style="font-size: 0.8em; padding: 0 1em">Fixture</span></a
-          >
-          <a
-            class="link"
-            style="color: white"
-            title="Contacto"
-            href="./index.html#contacto"
-            ><span style="font-size: 0.8em; padding: 0 1em">contacto</span></a
-          >
-        </div>
+	        <div style="display: block; float: left;">
+	          <a class="link"
+	            style="color: white"
+	            title="Torneo"
+	            href="./index.html#torneo">
+	            	<span style="font-size: 0.8em; padding: 0 1em">El Torneo</span>
+	            </a>
+	          
+	          <a class="link"
+	            style="color: white"
+	            title="Tabla"
+	            href="./index.html#table"><span style="font-size: 0.8em; padding: 0 1em">Tabla</span></a>
+	          
+	          <a
+	            class="link"
+	            style="color: white"
+	            title="Jugadores"
+	            href="./jugadores.html"><span style="font-size: 0.8em; padding: 0 1em">Jugadores</span></a>
+	
+	          <a
+	            class="link"
+	            style="color: white"
+	            title="Fixture"
+	            href="./index.html#fixture"><span style="font-size: 0.8em; padding: 0 1em">Fixture</span></a>
+	          <a
+	            class="link"
+	            style="color: white"
+	            title="Contacto"
+	            href="./index.html#contact"><span style="font-size: 0.8em; padding: 0 1em">Contacto</span></a>
+	        </div>
+      
+		     <div style="display: block; float: right; font-size:0.7em;">
+		      		<span style="color:#cccccc;"> ${dateexported}</span>
+		     </div>
       </div>
+      
+      
     </section>
     <!-- ------------------- footer ---------------------------- -->
+
   </body>
 </html>

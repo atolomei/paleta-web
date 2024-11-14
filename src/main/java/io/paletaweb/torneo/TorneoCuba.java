@@ -21,6 +21,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import freemarker.template.TemplateException;
 import io.paleta.logging.Logger;
+import io.paleta.model.Alert;
+import io.paleta.model.Contact;
 import io.paleta.model.Match;
 import io.paleta.model.MatchResult;
 import io.paleta.model.Schedule;
@@ -32,6 +34,8 @@ import io.paletaweb.exporter.PlayersExporter;
 import io.paletaweb.exporter.ScheduleExporter;
 import io.paletaweb.exporter.TableExporter;
 import io.paletaweb.exporter.ZoneExporter;
+import io.paletaweb.importer.AlertImporter;
+import io.paletaweb.importer.ContactImporter;
 import io.paletaweb.importer.ResultadoImporter;
 import io.paletaweb.importer.ScheduleImporter;
 import io.paletaweb.importer.ZonaImporter;
@@ -43,7 +47,6 @@ public class TorneoCuba implements ApplicationContextAware {
 			
 	static private Logger logger = Logger.getLogger(TorneoCuba.class.getName());
 	static private Logger startupLogger = Logger.getLogger("StartupLogger");
-	
 	
 	static final int NOT_STARTED     	= 0;
 	static final int CLASIFICATION	 	= 1;
@@ -83,11 +86,26 @@ public class TorneoCuba implements ApplicationContextAware {
 	@JsonIgnore
 	private int state = NOT_STARTED;
 	
+	@JsonIgnore
 	private OffsetDateTime startDate;
 	
+	@JsonIgnore
 	private OffsetDateTime endDate;
 	
+	@JsonIgnore
+	private Alert alert;
 	
+	List<Contact> contacts;
+	
+	
+	public List<Contact> getContacts() {
+		return contacts;
+	}
+
+	public void setContacts(List<Contact> contacts) {
+		this.contacts = contacts;
+	}
+
 	public TorneoCuba() {
 	}
 
@@ -165,7 +183,6 @@ public class TorneoCuba implements ApplicationContextAware {
 		}
 		
 		list.sort(new Comparator<Team>() {
-
 			@Override
 			public int compare(Team o1, Team o2) {
 				try {
@@ -175,31 +192,35 @@ public class TorneoCuba implements ApplicationContextAware {
 				}
 				return 0;
 			}
-			
 		});
 		return list;
+	}
+	
+	public void execute() {
+		importData();
+		calculateTables();
+		exportData();
 	}
 
 	protected void importData() {
 		importZones();
 		importSchedule();
+		importContacts();
+		importAlert();
+		
 	}
 	
 	
 	
 	private void calculateTables() {
 		
+		this.groupTables = new HashMap<TournamentGroup, TournamentGroupTable>();
+				
 		for (TournamentGroup group: this.getTournamentGroups()) {
-
 			 TournamentGroupTable table = new TournamentGroupTable(group, getSchedule()); 
 			 table.calculate();
 			  this.groupTables.put(group, table);
-			  
-			  startupLogger.info(table.toString());
-			  startupLogger.info("");
 		}
-		
-		startupLogger.info("done");
 	}
 	
 	
@@ -208,17 +229,8 @@ public class TorneoCuba implements ApplicationContextAware {
 		
 		//for (TournamentGroup group: this.getTournamentGroups())
 		//	exportGroup(group);
-		//startupLogger.debug("---------------------------------------------------------");
-		//startupLogger.debug("Groups -> exported");
-		//startupLogger.debug("---------------------------------------------------------");
 		//exportSchedule();
-		//startupLogger.debug("---------------------------------------------------------");
-		//startupLogger.debug("Schedule -> exported");
-		//startupLogger.debug("---------------------------------------------------------");
-		//for (TournamentGroup z: this.getTournamentGroups()) {
 		//	exportTable(z);	
-		//}
-		//startupLogger.info("");
 		
 		exportIndex();
 		exportPlayers();
@@ -232,18 +244,6 @@ public class TorneoCuba implements ApplicationContextAware {
 	}
 	
 	
-	public void execute() {
-	
-		importData();
-		
-		calculateTables();
-		
-		exportData();
-		
-		
-		
-		
-	}
 	
 
 	private void exportIndex() {
@@ -251,13 +251,10 @@ public class TorneoCuba implements ApplicationContextAware {
 		String destFileName = "index.html";
 		String templateFileName = "index.ftl";
 		
- 
-		
 		IndexExporter exporter = getApplicationContext().getBean(IndexExporter.class, 
 																 destFileName, 
 																 templateFileName);
 		try {
-			
 			exporter.export();
 			
 		} catch (IOException e) {
@@ -294,7 +291,6 @@ public class TorneoCuba implements ApplicationContextAware {
 		}
 		
 	}
-
 
 	/**
 	private void exportTable(TournamentGroup z) {
@@ -384,18 +380,49 @@ public class TorneoCuba implements ApplicationContextAware {
 			applicationContext=appContext;
 	}
 	
+	private void importAlert() {
+		
+		AlertImporter ai = getApplicationContext().getBean(AlertImporter.class, "alert.txt");
+		
+		try {
+			
+			Alert a = ai.execute();
+			
+			if (a!=null)
+				setAlert(a);
+				
+		} catch (IOException e) {
+			logger.error(e);
+			System.exit(1);
+		}
+	}
+	
+	private void importContacts() {
+		
+		ContactImporter ai = getApplicationContext().getBean(ContactImporter.class, "contacts.csv");
+		
+		try {
+			List<Contact> a = ai.execute();
+			if (a!=null)
+				setContacts(a);
+				
+		} catch (IOException e) {
+			logger.error(e);
+			System.exit(1);
+		}
+	}
+
 	/**
 	 * 
 	 */
 	private void importZones() {
 
-		zonas = new ArrayList<TournamentGroup>();
+		this.zonas = new ArrayList<TournamentGroup>();
 		
 		ZonaImporter za = createZonaImporter("zona_A.csv", "Zona A");
 		try {
 			TournamentGroup zona_a = za.execute();
 			zonas.add(zona_a);
-			startupLogger.info( zona_a.toString());
 		} catch (IOException e) {
 			logger.error(e);
 			System.exit(1);
@@ -405,7 +432,6 @@ public class TorneoCuba implements ApplicationContextAware {
 		try {
 			TournamentGroup zona_b = zb.execute();
 			zonas.add(zona_b);
-			startupLogger.info(zona_b.toString());
 		} catch (IOException e) {
 			logger.error(e);
 			System.exit(1);
@@ -476,6 +502,14 @@ public class TorneoCuba implements ApplicationContextAware {
 
 	private void setWinner(Team team) {
 		this.winner=team;
+	}
+
+	public void setAlert(Alert alert) {
+		this.alert=alert;
+		
+	}
+	public Alert getAlert() {
+		return this.alert;
 	}
 	
 	

@@ -5,7 +5,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
+import java.time.OffsetDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import org.springframework.context.annotation.Scope;
@@ -32,17 +35,27 @@ public class IndexExporter extends BaseExporter {
 	}
 	
 	
+	
+	
 	public void export() throws IOException, TemplateException  {
 		
 		Configuration cfg = getHtmlExportService().getConfiguration();
 		
 		Map<String, Object> root = new HashMap<>();
 
+		OffsetDateTime now = OffsetDateTime.now();
+		
+		
 		root.put("exportdir", getSettings().getIndexExportDir());
 		root.put("groups", getTorneo().getTournamentGroups());
 		root.put("schedule", getTorneo().getSchedule());
 		root.put("grouptables", getTorneo().getGroupTableList());
+		root.put("dateexported", full_spa.format(now));
+		
+		
+		root.put("alert", getTorneo().getAlert());
 		root.put("torneo", getTorneo());
+		
 		
 		
 		Template template = cfg.getTemplate(getTemplateFile());
@@ -53,10 +66,10 @@ public class IndexExporter extends BaseExporter {
 		html.flush();
         html.close();
 
-	    Writer out = new OutputStreamWriter(System.out);
-    	template.process(root, out);
-    	out.flush();
-    	out.close();
+	    //Writer out = new OutputStreamWriter(System.out);
+    	//template.process(root, out);
+    	//out.flush();
+    	//out.close();
 		
 	}
 
