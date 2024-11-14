@@ -77,14 +77,20 @@
           </div>
         </div>
 
-        <div class="main-menu">
-          <div class="toolbar-item"><a href="#torneo">El torneo</a></div>
-		  <div class="toolbar-item"><a href="#zonas">Zonas</a></div>
-		  <div class="toolbar-item"><a href="./jugadores.html">Lista de jugadores</a></div>
-          <div class="toolbar-item"><a href="#fixture">Fixture</a></div>
-          <div class="toolbar-item"><a href="#tabla">Tabla</a></div>
-          <div class="toolbar-item"><a href="#contacto">Contacto</a></div>
+        <div class="main-menu hidden-xs hidden-sm hidden-md">
+          <div class="toolbar-item"><a href="./index.html#torneo">El torneo</a></div>
+		  <div class="toolbar-item"><a href="./index.html#zonas">Zonas</a></div>
+		  <div class="toolbar-item"><a href="./jugadores.html">Jugadores</a></div>
+          <div class="toolbar-item"><a href="./index.html#fixture">Fixture</a></div>
+          <div class="toolbar-item"><a href="./index.html#tabla">Tabla</a></div>
+          <div class="toolbar-item"><a href="./index.html#contacto">Contacto</a></div>
         </div>
+        
+        <div class="main-menu hidden-lg">
+          <div class="toolbar-item"><a href="./index.html">Portada</a></div>
+		  <div class="toolbar-item"><a href="./jugadores.html">Jugadores</a></div>
+        </div>
+
       </nav>
 
       <!-- TOP TOOLBAR -------------------------------------------------------- -->
@@ -324,7 +330,7 @@ Luego comida en CUBA</p>
 								<tbody>
 									<tr>
 									  <th scope="row">21</th>
-									  <td>12/12/24</td>              
+									  <td>12/12</td>              
 									  <td>19.00</td>              
 									  <td>1ro Zona A</td>              
 									  <td>2do Zona B</td>              
@@ -332,7 +338,7 @@ Luego comida en CUBA</p>
 									</tr>
 									<tr>
 									  <th scope="row">22</th>
-									  <td>12/12/24</td>              
+									  <td>12/12</td>              
 									  <td>19.30</td>              
 									  <td>1ro Zona B</td>              
 									  <td>2do Zona A</td>              
@@ -367,20 +373,20 @@ Luego comida en CUBA</p>
 						<tbody>
 							<tr>
 							  <th scope="row">23</th>
-							  <td>12/12/24</td>              
+							  <td>12/12</td>              
 							  <td>20.30</td>      
 
 							  <#if schedule.matchFinal??>			          
-									<td>${schedule.matchFinal.local.name!"Ganador Semi 1"}</td>              
-									<td>${schedule.matchFinal.visitor.name!"Ganador Semi 2"}</td>
+									<td>${schedule.matchFinal.local.name!"Gan. semi 1"}</td>              
+									<td>${schedule.matchFinal.visitor.name!"Gan. semi 2"}</td>
 									<td>							  	  
 									  	<#if schedule.matchFinal.result?has_content>
 											  		${schedule.matchFinal.setStr}
 										</#if>
 									</td>
 								<#else>  
-									<td>Ganador Semi 1</td>              
-								  	<td>Ganador Semi 2</td>
+									<td>Gan. semi 1</td>              
+								  	<td>Gan. semi 2</td>
 								  	<td></td>   
 								</#if>        
 							</tr>
@@ -388,6 +394,19 @@ Luego comida en CUBA</p>
 					</table>
 				</div>
 			</div>
+
+						
+			<#if torneo.winner?has_content>						
+				<div class="row">
+				  <div class="col-lg-12 col-md-12 col-xs-12">
+					  		<div class="alert alert-success" role="alert" style="margin:2em 0;">
+						 		<p>Felicitaciones al equipo de <b>${torneo.winner.name}</b> <br/>campeón de la Copa Viamonte 2024.</p>
+						 	</div>
+					 	
+				 </div>
+			 </#if>
+		  </div>
+			
         </div>
       </div>
     </section>

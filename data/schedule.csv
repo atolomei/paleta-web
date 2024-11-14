@@ -1,7 +1,8 @@
-
+#
 #  *1     *2     *3     *4         *5                   6          7         8         9
 # dia,  hora,  Zona, Local, Visitante, resultado (L, V, E), set1 L-V, set2 L-V, set3 L-V 
 # --------------------------------------------------------------------------------------
+#
 #
 
 $clasi
@@ -11,7 +12,7 @@ $clasi
 22/11, 20:00, Zona B, Ferro A, Geba   
 22/11, 20:30, Zona A, Urquiza, Pilar    
 
-27/11, 19:00, Zona B, CUBA B, Gure Echea   
+27/11, 19:00, Zona B, CUBA B, Gure Echea
 27/11, 19:30, Zona A, Vasco Francés, Urquiza   
 27/11, 20:00, Zona B, Ferro A, Centro Navarro 
 
@@ -32,14 +33,12 @@ $clasi
 11/12, 19:30, Zona B, Gure Echea, GEBA   
 11/12, 20:00, Zona A, Vasco Francés, Pilar
 
-
-#$semi
-#12/12, 19:00, semi, CUBA A, Ferro B   
-#12/12, 19:30, semi, Gure Echea, GEBA   
+# $semi
+# 12/12, 19:00, semi, CUBA A, Ferro B   
+# 12/12, 19:30, semi, Gure Echea, GEBA   
 #
 #
-#$final
-#12/12, 19:00, final, CUBA A, Ferro B   
+# $final
+# 12/12, 19:00, final, CUBA A, Ferro B   
 #
-
 

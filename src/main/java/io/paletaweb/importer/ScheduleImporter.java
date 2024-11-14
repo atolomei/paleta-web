@@ -48,7 +48,6 @@ public class ScheduleImporter extends BaseImporter {
 	
 	protected String src;
 	protected Schedule schedule;
-
 	
 	public ScheduleImporter(String src) {
 		Check.requireNonNullStringArgument(src, "src is null");
@@ -59,8 +58,6 @@ public class ScheduleImporter extends BaseImporter {
 		return src;
 	}
 	
-	
-
 	private String parseHour(String str) {
 		
 		if (str==null)
@@ -84,46 +81,6 @@ public class ScheduleImporter extends BaseImporter {
 	}
 
 	
-	public String validate() {
-		
-		if (this.schedule==null)
-			return "schedule is null";
-		
-		Map<Team, Integer> teams = new  HashMap<Team, Integer>();
-		
-		for (Match ma: getSchedule().getMatchesClasificacion()) {
-
-			if (ma.local==null || ma.visitor==null)
-				return "local or visitor is null";
-			
-			if (!teams.containsKey(ma.local)) 
-				teams.put(ma.local, Integer.valueOf(0));
-					
-			if (!teams.containsKey(ma.visitor)) 
-				teams.put(ma.visitor, Integer.valueOf(0));
-			
-			
-			teams.put( ma.local, Integer.valueOf(teams.get(ma.local)+1));
-			teams.put( ma.visitor, Integer.valueOf(teams.get(ma.visitor)+1));
-
-		}
-		
-		Integer total = null;
-		
-		for (Team t: teams.keySet()) {
-			if (total==null)
-				total=Integer.valueOf(teams.get(t));
-			
-			//logger.debug(t.getName() + " -> " + String.valueOf( teams.get(t)));
-			
-			if (!total.equals(teams.get(t))) {
-				//logger.debug(t.getName() + " -> " + String.valueOf( teams.get(t)) + "Total -> " + total.toString());
-				return "Error | " + t.getName() + " has " + String.valueOf( teams.get(t)) + " and total is " + total.toString();
-			}
-		}
-		
-		return "ok";
-	}
 
 	
 	private Schedule getSchedule() {
@@ -253,10 +210,13 @@ public class ScheduleImporter extends BaseImporter {
 
 					if (getState()==CLASI)
 						getSchedule().addMatchClasificacion(match);
-					else if (getState()==SEMI)
+					else if (getState()==SEMI) {
 						getSchedule().addMatchSemifinal(match);
-					else if (getState()==FINAL)
+						
+					}
+					else if (getState()==FINAL) {
 						getSchedule().setMatchFinal(match);
+					}
 					else
 						throw new IllegalArgumentException(" invalid state -> " + li.toString() + String.valueOf(getState()));
 			}
@@ -398,6 +358,48 @@ public class ScheduleImporter extends BaseImporter {
 		PaletaSet pal = new PaletaSet(Integer.valueOf(val[0].trim()), Integer.valueOf(val[1].trim()));
 		return pal;
 	}
+	
+	
+	private String validate() {
+		
+		if (this.schedule==null)
+			return "schedule is null";
+		
+		Map<Team, Integer> teams = new  HashMap<Team, Integer>();
+		
+		for (Match ma: getSchedule().getMatchesClasificacion()) {
+
+			if (ma.local==null || ma.visitor==null)
+				return "local or visitor is null";
+			
+			if (!teams.containsKey(ma.local)) 
+				teams.put(ma.local, Integer.valueOf(0));
+					
+			if (!teams.containsKey(ma.visitor)) 
+				teams.put(ma.visitor, Integer.valueOf(0));
+			
+			
+			teams.put( ma.local, Integer.valueOf(teams.get(ma.local)+1));
+			teams.put( ma.visitor, Integer.valueOf(teams.get(ma.visitor)+1));
+
+		}
+		
+		Integer total = null;
+		
+		for (Team t: teams.keySet()) {
+			if (total==null)
+				total=Integer.valueOf(teams.get(t));
+			
+			//logger.debug(t.getName() + " -> " + String.valueOf( teams.get(t)));
+			
+			if (!total.equals(teams.get(t))) {
+				return "Error | " + t.getName() + " has " + String.valueOf( teams.get(t)) + " and total is " + total.toString();
+			}
+		}
+		
+		return "ok";
+	}
+
 
 
 

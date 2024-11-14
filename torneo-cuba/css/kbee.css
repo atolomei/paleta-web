@@ -17,10 +17,10 @@ background-image: linear-gradient(160deg,#ef67b2, #ef67b2,#9fad64,#dcef86)
 
 */
 
-body.kbee {margin:0; box-sizing: border-box; padding:0; font-family: Montserrat,  Arial, serif; font-size:24px; color:black; line-height: 1.5em; font-weight: 300;}
+body.kbee {margin:0; box-sizing: border-box; padding:0; font-family: Montserrat,  Arial, serif; font-size:22px; color:black; line-height: 1.5em; font-weight: 300;}
 
-.kbee h1 {font-size: 3.3em; margin: 0; text-align:center; line-height: 1.5em;}    
-.kbee h2 {font-size: 2.3em; margin: 0; text-align:center;  font-weight:bold; line-height: 1.5em; color: inherit;}   
+.kbee h1 {font-size: 3.2em; margin: 0; text-align:center; line-height: 1.5em;}    
+.kbee h2 {font-size: 2.25em; margin: 0; text-align:center;  font-weight:bold; line-height: 1.5em; color: inherit;}   
 .kbee h3 {font-size: 1.85em;  margin: 3em 0 1em 0; text-align:center; font-weight:bold; line-height: 1.25em;}
 .kbee h4 {font-size: 1.3em;  margin:2em 0 0.5em 0; text-align:center; font-weight:bold; line-height: 1.25em;}
 .kbee h3 a.link {color: inherit; font-weight: inherit;}

@@ -1,8 +1,42 @@
-Cuba A, Patricio Diaz, Eugenio Cozzi   
-Vasco Francés, José Sosa, Francisco Sosa, Pablo Facundo Rousseau   
-Ferro B  
-Pilar    
-Urquiza  
+#
+# (*) campo mandatorio
+#
+# Equipo (*), integrante 1, integrante 2, ....
+# ---------------------------------------------
+# 
+
+
+# $start. 22/11/2024
+# $end. 12/12/2024
+# 
+# $date.group.stage
+# 22/11/2024, 19:00
+#
+#
+# $date.semi
+#
+#
+# $date.final
+#
+# groups and teams
+#
+# clasi.max_match_day_team -> 1
+# semi.max_match_day_team -> 3
+#
+#
+
+# round-robin[2x5], bracket[4], final, 3rd_place
+# round-robin[2x10], bracket[8], final, 3rd_place
+# round-robin[2x5], round-robin[1x4]
+
+
+
+
+Cuba A, Patricio Diaz, Enrique Figini, Alejandro Tolomei   
+Vasco Francés, Pablo Facundo Rousseaux, Francisco Sosa, José Sosa   
+Ferro B, Walter Lupis, Omar Segovia  
+Pilar, Victor Stortini, Facundo Hernán Álvarez    
+Urquiza, Gastón d'Onofrio  
 
 
 

@@ -104,88 +104,22 @@
 			  </div>
 		  </div>
 		  <div class="row">
-			  						 	<ul class="group-list col-lg-12 col-md-12 col-xs-12" style="text-align:center;">
+			  	<#list teams>
+					 	<ul class="group-list col-lg-12 col-md-12 col-xs-12" style="text-align:center;">
+								<#items as team>
 								<li class="list-item">  
-									<h5>Centro Navarro</h5>
+									<h5>${team.name}</h5>
+									<#if team.players?has_content>
 										<div class="row">		
 											<div class="col-lg-12 col-md-12 col-xs-12">
-											Federico Domine, Juan Martín Fernández, Joaquín Salvador		
+											${team.playersStr}		
 											</div>
 										</div>
+									</#if>
 								</li>
-								<li class="list-item">  
-									<h5>Cuba A</h5>
-										<div class="row">		
-											<div class="col-lg-12 col-md-12 col-xs-12">
-											Patricio Diaz, Enrique Figini, Alejandro Tolomei		
-											</div>
-										</div>
-								</li>
-								<li class="list-item">  
-									<h5>Cuba B</h5>
-										<div class="row">		
-											<div class="col-lg-12 col-md-12 col-xs-12">
-											Carlos Cheret, Facundo Rocha		
-											</div>
-										</div>
-								</li>
-								<li class="list-item">  
-									<h5>Ferro A</h5>
-										<div class="row">		
-											<div class="col-lg-12 col-md-12 col-xs-12">
-											Cristian Sidero, Maximiliano Stefani		
-											</div>
-										</div>
-								</li>
-								<li class="list-item">  
-									<h5>Ferro B</h5>
-										<div class="row">		
-											<div class="col-lg-12 col-md-12 col-xs-12">
-											Walter Lupis, Omar Segovia		
-											</div>
-										</div>
-								</li>
-								<li class="list-item">  
-									<h5>GEBA</h5>
-										<div class="row">		
-											<div class="col-lg-12 col-md-12 col-xs-12">
-											Alejandro Gassmann, Mariano Gómez		
-											</div>
-										</div>
-								</li>
-								<li class="list-item">  
-									<h5>Gure Echea</h5>
-										<div class="row">		
-											<div class="col-lg-12 col-md-12 col-xs-12">
-											Javier Candi, Fernando Fontaine, Marcos Martinez		
-											</div>
-										</div>
-								</li>
-								<li class="list-item">  
-									<h5>Pilar</h5>
-										<div class="row">		
-											<div class="col-lg-12 col-md-12 col-xs-12">
-											Victor Stortini, Facundo Hernán Álvarez		
-											</div>
-										</div>
-								</li>
-								<li class="list-item">  
-									<h5>Urquiza</h5>
-										<div class="row">		
-											<div class="col-lg-12 col-md-12 col-xs-12">
-											Gastón d'Onofrio		
-											</div>
-										</div>
-								</li>
-								<li class="list-item">  
-									<h5>Vasco Francés</h5>
-										<div class="row">		
-											<div class="col-lg-12 col-md-12 col-xs-12">
-											Pablo Facundo Rousseaux, Francisco Sosa, José Sosa		
-											</div>
-										</div>
-								</li>
+								</#items>
 							</ul>
+					</#list>
 		  </div>
          </div>
       </div>

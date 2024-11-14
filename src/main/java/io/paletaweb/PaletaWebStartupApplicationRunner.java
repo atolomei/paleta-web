@@ -66,9 +66,8 @@ public class PaletaWebStartupApplicationRunner implements ApplicationRunner {
 		
 		
 		//TorneoCuba torneo = new TorneoCuba("Torneo fin de año CUBA"); 
+		//torneo.execute();
 		
-		
-		torneo.execute();
 		
 	}
 	

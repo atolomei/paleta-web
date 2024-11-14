@@ -22,8 +22,6 @@ public class PaletaWebApplication {
 
 	public static void main(String[] args) throws Exception {
 	    
-		logger.info("here");
-		
 		SpringApplication application = new SpringApplication(PaletaWebApplication.class);
 		application.setBannerMode(Banner.Mode.OFF);
 		cmdArgs = args;
