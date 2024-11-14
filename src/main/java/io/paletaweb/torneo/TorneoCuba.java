@@ -387,9 +387,9 @@ public class TorneoCuba implements ApplicationContextAware {
 		try {
 			
 			Alert a = ai.execute();
+			setAlert(a);
 			
-			if (a!=null)
-				setAlert(a);
+			
 				
 		} catch (IOException e) {
 			logger.error(e);
@@ -403,8 +403,8 @@ public class TorneoCuba implements ApplicationContextAware {
 		
 		try {
 			List<Contact> a = ai.execute();
-			if (a!=null)
-				setContacts(a);
+			setContacts(a);
+							
 				
 		} catch (IOException e) {
 			logger.error(e);

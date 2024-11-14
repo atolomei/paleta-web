@@ -513,16 +513,22 @@
         <div class="section-content">
           <h2>Contacto</h2>
 	         	 <#list contacts>
-	          	  <ul>	
+	          	  <div class="row">
+					<ul class="list-group col-lg-12 col-md-12 col-xs-12" style="margin-top:2em;">	
 			          <#items as contact>
-			          <li>
-			          <p>
-			            ${contact.name!""}<br>
-			            ${contact.contactmethod!""}<br>
-			          </p>
+			          <li class="list-item">
+				          <div class="row">	
+					          <div class="col-lg-12 col-md-12 col-xs-12">
+					          <p>
+					            ${contact.name!""}<br>
+					            ${contact.contactMethod!""}<br>
+					          </p>
+					          </div>
+				          </div>
 			          </li>
 		          	</#items>
 		          </ul>
+		          </div>
 	          </#list>
         </div>
       </div>
