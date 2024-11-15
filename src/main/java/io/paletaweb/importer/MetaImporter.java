@@ -14,16 +14,17 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import io.paleta.model.Alert;
+import io.paleta.model.Meta;
 import io.paleta.util.Check;
 
 @Component
 @Scope("prototype")
-public class AlertImporter extends BaseImporter {
-		
+public class MetaImporter extends BaseImporter {
+
 	private String src;
-	private Alert alert = null;
+	private Meta meta = null;
 	
-	public  AlertImporter(String src) {
+	public  MetaImporter(String src) {
 		Check.requireNonNullStringArgument(src, "src is null");
 		this.src=src;
 	}
@@ -32,7 +33,7 @@ public class AlertImporter extends BaseImporter {
 		return src;
 	}
 	
-	public Alert execute() throws IOException {
+	public Meta execute() throws IOException {
 		
 		
 		File f = new File( getSettings().getDataDir() + File.separator + getSource());
@@ -52,27 +53,27 @@ public class AlertImporter extends BaseImporter {
 			return null;
 		
 		
-		this.alert = new Alert();
+		this.meta = new Meta();
 		
 		records.forEach( li -> {
 			
 			if ((li.size()>1)) {  
 			
-			
-				if (li.get(0).toLowerCase().trim().startsWith("alert.startdate")) {
-					this.alert.setStartDate( getStartDate(li.get(1)));
+				if (li.get(0).toLowerCase().trim().equals("title")) {
+					this.meta.setTitle(li.get(1).trim());
 				}
-				else if (li.get(0).toLowerCase().trim().startsWith("alert.enddate")) {
-					this.alert.setStartDate( getEndDate(li.get(1)));
+				else if (li.get(0).toLowerCase().trim().equals("description")) {
+					this.meta.setDescription(li.get(1).trim());
 				}
-				else if (li.get(0).toLowerCase().trim().startsWith("alert.class")) {
-					this.alert.setAlertClass(li.get(1).trim().toLowerCase());
-				}
-				
-				else if (li.get(0).toLowerCase().trim().startsWith("alert.title")) {
-					this.alert.setTitle(li.get(1).trim().toLowerCase());
+				else if (li.get(0).toLowerCase().trim().equals("language")) {
+					this.meta.setLanguage(li.get(1).trim());
 				}
 				
+				else if (li.get(0).toLowerCase().trim().equals("keywords")) {
+					this.meta.setKeywords(li.get(1).trim());
+				}
+				
+				/**
 				else if (li.get(0).toLowerCase().trim().startsWith("alert.text")) {
 					StringBuilder str = new StringBuilder();
 					str.append(li.get(1));
@@ -84,15 +85,12 @@ public class AlertImporter extends BaseImporter {
 					}
 					this.alert.setText(str.toString().trim());
 				}
+				**/
 			}
 			
 		});
 		
-		if ((this.alert.getTitle()==null || this.alert.getTitle().isBlank()) && 
-			(this.alert.getText()==null || this.alert.getText().isBlank()) )
-			return null;
-		
-		return this.alert;
+		return this.meta;
 		
 	}
 
@@ -104,5 +102,4 @@ public class AlertImporter extends BaseImporter {
 		return null;
 	}
 	
-
 }

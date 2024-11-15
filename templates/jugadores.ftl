@@ -9,11 +9,11 @@
     <link rel="icon" href="./images/favicon.gif" type="image/x-icon" />
     <link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon" />
 
-    <meta name="title" content="Torneo Paleta CUBA Viamonte" />
-    <meta name="description" content="Torneo Paleta CUBA Viamonte." />
-    <meta name="Keywords" content="torneo, paleta, cuba" />
+    <meta name="title" content="${meta.title!"Torneo"}" />
+    <meta name="description" content="${meta.description!"Torneo de Paleta"}" />
+    <meta name="Keywords" content="${meta.keywords!"paleta"}" />
+	<meta name="language" content="${meta.language!"Spanish"}" />
 
-    <meta name="Language" content="Spanixh" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=yes"

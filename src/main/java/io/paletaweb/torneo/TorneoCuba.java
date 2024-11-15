@@ -25,6 +25,7 @@ import io.paleta.model.Alert;
 import io.paleta.model.Contact;
 import io.paleta.model.Match;
 import io.paleta.model.MatchResult;
+import io.paleta.model.Meta;
 import io.paleta.model.Schedule;
 import io.paleta.model.Team;
 import io.paleta.model.TournamentGroup;
@@ -36,9 +37,11 @@ import io.paletaweb.exporter.TableExporter;
 import io.paletaweb.exporter.ZoneExporter;
 import io.paletaweb.importer.AlertImporter;
 import io.paletaweb.importer.ContactImporter;
+import io.paletaweb.importer.MetaImporter;
 import io.paletaweb.importer.ResultadoImporter;
 import io.paletaweb.importer.ScheduleImporter;
 import io.paletaweb.importer.ZonaImporter;
+import io.paletaweb.importer.ZonasImporter;
 import io.paletaweb.service.HTMLExportService;
 import io.paletaweb.service.SettingsService;
 
@@ -95,7 +98,24 @@ public class TorneoCuba implements ApplicationContextAware {
 	@JsonIgnore
 	private Alert alert;
 	
-	List<Contact> contacts;
+	@JsonIgnore
+	private List<Contact> contacts;
+	
+	@JsonIgnore
+	private String banner="Torneo de Paleta CUBA Viamonte";
+	
+	
+	@JsonIgnore
+	private Meta meta;
+	
+	public void setMeta(Meta meta) {
+		this.meta=meta;
+		
+	}
+	
+	public String getBanner() {
+		return banner; 
+	}
 	
 	
 	public List<Contact> getContacts() {
@@ -197,18 +217,31 @@ public class TorneoCuba implements ApplicationContextAware {
 	}
 	
 	public void execute() {
-		importData();
-		calculateTables();
-		exportData();
-	}
-
-	protected void importData() {
+		
+		/** Import */
+		importMeta();
+		//importInfo();
 		importZones();
 		importSchedule();
 		importContacts();
 		importAlert();
 		
+		/** calculate */
+		calculateTables();
+		
+		/** export */
+		exportIndex();
+		exportPlayers();
+		
+		startupLogger.debug("---------------------------------------------------------");
+		startupLogger.debug("Index -> exported");
+		startupLogger.debug("---------------------------------------------------------");
+		
+		startupLogger.info("done");
+		
 	}
+
+	
 	
 	
 	
@@ -225,27 +258,6 @@ public class TorneoCuba implements ApplicationContextAware {
 	
 	
 	
-	private void exportData() {
-		
-		//for (TournamentGroup group: this.getTournamentGroups())
-		//	exportGroup(group);
-		//exportSchedule();
-		//	exportTable(z);	
-		
-		exportIndex();
-		exportPlayers();
-		
-		startupLogger.debug("---------------------------------------------------------");
-		startupLogger.debug("Index -> exported");
-		startupLogger.debug("---------------------------------------------------------");
-		
-		startupLogger.info("done");
-		
-	}
-	
-	
-	
-
 	private void exportIndex() {
 		
 		String destFileName = "index.html";
@@ -360,9 +372,7 @@ public class TorneoCuba implements ApplicationContextAware {
  */
 	
 	
-	protected ZonaImporter createZonaImporter(String src, String name) {
-		return getApplicationContext().getBean(ZonaImporter.class, src, name);
-	}
+	
 	
 	
 	protected ResultadoImporter createResultadoImporter(String src) {
@@ -381,22 +391,30 @@ public class TorneoCuba implements ApplicationContextAware {
 	}
 	
 	private void importAlert() {
-		
 		AlertImporter ai = getApplicationContext().getBean(AlertImporter.class, "alert.txt");
-		
 		try {
-			
 			Alert a = ai.execute();
 			setAlert(a);
-			
-			
-				
 		} catch (IOException e) {
 			logger.error(e);
 			System.exit(1);
 		}
 	}
 	
+	private void importMeta() {
+		MetaImporter ai = getApplicationContext().getBean(MetaImporter.class, "torneo.properties");
+		try {
+			Meta meta = ai.execute();
+			setMeta(meta);
+		} catch (IOException e) {
+			logger.error(e);
+			System.exit(1);
+		}
+	}
+	
+	
+
+
 	private void importContacts() {
 		
 		ContactImporter ai = getApplicationContext().getBean(ContactImporter.class, "contacts.csv");
@@ -417,8 +435,19 @@ public class TorneoCuba implements ApplicationContextAware {
 	 */
 	private void importZones() {
 
+		
 		this.zonas = new ArrayList<TournamentGroup>();
 		
+		ZonasImporter za = getApplicationContext().getBean(ZonasImporter.class, "zonas.csv");
+		
+		try {
+			this.zonas = za.execute();
+		} catch (IOException e) {
+			logger.error(e);
+			System.exit(1);
+		}
+		
+		/**
 		ZonaImporter za = createZonaImporter("zona_A.csv", "Zona A");
 		try {
 			TournamentGroup zona_a = za.execute();
@@ -438,6 +467,8 @@ public class TorneoCuba implements ApplicationContextAware {
 		}
 		
 		logger.debug("import zones ok");
+		**/
+		
 	}
 	
 	
@@ -510,6 +541,10 @@ public class TorneoCuba implements ApplicationContextAware {
 	}
 	public Alert getAlert() {
 		return this.alert;
+	}
+
+	public Meta getMeta() {
+		return meta;
 	}
 	
 	

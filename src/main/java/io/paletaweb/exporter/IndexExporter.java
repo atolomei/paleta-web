@@ -45,18 +45,22 @@ public class IndexExporter extends BaseExporter {
 
 		OffsetDateTime now = OffsetDateTime.now();
 		
-		
 		root.put("exportdir", getSettings().getIndexExportDir());
+		root.put("dateexported", full_spa.format(now));
+
+		root.put("torneo", getTorneo());
+
+		root.put("meta", getTorneo().getMeta());
+		
+		root.put("banner", getTorneo().getBanner());
+		root.put("alert", getTorneo().getAlert());
+
 		root.put("groups", getTorneo().getTournamentGroups());
 		root.put("schedule", getTorneo().getSchedule());
 		root.put("grouptables", getTorneo().getGroupTableList());
-		root.put("dateexported", full_spa.format(now));
 		
-		
-		root.put("alert", getTorneo().getAlert());
 		root.put("contacts", getTorneo().getContacts());
 		
-		root.put("torneo", getTorneo());
 		
 		
 		

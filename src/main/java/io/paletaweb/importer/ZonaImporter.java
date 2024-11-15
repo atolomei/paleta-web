@@ -87,7 +87,7 @@ public class ZonaImporter extends BaseImporter {
 			}
 			
 		});
-		this.zona = new TournamentGroup( getName(), getTeams());
+		this.zona = new TournamentGroup(getName().toLowerCase().trim(), getName(), getTeams());
 		return zona;
 	}
 

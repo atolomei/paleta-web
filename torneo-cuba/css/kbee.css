@@ -82,7 +82,8 @@ p {font-size:1em; text-align: center;}
 .section-content {padding: 2em 2em; min-height: 50vh; float:left; width:100%; max-width: inherit;}
 
  
-a.link {color: #0c6490; text-decoration:none; font-weight: 300;}
+.kbee a.link {color: #0c6490; text-decoration:none; font-weight: 300;}
+.kbee .alert a.link {color: inherit; text-decoration:underline; font-weight: 300;}
 						
 
 .light {background: white; color: #1d1d1f;}

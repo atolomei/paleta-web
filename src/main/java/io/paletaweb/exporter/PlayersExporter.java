@@ -42,8 +42,18 @@ public class PlayersExporter extends BaseExporter {
 		root.put("teams", getTorneo().getTeams());
 		root.put("dateexported", full_spa.format(now));
 		
+		
+		root.put("torneo", getTorneo());
+
+		root.put("meta", getTorneo().getMeta());
 		root.put("alert", getTorneo().getAlert());
+		root.put("banner", getTorneo().getBanner());
+
+		root.put("groups", getTorneo().getTournamentGroups());
+		root.put("schedule", getTorneo().getSchedule());
+		root.put("grouptables", getTorneo().getGroupTableList());
 		root.put("contacts", getTorneo().getContacts());
+
 		
 		
 		Template template = cfg.getTemplate(getTemplateFile());

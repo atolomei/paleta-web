@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es">
   <head>
     <meta name="robots" content="index" />
     <meta name="googlebot" content="index" />
@@ -9,14 +9,13 @@
     <link rel="icon" href="./images/favicon.gif" type="image/x-icon" />
     <link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon" />
 
-    <meta name="title" content="Torneo Paleta CUBA Viamonte" />
-    <meta name="description" content="Torneo Paleta CUBA Viamonte." />
-    <meta name="Keywords" content="torneo, paleta, cuba" />
+    <meta name="title" content="${meta.title!"Torneo"}" />
+    <meta name="description" content="${meta.description!"Torneo de Paleta"}" />
+    <meta name="Keywords" content="${meta.keywords!"paleta, torneo"}" />
+	<meta name="language" content="${meta.language!"Spanish"}" />
 
-    <meta name="Language" content="Spanish" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=yes"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=yes"/>
+    
     <meta name="robots" content="all" />
 
     <link rel="stylesheet" type="text/css" href="./css/kbee.css" />
@@ -83,7 +82,7 @@
         <div class="canvas-container" style="background: transparent">
           <div class="text-container" style="float: right">
             <div class="text centered">
-              <h2 class="main-banner">Torneo de Paleta CUBA Viamonte</h2>
+              <h2 class="main-banner">${banner!"Torneo de Paleta CUBA Viamonte"}</h2>
             </div>
           </div>
         </div>
@@ -98,13 +97,14 @@
 				<div class="section-content alert-container">
 					<div class="row">
 						  	<div class="col-lg-12 col-md-12 col-xs-12">
-							  		
 							  		<div class="alert ${alert.alertClass}" role="alert">
 								 		<#if alert.title?has_content>
 								 		<h5>${alert.title}</h5>
 								 		</#if>	
 								 		<#if alert.text?has_content>
-								 			${alert.text}
+								 			<#noautoesc>
+								 				${alert.text}
+								 			</#noautoesc>								 			
 								 		</#if>
 								 	</div>
 						 	</div>
@@ -119,34 +119,46 @@
 	<section id="torneo" class="section light">
 						<div class="section-internal-container">
 							<div class="section-content">
+								
+								<#if info?has_content>
+								 			<#noautoesc>
+								 				${info}
+								 			</#noautoesc>								 			
+							    </#if>
+								
 								<h2>El Torneo</h2>
-								<p>Torneo de Paleta en CUBA Viamonte<br>
+								<p>Torneo de Paleta en CUBA Viamonte<br/>
 								<a href="https://maps.app.goo.gl/7uwQc7W8cM9SiqsR6" target="_blank">Viamonte 1560, CABA</a>
 								</p>
 								<p>
-								Miércoles y Viernes de 19.00 a 20.30 hs<br>
-								excepto semis y final que es un Jueves
+								Miércoles y Viernes de 19.00 a 20.30 hs<br/>
+								excepto semis y final que es un Jueves.
 								</p>
 								<h4>Inicio</h4>
 								<p>
-								Viernes 22 de Noviembre de 2024 <br>
+								Viernes 22 de Noviembre de 2024. 
 								</p>
 								<h4>Fin</h4>
 								<p>
-								Jueves 12 de Diciembre de 2024<br>
+								Jueves 12 de Diciembre de 2024.
 								</p>
 								<h4>Clasificación</h4>
 								<p>
-								10 equipos en dos zonas de 5, cada equipo juega contra los otros de su zona.<br>
-								Partidos a 25 puntos, sin alargue.<br>
-								Clasifican 2 primeros de cada zona, desempate por diferencia de sets, diferencia de tantos, tantos a favor, sorteo.<br>
+								10 equipos en dos zonas de 5, cada equipo juega contra los otros de su zona.<br/>
+								Partidos a 25 puntos, sin alargue.<br/>
+								Clasifican 2 primeros de cada zona, desempate por diferencia de sets, diferencia de tantos, tantos a favor, sorteo.<br/>
 								Semifinales y Final se juegan a 3 sets de 15, 15 y 10.
 								</p>
 								<h4>Finales</h4>
 								<p>
-								Semis y final jueves 12 Diciembre 2024<br>
-								Luego comida en CUBA
+								Semis y final jueves 12 Diciembre 2024<br/>
+								Luego comida en CUBA.
 								</p>
+								
+								<h4>Información adicional</h4>
+									<p>
+									Para quienes vienen en bicicleta es posible guardar bicicletas dentro del club.
+									</p>
 							</div>
 						</div>
 						
@@ -186,7 +198,7 @@
 											</tbody>
 										</table>
 									<#else>
-						    			<p>No hay equipos en la zona</p>
+						    			<p>No hay partidos en la zona</p>
 									</#list>
 						    		</div>		
 					    	</#items>
@@ -275,9 +287,9 @@
 		  </div>
 		  
 
-  		<div class="row">
+  		 <div class="row">
 			  <div class="col-lg-12 col-md-12 col-xs-12">
-			  <h4>Semifinales</h4>
+			  <h4 id="semis">Semifinales</h4>
 			  </div>
 		  </div>
 		  
@@ -352,7 +364,7 @@
 					
   			<div class="row">
 			  <div class="col-lg-12 col-md-12 col-xs-12">
-			  <h4>Final</h4>
+			  <h4 id="final">Final</h4>
 			  </div>
 		  </div>
 		  

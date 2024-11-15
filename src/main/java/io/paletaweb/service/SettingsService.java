@@ -23,10 +23,13 @@ public class SettingsService extends BaseService {
 	static private Logger startuplogger = Logger.getLogger("StartupLogger");
 	
 
+	@Value("${scanFreqmillisecs:5000}")
+	private int scanFreqMillisecs;
 
+	public int getScanFreqMillisecs() {return this.scanFreqMillisecs;}
+	
 	@Value("${templates:null}")
 	private String templatesDir;
-
 	
 	@Value("${export:null}")
 	private String exportDir;

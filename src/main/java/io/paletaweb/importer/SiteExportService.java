@@ -83,18 +83,20 @@ public class SiteExportService extends BaseService {
 		}
 
 		
-		
-		
 		startupLogger.info("Starting -> " + ExportAgent.class.getSimpleName());
 		
-		this.agent =new ExportAgent() {
+		this.agent =new ExportAgent(getSettings().getScanFreqMillisecs()) {
 			@Override
 			public void execute() {
+				try {
 				SiteExportService.this.processExport();
+				} catch (Exception e) {
+					logger.error(e);
+				}
 			}
 		};
 		
-		Thread thread = new Thread(agent);
+		Thread thread = new Thread(this.agent);
 		thread.setDaemon(true);
 		thread.setName(this.getClass().getSimpleName());
 		thread.start();

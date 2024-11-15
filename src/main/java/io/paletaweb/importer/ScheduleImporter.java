@@ -237,44 +237,38 @@ public class ScheduleImporter extends BaseImporter {
 		
 		
 		
-		/**
-		schedule.getMatches().sort(new Comparator<Match>() {
+		
+		schedule.getMatchesClasificacion().sort(new Comparator<Match>() {
 
 			@Override
 			public int compare(Match o1, Match o2) {
 				
-				if (o1.getMatchDateStr()==null) {
-					if (o2.getMatchDateStr()==null) {
+				try {
+				if (o1.getDate()==null) {
+					if (o2.getDate()==null) {
 						return 0;
 					}
 					return -1;
 				}
-				
-				if (o1.getMatchDateStr().compareToIgnoreCase(o2.getMatchDateStr())<1)
-						return -1;
-				
-				if (o1.getMatchDateStr().compareToIgnoreCase(o2.getMatchDateStr())>0)
+				else if (o2.getDate()==null) {
 					return 1;
-				
-
-				if (o1.getMatchHourStr()==null) {
-					if (o2.getMatchHourStr()==null) {
-						return o1.getMatchDateStr().compareToIgnoreCase(o2.getMatchDateStr()); 
-					}
-					return -1;
 				}
-
-									
-				if (o1.getMatchHourStr().compareToIgnoreCase(o2.getMatchHourStr())<1)
-					return -1;
-			
-				if (o1.getMatchHourStr().compareToIgnoreCase(o2.getMatchHourStr())>0)
+				
+				if (o2.getDate().isBefore(o1.getDate())) 
 					return 1;
-			
-				return 0;
+				
+				if (o1.getDate().isBefore(o2.getDate())) 
+					return -1;
+				
+				return o1.getLocal().getName().compareToIgnoreCase(o2.getLocal().getName());
+				} catch (Exception e) {
+					logger.error(e);
+					return 0;
+				}
+				
 			}
 		});
-		*/
+		
 		
 		
 		boolean first = true;
