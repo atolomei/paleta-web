@@ -16,7 +16,7 @@ import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import io.paleta.logging.Logger;
 import io.paleta.model.Match;
-import io.paleta.model.Schedule;
+import io.paleta.model.schedule.Schedule;
 import io.paleta.util.Check;
 import io.paletaweb.importer.ZonaImporter;
 

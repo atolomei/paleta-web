@@ -26,10 +26,13 @@ import io.paleta.model.Contact;
 import io.paleta.model.Match;
 import io.paleta.model.MatchResult;
 import io.paleta.model.Meta;
-import io.paleta.model.Schedule;
 import io.paleta.model.Team;
 import io.paleta.model.TournamentGroup;
 import io.paleta.model.TournamentGroupTable;
+import io.paleta.model.schedule.RoundRobinGenerator;
+import io.paleta.model.schedule.Schedule;
+import io.paleta.model.schedule.ScheduleMatchDate;
+import io.paleta.model.schedule.SchedulePlanner;
 import io.paletaweb.exporter.IndexExporter;
 import io.paletaweb.exporter.PlayersExporter;
 import io.paletaweb.exporter.ScheduleExporter;
@@ -225,6 +228,14 @@ public class TorneoCuba implements ApplicationContextAware {
 		importSchedule();
 		importContacts();
 		importAlert();
+		
+		//RoundRobinGenerator roundRobin = new RoundRobinGenerator( this.getTournamentGroups());
+		//List<ScheduleMatchDate> dates = roundRobin.execute();
+		
+		//SchedulePlanner planner = new SchedulePlanner( dates, getSchedule().getMatchesClasificacion()); 
+		//List<ScheduleMatchDate> list = planner.execute();
+		
+		
 		
 		/** calculate */
 		calculateTables();

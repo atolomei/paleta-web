@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.OffsetDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -21,9 +22,9 @@ import io.paleta.logging.Logger;
 import io.paleta.model.Match;
 import io.paleta.model.MatchResult;
 import io.paleta.model.PaletaSet;
-import io.paleta.model.Schedule;
 import io.paleta.model.Team;
 import io.paleta.model.TournamentGroup;
+import io.paleta.model.schedule.Schedule;
 import io.paleta.util.Check;
 import io.paletaweb.torneo.TorneoCuba;
 
@@ -104,6 +105,7 @@ public class ScheduleImporter extends BaseImporter {
 	}
 	
 	
+	long matchId = 0;
 	
 	public Schedule execute() throws IOException {
 		
@@ -144,11 +146,16 @@ public class ScheduleImporter extends BaseImporter {
 						throw new IllegalArgumentException(" invalid line -> " + li.toString() + " | (items: " + li.size()+" and must be :" + String.valueOf(VISITOR+1) +") ");
 					}
 					
-					Match match = new Match();
+					Match match = new Match(matchId++);
 					
-					match.setMatchDate				(parseDate(li.get(DATE)));
-					match.setMatchHour				(parseHour(li.get(HOUR)));
 					
+					
+					OffsetDateTime date = parseDate(li.get(DATE), li.get(HOUR)); 
+					match.setDate(date);
+					
+					//match.setMatchDate				(parseDate(li.get(DATE)));
+					//match.setMatchHour				(parseHour(li.get(HOUR)));
+		
 					if (getState()==CLASI) {
 						match.setTournamentZone		(parseGroup(li.get(GROUP)));
 						match.setLocal					(parseTeam (match.getTournamentZone(), li.get(LOCAL)));
@@ -159,7 +166,6 @@ public class ScheduleImporter extends BaseImporter {
 						match.setVisitor				(parseTeam (li.get(VISITOR)));
 					}
 			
-		
 						
 					if (li.size()>RESULT && (!li.get(RESULT).isBlank())) {
 							
@@ -236,8 +242,6 @@ public class ScheduleImporter extends BaseImporter {
 			logger.debug("validate -> ok");
 		
 		
-		
-		
 		schedule.getMatchesClasificacion().sort(new Comparator<Match>() {
 
 			@Override
@@ -272,12 +276,12 @@ public class ScheduleImporter extends BaseImporter {
 		
 		
 		boolean first = true;
-		String currDate = null;
+		int currDate = -1;
 		
 		for (Match ma:schedule.getMatchesClasificacion()) {
 			if (!first) {
-				if ( (currDate!=null) && (ma.getMatchDateStr()!=null) ) {
-					if (!currDate.equals(ma.getMatchDateStr())) {
+				if (ma.getDate()!=null) {
+					if (currDate!=ma.getDate().getDayOfYear()) {
 						ma.daybreak=Integer.valueOf(1);
 					}
 					else
@@ -289,7 +293,7 @@ public class ScheduleImporter extends BaseImporter {
 			}
 			
 			first = false;
-			currDate = ma.getMatchDateStr();
+			currDate = ma.getDate().getDayOfYear();
 		}
 		
 		//for (Match ma:schedule.getMatches()) {
@@ -301,6 +305,162 @@ public class ScheduleImporter extends BaseImporter {
 	
 	
 	
+	private OffsetDateTime parseDate(String dayMonthYear, String hourMin) {
+		
+		String t_date = dayMonthYear;
+		String t_hour = hourMin;
+		
+		String s_year, s_month, s_day;
+		Integer year, month, day;
+		
+		{
+			String arr[] = t_date.trim().replaceAll("/", "-").split("-");
+			
+			if (arr.length<3)
+				s_year = "2024";
+			else
+				s_year = arr[2].trim();
+			
+			if (s_year.length()<4)
+				s_year="20"+s_year;
+			
+			
+			if (arr.length<2)
+				s_month = "12";
+			else
+				s_month=arr[1].trim();
+			
+			if (s_month.length()<2)
+				s_month="0"+s_month;
+			
+			if (arr.length<1)
+				s_day = "1";
+			else
+				s_day=arr[0].trim();
+			
+			if (s_day.length()<2)
+				s_day="0"+s_day;
+		
+			
+			try {
+				year = Integer.valueOf(s_year.trim());
+			} catch (Exception e) {
+				logger.error(e);
+				year=2024;
+			}
+			
+			try {
+				month = Integer.valueOf(s_month.trim());
+			} catch (Exception e) {
+				logger.error(e);
+				month=12;
+			}
+			
+			try {
+				day = Integer.valueOf(s_day.trim());
+			} catch (Exception e) {
+				logger.error(e);
+				day=1;
+			}
+		
+		}
+		
+
+		String s_hour, s_min, s_sec;
+		Integer hour, min, sec;
+
+		String arr[] = t_hour.replaceAll("-", ":").split(":");
+		
+		if (arr.length<3)
+			s_sec = "00";
+		else
+			s_sec = arr[2];
+		
+		if (s_sec.length()<2)
+			s_sec="0"+s_sec.trim();
+		
+		
+		
+		if (arr.length<2)
+			s_min = "00";
+		else
+			s_min=arr[1];
+		
+		if (s_min.length()<2)
+			s_min="0"+s_min.trim();
+		
+		
+		if (arr.length<1)
+			s_hour = "19";
+		else
+			s_hour=arr[0].trim();;
+		
+		if (s_hour.length()<2)
+			s_hour="0"+s_hour.trim();
+
+		
+		{
+		
+			try {
+				hour = Integer.valueOf(s_hour.trim());
+			} catch (Exception e) {
+				logger.error(e);
+				hour=19;
+			}
+			
+			try {
+				min = Integer.valueOf(s_min.trim());
+			} catch (Exception e) {
+				logger.error(e);
+				min=0;
+			}
+			
+			try {
+				sec = Integer.valueOf(s_sec.trim());
+			} catch (Exception e) {
+				logger.error(e);
+				sec=0;
+			}		
+		}
+		
+
+		
+		String str_date = s_year +"-" + s_month + "-" + s_day + "T" + s_hour+":" + s_min + ":" + s_sec + "-03:00";
+		
+		//logger.debug(str_date);
+	
+		try {
+			OffsetDateTime date = OffsetDateTime.parse(str_date, DateTimeFormatter.ISO_OFFSET_DATE_TIME);
+			return date;
+		} catch (Exception e) {
+			logger.error(e, " | Tried timestamp without GMT. " + str_date);
+			return null;
+		}
+		
+		
+		
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	
+
 	private Team parseTeam(String str) {
 		
 		String s = str.toLowerCase().trim();

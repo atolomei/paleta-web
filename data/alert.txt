@@ -1,0 +1,27 @@
+
+# empty if start now
+alert.startdate=
+
+# empty if no end date
+alert.enddate=22/11/2224 09:00 
+
+# info, danger, warning, success, neutral
+#
+alert.class=alert-warning
+
+# Optional 
+#
+alert.title=Fixture
+
+# Optional
+# simple httml text
+#
+
+
+
+alert.text=<p>Hay un cambio en el orden de la primer fecha, <b>Vasco Francés, Ferro B</b> pasó a las <b>20.30</b> hs <br/> y los partidos de <b>20</b> hs y <b>20.30</b> hs se adelantan un turno (ver <a class=link" title="fixture" href="index.html#fixture">fixture</a>).
+
+
+
+
+

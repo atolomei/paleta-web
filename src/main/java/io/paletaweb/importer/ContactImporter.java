@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import io.paleta.model.Contact;
-import io.paleta.model.Schedule;
+import io.paleta.model.schedule.Schedule;
 import io.paleta.util.Check;
 
 

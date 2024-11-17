@@ -65,6 +65,8 @@ public class ResultadoImporter {
 	}
 	
 		
+	long matchId=0;
+	
 	public List<Match> execute() throws IOException {
 		
 		
@@ -80,7 +82,7 @@ public class ResultadoImporter {
 		
 		records.forEach( li -> {
 			
-			Match match = new Match();
+			Match match = new Match(matchId++);
 			
 			if (li.size()>SET_1) {
 				
@@ -112,7 +114,7 @@ public class ResultadoImporter {
 			}
 		});
 		
-		partidos.forEach(i ->logger.debug(i.toString()));
+		//partidos.forEach(i ->logger.debug(i.toString()));
 		return partidos;
 		
 	}

@@ -17,7 +17,7 @@ import org.springframework.stereotype.Component;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
-import io.paleta.model.Schedule;
+import io.paleta.model.schedule.Schedule;
 import io.paleta.util.Check;
 
 @Component

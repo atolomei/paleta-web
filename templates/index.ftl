@@ -269,10 +269,10 @@
 																		
 						<tr>
 						  <th scope="row">${match?index+1}</th>
-						  <td>${match.matchdate}</td>              
-						  <td>${match.matchhour}</td>              
-						  <td>${match.local.name}</td>              
-						  <td>${match.visitor.name}</td>              
+						  <td>${match.matchDateStr!"error"}</td>              
+						  <td>${match.matchHourStr!"error"}:${match.matchMinStr!"error"}</td>              
+						  <td>${match.local.name!"error"}</td>              
+						  <td>${match.visitor.name!"error"}</td>              
 						  <td>
 						  <#if match.result?has_content>
 						  		${match.setStr}

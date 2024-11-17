@@ -90,6 +90,12 @@
 			<appender-ref ref="paletaweb"/>
 			<AppenderRef ref="Console"/>
 		</Asynclogger>´
+
+	<Asynclogger name="io.paleta.model"  level="debug" additivity="false">
+			<appender-ref ref="paletaweb"/>
+			<AppenderRef ref="Console"/>
+		</Asynclogger>´
+
 		
  
 		
