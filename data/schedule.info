@@ -7,26 +7,31 @@
 
 $clasi
 
-1, 22/11, 19:00, Zona A, Cuba A, Ferro B
-2, 22/11, 19:30, Zona A, Cuba A, Pilar
-3, 22/11, 20:00, Zona A, Cuba A, Urquiza
-4, 22/11, 20:30, Zona A, Cuba A, Vasco Francés
-5, 27/11, 19:00, Zona A, Ferro B, Pilar
-6, 27/11, 19:30, Zona A, Ferro B, Urquiza
-7, 27/11, 20:00, Zona A, Ferro B, Vasco Francés
-8, 29/11, 19:00, Zona A, Pilar, Urquiza
-9, 29/11, 19:30, Zona A, Pilar, Vasco Francés
-10, 29/11, 20:00, Zona A, Urquiza, Vasco Francés
-11, 29/11, 20:30, Zona B, Centro Navarro, Cuba B
-12, 4/12, 19:00, Zona B, Centro Navarro, Ferro A
-13, 4/12, 19:30, Zona B, Centro Navarro, GEBA
-14, 4/12, 20:00, Zona B, Centro Navarro, Gure Echea
-15, 6/12, 19:00, Zona B, Cuba B, Ferro A
-16, 6/12, 19:30, Zona B, Cuba B, GEBA
-17, 6/12, 20:00, Zona B, Cuba B, Gure Echea
-18, 11/12, 19:00, Zona B, Ferro A, GEBA
-19, 11/12, 19:30, Zona B, Ferro A, Gure Echea
-20, 11/12, 20:00, Zona B, GEBA, Gure Echea
+1, 22/11, 19:00, Zona B, Cuba B, Centro Navarro
+2, 22/11, 19:30, Zona B, Ferro A, GEBA
+3, 22/11, 20:00, Zona A, Urquiza, Pilar
+4, 22/11, 20:30, Zona A, Vasco Francés, Ferro B
+				  		
+5, 27/11, 18:30, Zona B, Cuba B, Gure Echea
+6, 27/11, 19:00, Zona A, Vasco Francés, Urquiza
+7, 27/11, 19:30, Zona B, Ferro A, Centro Navarro
+				  		
+8, 29/11, 19:00, Zona A, Urquiza, Ferro B
+9, 29/11, 19:30, Zona B, Centro Navarro, Gure Echea
+10, 29/11, 20:00, Zona B, Cuba B, Ferro A
+11, 29/11, 20:30, Zona A, Cuba A, Pilar
+				  		
+12, 4/12, 19:00, Zona A, Cuba A, Vasco Francés
+13, 4/12, 19:30, Zona B, Cuba B, GEBA
+14, 4/12, 20:00, Zona B, Ferro A, Gure Echea
+				  		
+15, 6/12, 19:00, Zona B, Centro Navarro, GEBA
+16, 6/12, 19:30, Zona A, Cuba A, Urquiza
+17, 6/12, 20:00, Zona A, Ferro B, Pilar
+				  		
+18, 11/12, 19:00, Zona A, Cuba A, Ferro B
+19, 11/12, 19:30, Zona B, Gure Echea, GEBA
+20, 11/12, 20:00, Zona A, Vasco Francés, Pilar
 
 # $semi
 # 12/12, 19:00, semi, CUBA A, Ferro B   
@@ -35,5 +40,5 @@ $clasi
 # $final
 # 12/12, 19:00, final, CUBA A, Ferro B   
 
-# Created: 19 nov 2024 13:16
+# Created: 19 nov 2024 15:32
 

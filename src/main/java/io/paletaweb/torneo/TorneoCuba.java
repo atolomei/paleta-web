@@ -265,7 +265,7 @@ public class TorneoCuba implements ApplicationContextAware {
 		//importInfo();
 		importZones();
 
-		boolean force = true;
+		boolean force = false;
 		
 		
 		if (force) {
