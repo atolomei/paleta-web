@@ -53,7 +53,7 @@ public class HTMLExportService extends BaseService {
 		
 		Check.requireNonNullStringArgument(getSettingsService().getTemplatesDir(), "templates dir is null");
 		
-		this.cfg = new Configuration(Configuration.VERSION_2_3_33);
+		this.cfg = new Configuration(Configuration.VERSION_2_3_32);
 		//cfg.setClassForTemplateLoading(this.getClass(), "/");
 		try {
 			cfg.setDirectoryForTemplateLoading(new File(getSettingsService().getTemplatesDir()));

@@ -53,11 +53,10 @@ public class TorneoCuba implements ApplicationContextAware {
 	static private Logger logger = Logger.getLogger(TorneoCuba.class.getName());
 	static private Logger startupLogger = Logger.getLogger("StartupLogger");
 
+	
 	static final String scheduleCSV="schedule.csv";
 	static final String scheduleINFO="schedule.info";
 
-	
-	
 	static final int NOT_STARTED     	= 0;
 	static final int CLASIFICATION	 	= 1;
 	static final int SEMIFINALS    	  	= 2;
@@ -115,24 +114,6 @@ public class TorneoCuba implements ApplicationContextAware {
 	@JsonIgnore
 	private Meta meta;
 	
-	public void setMeta(Meta meta) {
-		this.meta=meta;
-		
-	}
-	
-	public String getBanner() {
-		return banner; 
-	}
-	
-	
-	public List<Contact> getContacts() {
-		return contacts;
-	}
-
-	public void setContacts(List<Contact> contacts) {
-		this.contacts = contacts;
-	}
-
 	public TorneoCuba() {
 	}
 
@@ -261,24 +242,21 @@ public class TorneoCuba implements ApplicationContextAware {
 		importMeta();
 		importContacts();
 		importAlert();
-		
-		//importInfo();
 		importZones();
-
+		//importInfo();
+		
 		boolean force = false;
 		
-		
 		if (force) {
-
 			RoundRobinGenerator roundRobin = new RoundRobinGenerator(this.getTournamentGroups());
 			List<ScheduleMatchDate> dates = roundRobin.execute();
 			List<Match> matches = new ArrayList<Match>();
 			dates.forEach( r -> { 
 				r.getMacth().setDate(r.getDate());
 				matches.add(r.getMacth()); 
-				
 			});
-			setSchedule( new Schedule("nofile", matches));
+			
+			setSchedule(new Schedule("nofile", matches));
 			
 			SchedulePlanner planner = new SchedulePlanner( dates, getSchedule().getMatchesClasificacion()); 
 			List<ScheduleMatchDate> list = planner.execute();
@@ -314,8 +292,6 @@ public class TorneoCuba implements ApplicationContextAware {
 		
 		logger.debug("Importing Schedule and Results -> " + scheduleINFO);
 		importSchedule(scheduleINFO);
-		
-		
 		
 		//System.exit(0);
 		
@@ -613,6 +589,37 @@ public class TorneoCuba implements ApplicationContextAware {
 		}
 	}
 
+	public void setMeta(Meta meta) {
+		this.meta=meta;
+		
+	}
+	
+	public String getBanner() {
+		return banner; 
+	}
+	
+	
+	public List<Contact> getContacts() {
+		return contacts;
+	}
+
+	public void setContacts(List<Contact> contacts) {
+		this.contacts = contacts;
+	}
+
+
+	public void setAlert(Alert alert) {
+		this.alert=alert;
+		
+	}
+	public Alert getAlert() {
+		return this.alert;
+	}
+
+	public Meta getMeta() {
+		return meta;
+	}
+	
 	
 	private void setSchedule(Schedule schedule) {
 			this.schedule=schedule;
@@ -627,17 +634,7 @@ public class TorneoCuba implements ApplicationContextAware {
 		this.winner=team;
 	}
 
-	public void setAlert(Alert alert) {
-		this.alert=alert;
-		
-	}
-	public Alert getAlert() {
-		return this.alert;
-	}
-
-	public Meta getMeta() {
-		return meta;
-	}
+	
 	
 	
 
