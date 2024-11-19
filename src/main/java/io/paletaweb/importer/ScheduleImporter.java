@@ -34,18 +34,19 @@ public class ScheduleImporter extends BaseImporter {
 			
 	static private Logger logger = Logger.getLogger(ScheduleImporter.class.getName());
 	
-	static int DATE 	= 0;
-	static int HOUR 	= 1;
-	static int GROUP 	= 2;
-	static int LOCAL 	= 3;
-	static int VISITOR 	= 4;
+	static int ID	 	= 0;
+	static int DATE 	= 1;
+	static int HOUR 	= 2;
+	static int GROUP 	= 3;
+	static int LOCAL 	= 4;
+	static int VISITOR 	= 5;
 	
-	static int RESULT 	= 5;
-	static int SET_1	= 6;
-	static int SET_2 	= 7;
-	static int SET_3 	= 8;
-	static int SET_4 	= 9;
-	static int SET_5 	= 10;
+	static int RESULT 	= 6;
+	static int SET_1	= 7;
+	static int SET_2 	= 8;
+	static int SET_3 	= 9;
+	static int SET_4 	= 10;
+	static int SET_5 	= 11;
 	
 	static  final int NA = -1;
 	static  final int CLASI = 0;
@@ -55,40 +56,18 @@ public class ScheduleImporter extends BaseImporter {
 
 	
 	private int state = CLASI;
+
+	private long matchId = 0;
 	
-	protected String src;
-	protected Schedule schedule;
+	private Schedule schedule;
 	
 	public ScheduleImporter(String src) {
-		Check.requireNonNullStringArgument(src, "src is null");
-		this.src=src;
+		super(src);
 	}
 	
-	public String getSource() {
-		return src;
-	}
 	
-	private String parseHour(String str) {
-		
-		if (str==null)
-			return "";
-		
-		if (str.length()==0)
-			return "";
-		
-		return str.trim();
-	}
-
-	private String parseDate(String str) {
-		
-		if (str==null)
-			return "";
-		
-		if (str.length()==0)
-			return "";
-		
-		return str.trim();
-	}
+	
+	 
 
 	
 	private Schedule getSchedule() {
@@ -105,12 +84,12 @@ public class ScheduleImporter extends BaseImporter {
 	}
 	
 	
-	long matchId = 0;
+
 	
 	public Schedule execute() throws IOException {
 		
 		
-		File f = new File( getSettings().getDataDir() + File.separator + getSource());
+		File f = new File(getSettings().getDataDir() + File.separator + getSourceFile());
 		
 		if (!f.exists())
 			return null;
@@ -120,8 +99,10 @@ public class ScheduleImporter extends BaseImporter {
 		
 		this.schedule = new Schedule();
 		
+		this.schedule.setFileName(getSourceFile());
+
 		
-		try (Stream<String> lines = Files.lines(Paths.get(getSettings().getDataDir() + File.separator + getSource()))) {
+		try (Stream<String> lines = Files.lines(Paths.get(getSettings().getDataDir() + File.separator + getSourceFile()))) {
 			records = lines.filter(line -> (!line.startsWith("#")) && (!line.isBlank()))
 						   .map(line -> Arrays.asList(line.split(",")))
 					       .collect(Collectors.toList());
@@ -142,31 +123,24 @@ public class ScheduleImporter extends BaseImporter {
 		
 			else {
 			
-					if (li.size()<=VISITOR) {
+					if (li.size()<=VISITOR)
 						throw new IllegalArgumentException(" invalid line -> " + li.toString() + " | (items: " + li.size()+" and must be :" + String.valueOf(VISITOR+1) +") ");
-					}
 					
 					Match match = new Match(matchId++);
-					
-					
 					
 					OffsetDateTime date = parseDate(li.get(DATE), li.get(HOUR)); 
 					match.setDate(date);
 					
-					//match.setMatchDate				(parseDate(li.get(DATE)));
-					//match.setMatchHour				(parseHour(li.get(HOUR)));
-		
 					if (getState()==CLASI) {
-						match.setTournamentZone		(parseGroup(li.get(GROUP)));
-						match.setLocal					(parseTeam (match.getTournamentZone(), li.get(LOCAL)));
-						match.setVisitor				(parseTeam (match.getTournamentZone(), li.get(VISITOR)));
+						match.setTournamentGroup		(parseGroup(li.get(GROUP)));
+						match.setLocal					(parseTeam (match.getTournamentGroup(), li.get(LOCAL)));
+						match.setVisitor				(parseTeam (match.getTournamentGroup(), li.get(VISITOR)));
 					}
 					else {
 						match.setLocal					(parseTeam (li.get(LOCAL)));
 						match.setVisitor				(parseTeam (li.get(VISITOR)));
 					}
 			
-						
 					if (li.size()>RESULT && (!li.get(RESULT).isBlank())) {
 							
 						boolean isResult = false;
@@ -442,23 +416,6 @@ public class ScheduleImporter extends BaseImporter {
 		
 		
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
 	
 
 	private Team parseTeam(String str) {

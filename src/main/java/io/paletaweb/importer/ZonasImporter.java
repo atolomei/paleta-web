@@ -34,23 +34,19 @@ public class ZonasImporter extends BaseImporter {
 	@SuppressWarnings("unused")
 	static private Logger logger = Logger.getLogger(ZonaImporter.class.getName());
 	
-	private final String sourceFile;
 	
+	@JsonIgnore
 	private List<TournamentGroup> groups;
 	
-	
-	
-
 	@JsonIgnore
 	private Map<String, TournamentGroup> mg;
 	
 	
 	public  ZonasImporter(String sourceFile) {
-		Check.requireNonNullStringArgument(sourceFile, "sourceFile is null");
-		this.sourceFile=sourceFile;
+		super(sourceFile);
+		
 	}
 
-	
 	public List<TournamentGroup> execute() throws IOException {
 		
 		List<List<String>> records = null;
@@ -136,12 +132,8 @@ public class ZonasImporter extends BaseImporter {
 			getMapGroups().put(key, new TournamentGroup(key, name));
 		}
 		return getMapGroups().get(key);
-		
 	}
 
-
-	
-	
 	private Map<String, TournamentGroup> getMapGroups() {
 		return mg;
 	}
@@ -151,7 +143,4 @@ public class ZonasImporter extends BaseImporter {
 	}
 
 
-	public String getSourceFile() {
-		return sourceFile;
-	}
 }

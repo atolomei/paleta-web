@@ -1,4 +1,4 @@
-package io.paletaweb.importer;
+package io.paletaweb.exporter;
 
 import java.io.File;
 import java.time.OffsetDateTime;

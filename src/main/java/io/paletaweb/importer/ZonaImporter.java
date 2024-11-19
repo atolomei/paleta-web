@@ -30,7 +30,6 @@ public class ZonaImporter extends BaseImporter {
 	@SuppressWarnings("unused")
 	static private Logger logger = Logger.getLogger(ZonaImporter.class.getName());
 	
-	private final String sourceFile;
 	
 	private String name;
 	
@@ -39,9 +38,8 @@ public class ZonaImporter extends BaseImporter {
 	@JsonIgnore
 	private TournamentGroup zona;
 
-	public  ZonaImporter(String sourceFile, String name) {
-		Check.requireNonNullStringArgument(sourceFile, "sourceFile is null");
-		this.sourceFile=sourceFile;
+	public ZonaImporter(String sourceFile, String name) {
+		super(sourceFile);
 		this.name=name;
 	}
 	
@@ -101,15 +99,5 @@ public class ZonaImporter extends BaseImporter {
 
 	private void addTeam(Team team) {
 		teams.add(team);
-		
-	}
-
-	public String getSourceFile() {
-		return sourceFile;
 	}
 }
-
-
-//teams.forEach(i->logger.debug(i));
-
-//if ((!li.isEmpty()) && (li.get(0).length()>0))

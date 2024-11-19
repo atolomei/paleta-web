@@ -1,4 +1,4 @@
-package io.paletaweb.importer;
+package io.paletaweb.exporter;
 
 
 import java.io.File;
@@ -52,6 +52,7 @@ public class SiteExportService extends BaseService {
 	@PostConstruct
 	public void init() {
 	
+
 		{
 			File dataDir = new File(getSettings().getDataDir());
 			
@@ -59,7 +60,7 @@ public class SiteExportService extends BaseService {
 				File files[] = dataDir.listFiles();
 				for (File fi:files) {
 					if (!fi.isDirectory()) {
-						if (fi.getName().endsWith(".csv") || fi.getName().endsWith(".txt")) {
+						if (fi.getName().endsWith(".csv") || fi.getName().endsWith(".txt") || fi.getName().endsWith(".info")) {
 							map.put(fi,  Long.MIN_VALUE);
 						}
 					}
@@ -74,7 +75,7 @@ public class SiteExportService extends BaseService {
 				File files[] = dataDir.listFiles();
 				for (File fi:files) {
 					if (!fi.isDirectory()) {
-						if ( fi.getName().endsWith(".ftl")) {
+						if ( fi.getName().endsWith(".ftl")) {	
 							map.put(fi,  Long.MIN_VALUE);
 						}
 					}
@@ -111,7 +112,7 @@ public class SiteExportService extends BaseService {
 			File files[] = dataDir.listFiles();
 			for (File fi:files) {
 				if (!fi.isDirectory()) {
-					if (fi.getName().endsWith(".csv") || fi.getName().endsWith(".txt")) {
+					if (fi.getName().endsWith(".csv") || fi.getName().endsWith(".txt") || fi.getName().endsWith(".info")) {
 						list.add(fi);
 					}
 				}

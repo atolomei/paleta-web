@@ -64,7 +64,7 @@
         <div class="main-menu hidden-xs hidden-sm hidden-md">
           <div class="toolbar-item"><a href="./index.html#torneo">El torneo</a></div>
 		  <div class="toolbar-item"><a href="./index.html#zonas">Zonas</a></div>
-		  <div class="toolbar-item"><a href="./jugadores.html">Jugadores</a></div>
+		  <div class="toolbar-item"><a href="./equipos.html">Equipos</a></div>
           <div class="toolbar-item"><a href="./index.html#fixture">Fixture</a></div>
           <div class="toolbar-item"><a href="./index.html#tabla">Tabla</a></div>
           <div class="toolbar-item"><a href="./index.html#contacto">Contacto</a></div>
@@ -72,7 +72,7 @@
         
         <div class="main-menu hidden-lg">
           <div class="toolbar-item"><a href="./index.html">Portada</a></div>
-		  <div class="toolbar-item"><a href="./jugadores.html">Jugadores</a></div>
+		  <div class="toolbar-item"><a href="./equipos.html">Equipos</a></div>
         </div>
       </nav>
 
@@ -208,7 +208,7 @@
 			    <div class="row">
 			    	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:1em;">
 			    		<p>
-			    			<a href="jugadores.html" title="lista de jugadores">Lista de jugadores</a>
+			    			<a href="equipos.html" title="Equipos">Equipos</a>
 			    		</p>
 			    	</div>
 			    </div>
@@ -438,7 +438,7 @@
 		  <#items as grouptable>
 			 <div class="row">
 			  <div class="col-lg-12 col-md-12 col-xs-12">
-			  <h4>${grouptable.group.name}</h4>
+			  <h4>${grouptable.tournamentGroup.name}</h4>
 			  </div>
 	 	     </div>
 	
@@ -567,14 +567,21 @@
           
           
 	        <div style="display: block; float: left;">
+	          
 	          <a class="link"
 	            style="color: white"
 	            title="Torneo"
-	            href="#torneo">
-	            	<span style="font-size: 0.8em; padding: 0 1em">El Torneo</span>
+	            href="./index.html">
+	            	<span style="font-size: 0.8em; padding: 0 1em">Portada</span>
 	            </a>
 	          
-	          <a class="link"
+	          <a class="link hidden-xs hidden-sm"
+	            style="color: white"
+	            title="Tabla"
+	            href="#torneo"><span style="font-size: 0.8em; padding: 0 1em">Torneo</span></a>
+	            
+	            
+	          <a class="link hidden-xs hidden-sm"
 	            style="color: white"
 	            title="Tabla"
 	            href="#table"><span style="font-size: 0.8em; padding: 0 1em">Tabla</span></a>
@@ -582,16 +589,16 @@
 	          <a
 	            class="link"
 	            style="color: white"
-	            title="Jugadores"
-	            href="./jugadores.html"><span style="font-size: 0.8em; padding: 0 1em">Jugadores</span></a>
+	            title="Equipos"
+	            href="./equipos.html"><span style="font-size: 0.8em; padding: 0 1em">Equipos</span></a>
 	
 	          <a
-	            class="link"
+	            class="link hidden-xs hidden-sm"
 	            style="color: white"
 	            title="Fixture"
 	            href="#fixture"><span style="font-size: 0.8em; padding: 0 1em">Fixture</span></a>
 	          <a
-	            class="link"
+	            class="link hidden-xs hidden-sm"
 	            style="color: white"
 	            title="Contacto"
 	            href="#contact"><span style="font-size: 0.8em; padding: 0 1em">Contacto</span></a>
@@ -599,7 +606,9 @@
       
 		     <div style="display: block; float: right; font-size:0.7em;">
 		      		<span style="color:#cccccc;"> ${dateexported}</span>
+		      		<a href="#top" class="link" style="margin-left:2.5em; color: #cccccc;"><span> subir </span> <span>^</span></a>
 		     </div>
+		     
       </div>
       
       

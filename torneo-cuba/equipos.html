@@ -9,10 +9,10 @@
     <link rel="icon" href="./images/favicon.gif" type="image/x-icon" />
     <link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon" />
 
-    <meta name="title" content="${meta.title!"Torneo"}" />
-    <meta name="description" content="${meta.description!"Torneo de Paleta"}" />
-    <meta name="Keywords" content="${meta.keywords!"paleta"}" />
-	<meta name="language" content="${meta.language!"Spanish"}" />
+    <meta name="title" content="Torneo Paleta CUBA Viamonte" />
+    <meta name="description" content="Torneo de Paleta CUBA Viamonte" />
+    <meta name="Keywords" content="paleta pelota, pelotari, torneo" />
+	<meta name="language" content="Spanish" />
 
     <meta
       name="viewport"
@@ -57,7 +57,7 @@
             <div style="float: left; width: initial; width: 100%">
               <a href="index.html" style="float: left; display: block; width: 100%">
                 <span style="display: inline-block;float: left;font-weight: bold;width: 100%;">
-                  CUBA
+                   CUBA	
                 </span>
               </a>
             </div>
@@ -67,7 +67,7 @@
         <div class="main-menu hidden-xs hidden-sm hidden-md">
           <div class="toolbar-item"><a href="./index.html#torneo">El torneo</a></div>
 		  <div class="toolbar-item"><a href="./index.html#zonas">Zonas</a></div>
-		  <div class="toolbar-item"><a href="./jugadores.html">Jugadores</a></div>
+		  <div class="toolbar-item"><a href="./equipos.html">Equipos</a></div>
           <div class="toolbar-item"><a href="./index.html#fixture">Fixture</a></div>
           <div class="toolbar-item"><a href="./index.html#tabla">Tabla</a></div>
           <div class="toolbar-item"><a href="./index.html#contacto">Contacto</a></div>
@@ -75,7 +75,7 @@
         
         <div class="main-menu hidden-lg">
           <div class="toolbar-item"><a href="./index.html">Portada</a></div>
-		  <div class="toolbar-item"><a href="./jugadores.html">Jugadores</a></div>
+		  <div class="toolbar-item"><a href="./equipos.html">Equipos</a></div>
         </div>
         
       </nav>
@@ -94,58 +94,119 @@
     </section>
 
     
+	<nav id="breadcrumb"> 
+      	<div class="section">
+	    	<div class="section-internal-container">
+		    		<div class="section-content" style="min-height: auto;padding: 0.5em 2em;">
+		        		<div class="row" style="font-size: 0.875em; text-align:center;";>
+					  		<div class="col-lg-12 col-md-12 col-xs-12">
+					  			<a class="link" href="index.html">portada</a><span> &gt; </span><span><b></b>equipos</b></span>
+					  		</div>
+						</div>
+		       		</div>
+			</div>
+		</div>
+    </nav>          
+          
+    
+    
 
 	<!-- ALERTAS -------------------------------------------------- -->
 	
-	<#if alert?has_content>
-	<section id="alert" class="section light">
-			<div class="section-internal-container">
-				<div class="section-content alert-container">
-					<div class="row">
-						  	<div class="col-lg-12 col-md-12 col-xs-12">
-							  		
-							  		<div class="alert ${alert.alertClass}" role="alert">
-								 		<#if alert.title?has_content>
-								 		<h5>${alert.title}</h5>
-								 		</#if>	
-								 		<#if alert.text?has_content>
-								 			${alert.text}
-								 		</#if>
-								 	</div>
-						 	</div>
-					</div>
-				</div>
-			</div>
-	</section>
-	</#if>		
 	
-	<!-- JUGADORES -------------------------------------------------- -->
+<!-- EQUIPOS -------------------------------------------------- -->
 															
     <section id="jugadores" class="section light">
       <div class="section-internal-container">
         <div class="section-content">
 		  <div class="row">
 			  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-					<h2>Lista de Jugadores</h2>
+					<h2>Equipos</h2>
 			  </div>
 		  </div>
 		  <div class="row">
-			  	<#list teams>
 					 	<ul class="group-list col-lg-12 col-md-12 col-xs-12" style="text-align:center;">
-								<#items as team>
 								<li class="list-item">  
-									<h5>${team.name}</h5>
-									<#if team.players?has_content>
+									<h5>Centro Navarro</h5>
 										<div class="row">		
 											<div class="col-lg-12 col-md-12 col-xs-12">
-											${team.playersStr}		
+											Federico Domine, Juan Martín Fernández, Joaquín Salvador		
 											</div>
 										</div>
-									</#if>
 								</li>
-								</#items>
+								<li class="list-item">  
+									<h5>Cuba A</h5>
+										<div class="row">		
+											<div class="col-lg-12 col-md-12 col-xs-12">
+											Patricio Diaz, Enrique Figini, Alejandro Tolomei		
+											</div>
+										</div>
+								</li>
+								<li class="list-item">  
+									<h5>Cuba B</h5>
+										<div class="row">		
+											<div class="col-lg-12 col-md-12 col-xs-12">
+											Carlos Cheret, Facundo Rocha		
+											</div>
+										</div>
+								</li>
+								<li class="list-item">  
+									<h5>Ferro A</h5>
+										<div class="row">		
+											<div class="col-lg-12 col-md-12 col-xs-12">
+											Sebastián Gómez, Cristian Sidero, Maximiliano Stefani		
+											</div>
+										</div>
+								</li>
+								<li class="list-item">  
+									<h5>Ferro B</h5>
+										<div class="row">		
+											<div class="col-lg-12 col-md-12 col-xs-12">
+											Walter Lupis, Omar Segovia		
+											</div>
+										</div>
+								</li>
+								<li class="list-item">  
+									<h5>GEBA</h5>
+										<div class="row">		
+											<div class="col-lg-12 col-md-12 col-xs-12">
+											Alejandro Gassmann, Mariano Gómez		
+											</div>
+										</div>
+								</li>
+								<li class="list-item">  
+									<h5>Gure Echea</h5>
+										<div class="row">		
+											<div class="col-lg-12 col-md-12 col-xs-12">
+											Javier Candi, Fernando Fontaine, Marcos Martinez		
+											</div>
+										</div>
+								</li>
+								<li class="list-item">  
+									<h5>Pilar</h5>
+										<div class="row">		
+											<div class="col-lg-12 col-md-12 col-xs-12">
+											Victor Stortini, Facundo Hernán Álvarez		
+											</div>
+										</div>
+								</li>
+								<li class="list-item">  
+									<h5>Urquiza</h5>
+										<div class="row">		
+											<div class="col-lg-12 col-md-12 col-xs-12">
+											Gastón D'onofrio, Martin Curioni, Martín Sánchez, Lucas Orsi		
+											</div>
+										</div>
+								</li>
+								<li class="list-item">  
+									<h5>Vasco Francés</h5>
+										<div class="row">		
+											<div class="col-lg-12 col-md-12 col-xs-12">
+											Pablo Facundo Rousseaux, Francisco Sosa, José Sosa		
+											</div>
+										</div>
+								</li>
 							</ul>
-					</#list>
 		  </div>
          </div>
       </div>
@@ -155,33 +216,47 @@
 
  	<!-- CONTACTS ---------------------------------- -->
 
-	<#if contacts?has_content>
 	<section id="contacto" class="section dark">
       <div class="section-internal-container">
         <div class="section-content">
           <h2>Contacto</h2>
-	         	 <#list contacts>
 	          	  <div class="row">
 					<ul class="list-group col-lg-12 col-md-12 col-xs-12" style="margin-top:2em;">	
-			          <#items as contact>
 			          <li class="list-item">
 				          <div class="row">	
 					          <div class="col-lg-12 col-md-12 col-xs-12">
 					          <p>
-					            ${contact.name!""}<br>
-					            ${contact.contactMethod!""}<br>
+					            Alejandro Tolomei<br>
+					            +54 911 6119.4075<br>
 					          </p>
 					          </div>
 				          </div>
 			          </li>
-		          	</#items>
+			          <li class="list-item">
+				          <div class="row">	
+					          <div class="col-lg-12 col-md-12 col-xs-12">
+					          <p>
+					            Luis Font<br>
+					            +54 9 11 5804.0446<br>
+					          </p>
+					          </div>
+				          </div>
+			          </li>
+			          <li class="list-item">
+				          <div class="row">	
+					          <div class="col-lg-12 col-md-12 col-xs-12">
+					          <p>
+					            Facundo Rocha<br>
+					            +54 911 4948.9094<br>
+					          </p>
+					          </div>
+				          </div>
+			          </li>
 		          </ul>
 		          </div>
-	          </#list>
         </div>
       </div>
     </section>
-    </#if>
   
     
     <!-- ------------------- footer ---------------------------- -->
@@ -197,40 +272,51 @@
           color: white;">
           
           
+	            
+          
 	        <div style="display: block; float: left;">
+	          
 	          <a class="link"
 	            style="color: white"
 	            title="Torneo"
-	            href="./index.html#torneo">
-	            	<span style="font-size: 0.8em; padding: 0 1em">El Torneo</span>
+	            href="./index.html">
+	            	<span style="font-size: 0.8em; padding: 0 1em">Portada</span>
 	            </a>
 	          
-	          <a class="link"
+	          <a class="link hidden-xs hidden-sm"
 	            style="color: white"
 	            title="Tabla"
-	            href="./index.html#table"><span style="font-size: 0.8em; padding: 0 1em">Tabla</span></a>
+	            href="#torneo"><span style="font-size: 0.8em; padding: 0 1em">Torneo</span></a>
+	            
+	            
+	          <a class="link hidden-xs hidden-sm"
+	            style="color: white"
+	            title="Tabla"
+	            href="#table"><span style="font-size: 0.8em; padding: 0 1em">Tabla</span></a>
 	          
 	          <a
 	            class="link"
 	            style="color: white"
-	            title="Jugadores"
-	            href="./jugadores.html"><span style="font-size: 0.8em; padding: 0 1em">Jugadores</span></a>
+	            title="Equipos"
+	            href="./equipos.html"><span style="font-size: 0.8em; padding: 0 1em">Equipos</span></a>
 	
 	          <a
-	            class="link"
+	            class="link hidden-xs hidden-sm"
 	            style="color: white"
 	            title="Fixture"
-	            href="./index.html#fixture"><span style="font-size: 0.8em; padding: 0 1em">Fixture</span></a>
+	            href="#fixture"><span style="font-size: 0.8em; padding: 0 1em">Fixture</span></a>
 	          <a
-	            class="link"
+	            class="link hidden-xs hidden-sm"
 	            style="color: white"
 	            title="Contacto"
-	            href="./index.html#contact"><span style="font-size: 0.8em; padding: 0 1em">Contacto</span></a>
+	            href="#contact"><span style="font-size: 0.8em; padding: 0 1em">Contacto</span></a>
 	        </div>
       
-		     <div style="display: block; float: right; font-size:0.7em;">
-		      		<span style="color:#cccccc;"> ${dateexported}</span>
+  		     <div style="display: block; float: right; font-size:0.7em;">
+		      		<span style="color:#cccccc;"> 19 nov 2024 13:16</span>
+		      		<a href="#top" class="link" style="margin-left:2.5em; color: #cccccc;"><span> subir </span> <span>^</span></a>
 		     </div>
+
       </div>
       
       

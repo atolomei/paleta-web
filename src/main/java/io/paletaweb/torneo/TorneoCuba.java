@@ -1,8 +1,6 @@
 package io.paletaweb.torneo;
 
-
-
-
+import java.io.File;
 import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
@@ -36,6 +34,7 @@ import io.paleta.model.schedule.SchedulePlanner;
 import io.paletaweb.exporter.IndexExporter;
 import io.paletaweb.exporter.PlayersExporter;
 import io.paletaweb.exporter.ScheduleExporter;
+import io.paletaweb.exporter.ScheduleResultsExporter;
 import io.paletaweb.exporter.TableExporter;
 import io.paletaweb.exporter.ZoneExporter;
 import io.paletaweb.importer.AlertImporter;
@@ -53,6 +52,11 @@ public class TorneoCuba implements ApplicationContextAware {
 			
 	static private Logger logger = Logger.getLogger(TorneoCuba.class.getName());
 	static private Logger startupLogger = Logger.getLogger("StartupLogger");
+
+	static final String scheduleCSV="schedule.csv";
+	static final String scheduleINFO="schedule.info";
+
+	
 	
 	static final int NOT_STARTED     	= 0;
 	static final int CLASIFICATION	 	= 1;
@@ -148,11 +152,9 @@ public class TorneoCuba implements ApplicationContextAware {
 		return state;
 	}
 	
-	
 	public Team getWinner() {
 		return winner;
 	}
-	
 
 	public SettingsService getSettings() {
 		return settings;
@@ -170,7 +172,7 @@ public class TorneoCuba implements ApplicationContextAware {
 			@Override
 			public int compare(TournamentGroupTable o1, TournamentGroupTable o2) {
 				try {
-					return o1.getGroup().getName().compareToIgnoreCase(o2.getGroup().getName());
+					return o1.getTournamentGroup().getName().compareToIgnoreCase(o2.getTournamentGroup().getName());
 				} catch (Exception e) {
 					logger.error(e);
 					return 0;
@@ -219,23 +221,103 @@ public class TorneoCuba implements ApplicationContextAware {
 		return list;
 	}
 	
+	
+	/**
+	 *   
+	 * 
+	 * if schedule.info not exists -> 
+	 *     
+	 *     if ("schedule.csv" exists)
+	 *     			importa de"schedule.csv", "genera schedule.info"
+	 *     else
+	 *     			genera schedule por algoritmo, genera "schedule.info"
+	 *      
+	 *      
+	 *      
+	 * 
+	 *    carga el schedule y resultados de "schedule.info"
+	 *      
+	 *      
+	 * 
+	 * @return
+	 */
+	
+	
+	private boolean isScheduleCSV() {
+		File schedule = new File(getSettings().getDataDir() + File.separator + scheduleCSV);
+		return schedule.exists() && schedule.isFile();
+		
+	}
+	private boolean isScheduleResults() {
+		File scheduleResults =  new File(getSettings().getDataDir() + File.separator + "schedule.info");
+		return (scheduleResults.exists() && scheduleResults.isFile());
+	}
+	
+	
+	
 	public void execute() {
 		
 		/** Import */
 		importMeta();
-		//importInfo();
-		importZones();
-		importSchedule();
 		importContacts();
 		importAlert();
 		
-		//RoundRobinGenerator roundRobin = new RoundRobinGenerator( this.getTournamentGroups());
-		//List<ScheduleMatchDate> dates = roundRobin.execute();
+		//importInfo();
+		importZones();
+
+		boolean force = true;
 		
-		//SchedulePlanner planner = new SchedulePlanner( dates, getSchedule().getMatchesClasificacion()); 
-		//List<ScheduleMatchDate> list = planner.execute();
+		
+		if (force) {
+
+			RoundRobinGenerator roundRobin = new RoundRobinGenerator(this.getTournamentGroups());
+			List<ScheduleMatchDate> dates = roundRobin.execute();
+			List<Match> matches = new ArrayList<Match>();
+			dates.forEach( r -> { 
+				r.getMacth().setDate(r.getDate());
+				matches.add(r.getMacth()); 
+				
+			});
+			setSchedule( new Schedule("nofile", matches));
+			
+			SchedulePlanner planner = new SchedulePlanner( dates, getSchedule().getMatchesClasificacion()); 
+			List<ScheduleMatchDate> list = planner.execute();
+			exportScheduleResults(scheduleINFO, list);
+		}
 		
 		
+		if (!isScheduleResults()) {
+			if (isScheduleCSV()) {
+				logger.debug("Importing Schedule from -> " + scheduleCSV);
+				importSchedule("schedule.csv");
+				List<ScheduleMatchDate> list = new ArrayList<ScheduleMatchDate>();
+				this.getSchedule().getMatchesClasificacion().forEach( m -> {
+					list.add(new ScheduleMatchDate( m.getId(), m.getDate(), m)); }
+				);
+				logger.debug("Exporting schedule to results file -> " +  scheduleINFO);
+				exportScheduleResults(scheduleINFO, list);	
+			}
+			else {
+				RoundRobinGenerator roundRobin = new RoundRobinGenerator(this.getTournamentGroups());
+				List<ScheduleMatchDate> dates = roundRobin.execute();
+				List<Match> matches = new ArrayList<Match>();
+				dates.forEach( r -> matches.add(r.getMacth()));
+				setSchedule( new Schedule("nofile", matches));
+				
+				SchedulePlanner planner = new SchedulePlanner( dates, getSchedule().getMatchesClasificacion()); 
+				List<ScheduleMatchDate> list = planner.execute();
+				exportScheduleResults(scheduleINFO, list);	
+			}
+		}
+		
+		/** now import results from schedule.info */
+		
+		logger.debug("Importing Schedule and Results -> " + scheduleINFO);
+		importSchedule(scheduleINFO);
+		
+		
+		
+		//System.exit(0);
 		
 		/** calculate */
 		calculateTables();
@@ -249,13 +331,9 @@ public class TorneoCuba implements ApplicationContextAware {
 		startupLogger.debug("---------------------------------------------------------");
 		
 		startupLogger.info("done");
-		
 	}
 
-	
-	
-	
-	
+
 	private void calculateTables() {
 		
 		this.groupTables = new HashMap<TournamentGroup, TournamentGroupTable>();
@@ -292,10 +370,35 @@ public class TorneoCuba implements ApplicationContextAware {
 	}
 
 
+	
+	private void exportScheduleResults(String fileName, List<ScheduleMatchDate> list) {
+		
+		String destFileName = fileName;
+		String templateFileName = "schedule-result.ftl";
+		
+		ScheduleResultsExporter exporter = getApplicationContext().getBean(ScheduleResultsExporter.class, 
+																	destFileName, 
+																	templateFileName);
+		try {
+			
+			exporter.export();
+			
+		} catch (IOException e) {
+			logger.error(e);
+			System.exit(1);
+		}
+		 catch (TemplateException e1) {
+			logger.error(e1);
+			System.exit(1);
+		}
+		
+	}
+
+	
 	private void exportPlayers() {
 		
-		String destFileName = "jugadores.html";
-		String templateFileName = "jugadores.ftl";
+		String destFileName = "equipos.html";
+		String templateFileName = "equipos.ftl";
 		
 		PlayersExporter exporter = getApplicationContext().getBean(PlayersExporter.class, 
 																	destFileName, 
@@ -457,47 +560,21 @@ public class TorneoCuba implements ApplicationContextAware {
 			logger.error(e);
 			System.exit(1);
 		}
-		
-		/**
-		ZonaImporter za = createZonaImporter("zona_A.csv", "Zona A");
-		try {
-			TournamentGroup zona_a = za.execute();
-			zonas.add(zona_a);
-		} catch (IOException e) {
-			logger.error(e);
-			System.exit(1);
-		}
-		
-		ZonaImporter zb = createZonaImporter("zona_B.csv", "Zona B");
-		try {
-			TournamentGroup zona_b = zb.execute();
-			zonas.add(zona_b);
-		} catch (IOException e) {
-			logger.error(e);
-			System.exit(1);
-		}
-		
-		logger.debug("import zones ok");
-		**/
-		
 	}
 	
 	
+	private void importSchedule( String fileName) {
 	
-	private void importSchedule() {
-	
-		ScheduleImporter si = getApplicationContext().getBean(ScheduleImporter.class, "schedule.csv");
+		ScheduleImporter si = getApplicationContext().getBean(ScheduleImporter.class,  fileName);
 		
 		try {
 			
-			this.schedule = si.execute();
+			setSchedule(si.execute());
 			
 		} catch (IOException e) {
 			logger.error(e);
 			System.exit(1);
 		}
-		
-		logger.debug("import schedule ok");
 		
 		if (schedule.getMatchFinal()!=null) {
 			if (schedule.getMatchFinal().isCompleted()) {
@@ -537,6 +614,10 @@ public class TorneoCuba implements ApplicationContextAware {
 	}
 
 	
+	private void setSchedule(Schedule schedule) {
+			this.schedule=schedule;
+	}
+
 	private void setState(int state) {
 		this.state=state;
 		

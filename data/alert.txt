@@ -11,7 +11,7 @@ alert.class=alert-warning
 
 # Optional 
 #
-alert.title=Fixture
+# alert.title=Cambio en Fixture (17/11/24)
 
 # Optional
 # simple httml text
@@ -19,7 +19,7 @@ alert.title=Fixture
 
 
 
-alert.text=<p>Hay un cambio en el orden de la primer fecha, <b>Vasco Francés, Ferro B</b> pasó a las <b>20.30</b> hs <br/> y los partidos de <b>20</b> hs y <b>20.30</b> hs se adelantan un turno (ver <a class=link" title="fixture" href="index.html#fixture">fixture</a>).
+# alert.text=<br/><p><h6>Fecha del 22/11</h6><b>Vasco Francés, Ferro B</b> pasó a las <b>20.30</b> hs <br/>y los otros se adelantan un turno.</p><p><h6>Fecha del 4/12</h6><b>Ferro A, Gure Echea</b> pasó a las <b>20.00</b> hs <br/> y los otros se adelantan un turno.</p><p>ver <a class=link" title="fixture" href="index.html#fixture">Fixture</a></p>.
 
 
 

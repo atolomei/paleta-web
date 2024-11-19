@@ -21,29 +21,27 @@ import io.paleta.util.Check;
 @Scope("prototype")
 public class MetaImporter extends BaseImporter {
 
-	private String src;
+	
 	private Meta meta = null;
 	
 	public  MetaImporter(String src) {
-		Check.requireNonNullStringArgument(src, "src is null");
-		this.src=src;
+		super(src);
+		
 	}
 	
-	public String getSource() {
-		return src;
-	}
+	
 	
 	public Meta execute() throws IOException {
 		
 		
-		File f = new File( getSettings().getDataDir() + File.separator + getSource());
+		File f = new File( getSettings().getDataDir() + File.separator + getSourceFile());
 		
 		if (!f.exists())
 			return null;
 		
 		List<List<String>> records;
 		
-		try (Stream<String> lines = Files.lines(Paths.get(getSettings().getDataDir() + File.separator + getSource()))) {
+		try (Stream<String> lines = Files.lines(Paths.get(getSettings().getDataDir() + File.separator + getSourceFile()))) {
 			records = lines.filter(line -> (!line.startsWith("#")) && (!line.isBlank()))
 						   .map(line -> Arrays.asList(line.split("=")))
 					       .collect(Collectors.toList());

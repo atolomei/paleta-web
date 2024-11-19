@@ -8,7 +8,6 @@ import java.io.Writer;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -18,17 +17,15 @@ import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import io.paleta.logging.Logger;
-import io.paleta.model.TournamentGroup;
 import io.paleta.model.TournamentGroupTable;
 import io.paleta.util.Check;
-import io.paletaweb.importer.ZonaImporter;
-import io.paletaweb.service.HTMLExportService;
 import io.paletaweb.service.SettingsService;
 
 @Component
 @Scope("prototype")
 public class TableExporter extends BaseExporter {
 
+	@SuppressWarnings("unused")
 	static private Logger logger = Logger.getLogger(TableExporter.class.getName());
 	
 	@JsonIgnore
@@ -68,14 +65,14 @@ public class TableExporter extends BaseExporter {
 	public void export() throws IOException, TemplateException {
 
 		Check.requireNonNull(getGroupTable());
-		Check.requireNonNull(getGroupTable().getGroup());
+		Check.requireNonNull(getGroupTable().getTournamentGroup());
 		Check.requireNonNull(getGroupTable().getTable());
 		
 		Configuration cfg = getHtmlExportService().getConfiguration();
 
 		Map<String, Object> root = new HashMap<>();		
 
-		root.put("group", getGroupTable().getGroup().getName());
+		root.put("group", getGroupTable().getTournamentGroup().getName());
 		root.put("tablepositions", getGroupTable().getTable());
 		
 

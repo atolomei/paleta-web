@@ -14,8 +14,6 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import io.paleta.model.Contact;
-import io.paleta.model.schedule.Schedule;
-import io.paleta.util.Check;
 
 
 @Component
@@ -27,27 +25,22 @@ public class ContactImporter extends BaseImporter {
 	
 	
 	
-	public ContactImporter(String src) {
-		Check.requireNonNullStringArgument(src, "src is null");
-		this.src=src;
+	public ContactImporter(String sourceFile) {
+		super(sourceFile);
 	}
 	
-	public String getSource() {
-		return src;
-	}
-
 	
 	public List<Contact> execute() throws IOException {
 		
 		
-		File f = new File( getSettings().getDataDir() + File.separator + getSource());
+		File f = new File( getSettings().getDataDir() + File.separator + getSourceFile());
 		
 		if (!f.exists())
 			return null;
 		
 		List<List<String>> records;
 		 
-		try (Stream<String> lines = Files.lines(Paths.get(getSettings().getDataDir() + File.separator + getSource()))) {
+		try (Stream<String> lines = Files.lines(Paths.get(getSettings().getDataDir() + File.separator + getSourceFile()))) {
 			records = lines.filter(line -> (!line.startsWith("#")) && (!line.isBlank()))
 						   .map(line -> Arrays.asList(line.split(",")))
 					       .collect(Collectors.toList());

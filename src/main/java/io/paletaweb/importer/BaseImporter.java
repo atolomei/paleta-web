@@ -28,9 +28,18 @@ public class BaseImporter {
 	protected TorneoCuba torneo;
 	
 	
-
-	public  BaseImporter() {
+	private final String sourceFile;
 	
+	
+
+	public  BaseImporter(String sourceFile) {
+		Check.requireNonNullStringArgument(sourceFile, "sourceFile is null");
+		this.sourceFile=sourceFile;
+	}
+	
+	
+	public String getSourceFile() {
+		return sourceFile;
 	}
 	
 	

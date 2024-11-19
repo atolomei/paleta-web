@@ -70,7 +70,7 @@
 			<AppenderRef ref="Console"/>
 		</Asynclogger>´
 		
-		<Asynclogger name="io.paletaweb"  level="error" additivity="false">
+		<Asynclogger name="io.paletaweb"  level="debug" additivity="false">
 			<appender-ref ref="paletaweb"/>
 			<AppenderRef ref="Console"/>
 		</Asynclogger>´

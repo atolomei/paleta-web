@@ -33,16 +33,17 @@ public class ResultadoImporter {
 	
 		static private Logger logger = Logger.getLogger(ResultadoImporter.class.getName());
 		
-		static int DATE 	= 0;
-		static int ZONE 	= 1;
-		static int LOCAL 	= 2;
-		static int VISITOR 	= 3;
-		static int RESULT 	= 4;
-		static int SET_1	= 5;
-		static int SET_2 	= 6;
-		static int SET_3 	= 7;
-		static int SET_4 	= 8;
-		static int SET_5 	= 9;
+		static int ID	 	= 0;
+		static int DATE 	= 1;
+		static int GROUP 	= 2;
+		static int LOCAL 	= 3;
+		static int VISITOR 	= 4;
+		static int RESULT 	= 5;
+		static int SET_1	= 6;
+		static int SET_2 	= 7;
+		static int SET_3 	= 8;
+		static int SET_4 	= 9;
+		static int SET_5 	= 10;
 
 	
 	private final String sourceFile;
@@ -87,10 +88,10 @@ public class ResultadoImporter {
 			if (li.size()>SET_1) {
 				
 				match.setDate				(parseDate(li.get(DATE)));
-				match.setTournamentZone		(parseGroup(li.get(ZONE)));
+				match.setTournamentGroup		(parseGroup(li.get(GROUP)));
 				
-				match.setLocal				(parseTeam (match.getTournamentZone(), li.get(LOCAL)));
-				match.setVisitor			(parseTeam (match.getTournamentZone(), li.get(VISITOR)));
+				match.setLocal				(parseTeam (match.getTournamentGroup(), li.get(LOCAL)));
+				match.setVisitor			(parseTeam (match.getTournamentGroup(), li.get(VISITOR)));
 				
 				if (li.size()>RESULT) {
 

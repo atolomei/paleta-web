@@ -20,29 +20,24 @@ import io.paleta.util.Check;
 @Scope("prototype")
 public class AlertImporter extends BaseImporter {
 		
-	private String src;
 	private Alert alert = null;
 	
-	public  AlertImporter(String src) {
-		Check.requireNonNullStringArgument(src, "src is null");
-		this.src=src;
+	public  AlertImporter(String sourceFile) {
+		super(sourceFile);
 	}
 	
-	public String getSource() {
-		return src;
-	}
 	
 	public Alert execute() throws IOException {
 		
 		
-		File f = new File( getSettings().getDataDir() + File.separator + getSource());
+		File f = new File( getSettings().getDataDir() + File.separator + getSourceFile());
 		
 		if (!f.exists())
 			return null;
 		
 		List<List<String>> records;
 		
-		try (Stream<String> lines = Files.lines(Paths.get(getSettings().getDataDir() + File.separator + getSource()))) {
+		try (Stream<String> lines = Files.lines(Paths.get(getSettings().getDataDir() + File.separator + getSourceFile()))) {
 			records = lines.filter(line -> (!line.startsWith("#")) && (!line.isBlank()))
 						   .map(line -> Arrays.asList(line.split("=")))
 					       .collect(Collectors.toList());
