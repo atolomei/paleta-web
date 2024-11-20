@@ -226,11 +226,11 @@
 	
 			<!-- Wicket is a Java server-side web component-oriented framework that aims at simplifying building web interfaces by introducing patterns known from desktop UI development. -->
 
-			<!-- dependency>
-			  <groupId>org.hibernate</groupId>
+			<dependency>
+			  <groupId>org.hibernate.validator</groupId>
 			  <artifactId>hibernate-validator</artifactId>
-			  <version>6.1.2.Final</version>
-			< dependency -->
+			  <!-- version>6.1.2.Final< / version -->
+			</dependency>
 
  		<dependency>
 	        <groupId>io.dropwizard.metrics</groupId>
