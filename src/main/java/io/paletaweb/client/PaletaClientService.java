@@ -1,5 +1,6 @@
 package io.paletaweb.client;
 
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -31,9 +32,9 @@ import com.google.common.collect.Multimap;
 import io.paleta.logging.Logger;
 import io.paleta.model.SharedConstant;
 import io.paleta.util.Check;
-import io.paletaweb.PaletaWebConfigurationService;
 import io.paletaweb.PaletaWebVersion;
 import io.paletaweb.SystemService;
+import io.paletaweb.service.SettingsService;
 import jakarta.annotation.PostConstruct;
 import okhttp3.Cache;
 import okhttp3.HttpUrl;
@@ -119,7 +120,7 @@ public class PaletaClientService implements SystemService {
 	 private String charset = Charset.defaultCharset().name();
 	
 	 @Autowired
-	 private PaletaWebConfigurationService paletaWebConfigurationService;
+	 private SettingsService paletaWebConfigurationService;
 	 
 	 
 	

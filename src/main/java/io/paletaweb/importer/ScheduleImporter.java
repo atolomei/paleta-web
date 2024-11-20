@@ -26,7 +26,7 @@ import io.paleta.model.Team;
 import io.paleta.model.TournamentGroup;
 import io.paleta.model.schedule.Schedule;
 import io.paleta.util.Check;
-import io.paletaweb.torneo.TorneoCuba;
+import io.paletaweb.club.tournament.TorneoCuba;
 
 @Component
 @Scope("prototype")

@@ -23,9 +23,7 @@ public class PaletaWebInfoTorneoPage extends BasePage {
 		
 	BreadCrumb<Void> bc=new BreadCrumb<Void>();
 		
-	 
-		
-		BCElement b1 = new BCElement(new Model<String>("Portada")) {
+	 	BCElement b1 = new BCElement(new Model<String>("Portada")) {
 			private static final long serialVersionUID = 1L;
 			@Override
 			public void onClick() {

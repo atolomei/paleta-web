@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import io.paleta.logging.Logger;
-import io.paletaweb.torneo.TorneoCuba;
+import io.paletaweb.club.tournament.TorneoCuba;
 
 
 

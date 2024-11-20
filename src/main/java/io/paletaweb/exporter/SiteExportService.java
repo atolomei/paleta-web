@@ -14,9 +14,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import io.paleta.logging.Logger;
 import io.paleta.service.BaseService;
+import io.paletaweb.club.tournament.TorneoCuba;
 import io.paletaweb.service.HTMLExportService;
 import io.paletaweb.service.SettingsService;
-import io.paletaweb.torneo.TorneoCuba;
 import jakarta.annotation.PostConstruct;
 
 @Service
@@ -131,8 +131,8 @@ public class SiteExportService extends BaseService {
 			}
 		}
 
-		if (list.size()!=map.size())
-			return true;
+		// if (list.size()!=map.size()) 
+		//	 return true;
 		
 		for (File file:list) {
 			if (!map.containsKey(file)) {

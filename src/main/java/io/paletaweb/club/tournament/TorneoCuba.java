@@ -1,4 +1,4 @@
-package io.paletaweb.torneo;
+package io.paletaweb.club.tournament;
 
 import java.io.File;
 import java.io.IOException;
@@ -109,7 +109,6 @@ public class TorneoCuba implements ApplicationContextAware {
 	
 	@JsonIgnore
 	private String banner="Torneo de Paleta CUBA Viamonte";
-	
 	
 	@JsonIgnore
 	private Meta meta;
@@ -262,7 +261,6 @@ public class TorneoCuba implements ApplicationContextAware {
 			List<ScheduleMatchDate> list = planner.execute();
 			exportScheduleResults(scheduleINFO, list);
 		}
-		
 		
 		if (!isScheduleResults()) {
 			if (isScheduleCSV()) {

@@ -8,8 +8,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import io.paleta.logging.Logger;
 import io.paleta.util.Check;
+import io.paletaweb.club.tournament.TorneoCuba;
 import io.paletaweb.service.SettingsService;
-import io.paletaweb.torneo.TorneoCuba;
 
 
 @Component

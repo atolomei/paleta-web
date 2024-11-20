@@ -9,9 +9,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import io.paleta.logging.Logger;
 import io.paleta.model.JsonObject;
+import io.paletaweb.club.tournament.TorneoCuba;
 import io.paletaweb.service.HTMLExportService;
 import io.paletaweb.service.SettingsService;
-import io.paletaweb.torneo.TorneoCuba;
 
 public class BaseExporter extends JsonObject {
 

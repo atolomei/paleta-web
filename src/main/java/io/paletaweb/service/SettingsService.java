@@ -7,23 +7,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.lang.NonNull;
 
 import io.paleta.logging.Logger;
 import io.paleta.service.BaseService;
+import io.paletaweb.SystemService;
 import jakarta.annotation.PostConstruct;
 
 
 @Configuration
-@PropertySource("classpath:application.properties")
-public class SettingsService extends BaseService {
+//@PropertySource("classpath:application.properties")
+public class SettingsService extends BaseService implements SystemService {
 
-	private static final OffsetDateTime systemStarted = OffsetDateTime.now();
 	
 	static private Logger logger = Logger.getLogger(SettingsService.class.getName());
 	static private Logger startuplogger = Logger.getLogger("StartupLogger");
 	
-
-	@Value("${scanFreqmillisecs:5000}")
+	private static final OffsetDateTime systemStarted = OffsetDateTime.now();
+	
+	
+	@Value("${scanFreqmillisecs:15000}")
 	private int scanFreqMillisecs;
 
 	public int getScanFreqMillisecs() {return this.scanFreqMillisecs;}
@@ -39,8 +42,27 @@ public class SettingsService extends BaseService {
 
 	@Value("${indexexport:null}")
 	private String indexExportDir;
-
 	
+	
+	// SERVER ------------------------
+	
+		/* default -> paleta */
+		@Value("${accessKey:paleta}")
+		@NonNull
+		protected String accessKey;
+		
+		/* default -> paleta */
+		@Value("${secretKey:paleta}")
+		@NonNull
+		protected String secretKey;
+
+		/* default port -> 8080 */
+		@Value("${server.port:8092}")
+		protected int port;
+		
+		@Value("${server.url:http://localhost}")
+		@NonNull
+		protected String url;
 	
 	@Autowired
 	public SettingsService() {
@@ -62,12 +84,25 @@ public class SettingsService extends BaseService {
 		return this.exportDir;
 	}
 	
-
-	
 	public String getIndexExportDir() {
 		return this.indexExportDir;
 	}
 
+	public String getAccessKey() {
+		return accessKey;
+	}
+
+	public String getSecretKey() {
+		return secretKey;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+	
+	public int getPort() {
+		return port;
+	}
 	
 	@PostConstruct
 	protected void init() {

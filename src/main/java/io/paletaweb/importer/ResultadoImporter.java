@@ -24,8 +24,8 @@ import io.paleta.model.PaletaSet;
 import io.paleta.model.Team;
 import io.paleta.model.TournamentGroup;
 import io.paleta.util.Check;
+import io.paletaweb.club.tournament.TorneoCuba;
 import io.paletaweb.service.SettingsService;
-import io.paletaweb.torneo.TorneoCuba;
 
 @Component
 @Scope("prototype")
