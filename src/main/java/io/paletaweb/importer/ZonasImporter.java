@@ -42,16 +42,20 @@ public class ZonasImporter extends BaseImporter {
 	private Map<String, TournamentGroup> mg;
 	
 	
-	public  ZonasImporter(String sourceFile) {
-		super(sourceFile);
+	public  ZonasImporter(String dir, String sourceFile) {
+		super(dir, sourceFile);
 		
 	}
 
 	public List<TournamentGroup> execute() throws IOException {
 		
+		
 		List<List<String>> records = null;
 		
-		try (Stream<String> lines = Files.lines(Paths.get(getSettings().getDataDir() + File.separator + getSourceFile()))) {
+		String path = getSettings().getTournamentDataDir( getTournamentDirectory() ) + File.separator + getSourceFile();
+		
+		
+		try (Stream<String> lines = Files.lines(Paths.get(  path ))) {
 			records = lines.filter(line -> (!line.startsWith("#")) && (!line.isBlank()))
 						   .map(line -> Arrays.asList(line.split(",")))
 					       .collect(Collectors.toList());

@@ -18,6 +18,8 @@ import java.util.stream.Stream;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import io.paleta.logging.Logger;
 import io.paleta.model.Match;
 import io.paleta.model.MatchResult;
@@ -53,43 +55,28 @@ public class ScheduleImporter extends BaseImporter {
 	static  final int SEMI = 1;
 	static  final int FINAL = 2;
 	
-
-	
 	private int state = CLASI;
 
+	@JsonIgnore
 	private long matchId = 0;
 	
+	@JsonIgnore
 	private Schedule schedule;
 	
-	public ScheduleImporter(String src) {
-		super(src);
+	
+	public ScheduleImporter(String dir, String sourceFile) {
+		super(dir, sourceFile);
 	}
 	
 	
-	
-	 
-
-	
-	private Schedule getSchedule() {
-		return this.schedule;
-	}
-
-	
-	private void setState( int state) {
-		this.state=state;
-	}
-	
-	private int getState() {
-		return state;
-	}
-	
-	
-
 	
 	public Schedule execute() throws IOException {
 		
 		
-		File f = new File(getSettings().getDataDir() + File.separator + getSourceFile());
+		String path = getSettings().getTournamentDataDir( getTournamentDirectory() ) + File.separator + getSourceFile();
+		
+
+		File f = new File( path );
 		
 		if (!f.exists())
 			return null;
@@ -102,7 +89,7 @@ public class ScheduleImporter extends BaseImporter {
 		this.schedule.setFileName(getSourceFile());
 
 		
-		try (Stream<String> lines = Files.lines(Paths.get(getSettings().getDataDir() + File.separator + getSourceFile()))) {
+		try (Stream<String> lines = Files.lines(Paths.get( path ))) {
 			records = lines.filter(line -> (!line.startsWith("#")) && (!line.isBlank()))
 						   .map(line -> Arrays.asList(line.split(",")))
 					       .collect(Collectors.toList());
@@ -186,7 +173,7 @@ public class ScheduleImporter extends BaseImporter {
 								else if (setLocal<setVisitor)
 									match.setMatchResult(MatchResult.VISITOR);
 								else
-									match.setMatchResult(MatchResult.TIE);
+									match.setMatchResult(MatchResult.DRAW);
 							}
 					}
 					else {
@@ -421,7 +408,7 @@ public class ScheduleImporter extends BaseImporter {
 	private Team parseTeam(String str) {
 		
 		String s = str.toLowerCase().trim();
-		for (TournamentGroup zone: getTorneo().getTournamentGroups()) {
+		for (TournamentGroup zone: getTournament().getTournamentGroups()) {
 			for (Team te:zone.getTeams()) {
 				if (te.getName().toLowerCase().trim().equals(s)) 
 					return te;
@@ -449,7 +436,7 @@ public class ScheduleImporter extends BaseImporter {
 		Check.requireNonNullStringArgument(str, "str is null");
 		
 		String s = str.toLowerCase().trim();
-		for (TournamentGroup z: getTorneo().getTournamentGroups()) {
+		for (TournamentGroup z: getTournament().getTournamentGroups()) {
 			if (z.getName().toLowerCase().trim().equals(s))
 				return z;
 		}
@@ -500,11 +487,21 @@ public class ScheduleImporter extends BaseImporter {
 
 		}
 		
-		Integer total = null;
+		
 		
 		for (Team t: teams.keySet()) {
+			
+			Integer total  = null;
+			for (TournamentGroup group: getTournament().getTournamentGroups()) {
+				if (group.getTeams().contains(t)) {
+					total = Integer.valueOf(group.getTeams().size()-1);
+					break;
+				}
+			}
+				
 			if (total==null)
-				total=Integer.valueOf(teams.get(t));
+				return "Error | team with no group -> " + t.getName();
+			
 			
 			//logger.debug(t.getName() + " -> " + String.valueOf( teams.get(t)));
 			
@@ -517,6 +514,18 @@ public class ScheduleImporter extends BaseImporter {
 	}
 
 
+	private Schedule getSchedule() {
+		return this.schedule;
+	}
+
+	
+	private void setState( int state) {
+		this.state=state;
+	}
+	
+	private int getState() {
+		return state;
+	}
 
 
 }

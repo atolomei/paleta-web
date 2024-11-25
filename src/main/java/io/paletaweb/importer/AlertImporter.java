@@ -22,22 +22,24 @@ public class AlertImporter extends BaseImporter {
 		
 	private Alert alert = null;
 	
-	public  AlertImporter(String sourceFile) {
-		super(sourceFile);
+	public  AlertImporter(String dir, String sourceFile) {
+		super(dir, sourceFile);
 	}
+	
 	
 	
 	public Alert execute() throws IOException {
 		
+		String path = getSettings().getTournamentDataDir( getTournamentDirectory() ) + File.separator + getSourceFile();
 		
-		File f = new File( getSettings().getDataDir() + File.separator + getSourceFile());
+		File f = new File(path);
 		
 		if (!f.exists())
 			return null;
 		
 		List<List<String>> records;
 		
-		try (Stream<String> lines = Files.lines(Paths.get(getSettings().getDataDir() + File.separator + getSourceFile()))) {
+		try (Stream<String> lines = Files.lines(Paths.get(path))) {
 			records = lines.filter(line -> (!line.startsWith("#")) && (!line.isBlank()))
 						   .map(line -> Arrays.asList(line.split("=")))
 					       .collect(Collectors.toList());

@@ -1,12 +1,12 @@
 package io.paletaweb.service;
 
+
 import java.io.File;
 import java.time.OffsetDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.lang.NonNull;
 
 import io.paleta.logging.Logger;
@@ -18,7 +18,6 @@ import jakarta.annotation.PostConstruct;
 @Configuration
 //@PropertySource("classpath:application.properties")
 public class SettingsService extends BaseService implements SystemService {
-
 	
 	static private Logger logger = Logger.getLogger(SettingsService.class.getName());
 	static private Logger startuplogger = Logger.getLogger("StartupLogger");
@@ -26,7 +25,7 @@ public class SettingsService extends BaseService implements SystemService {
 	private static final OffsetDateTime systemStarted = OffsetDateTime.now();
 	
 	
-	@Value("${scanFreqmillisecs:15000}")
+	@Value("${scanFreqmillisecs:10000}")
 	private int scanFreqMillisecs;
 
 	public int getScanFreqMillisecs() {return this.scanFreqMillisecs;}
@@ -72,21 +71,18 @@ public class SettingsService extends BaseService implements SystemService {
 		return systemStarted;
 	}
 	
-	public String getTemplatesDir() {
-		return this.templatesDir;
-	}
+	//public String getTournamentTemplatesDir(String tournament) {return "."+ File.separator + getTemplatesDir() + File.separator + tournament;}
+	public String getTemplatesDir() {return this.templatesDir;}
 	
-	public String getDataDir() {
-		return this.dataDir;
-	}
+	//public String getTournamentExportDir(String tournament) {return "."+ File.separator + "torneos" + File.separator + tournament + File.separator + getExportDir();}
+	//public String getExportDir() {return this.exportDir;}
 	
-	public String getExportDir() {
-		return this.exportDir;
-	}
+	public String getTournamentDataDir(String tournament) {return "." + File.separator + "torneos" + File.separator + tournament + File.separator + getDataDir();}
+	public String getDataDir() {return this.dataDir;}
 	
-	public String getIndexExportDir() {
-		return this.indexExportDir;
-	}
+	public String getTournamentIndexExportDir(String tournament) {return "."+ File.separator + getIndexExportDir() + File.separator + "torneos" + File.separator + tournament;}
+	public String getIndexExportDir() {    return this.indexExportDir;}
+
 
 	public String getAccessKey() {
 		return accessKey;
@@ -108,29 +104,22 @@ public class SettingsService extends BaseService implements SystemService {
 	protected void init() {
 
 		if (templatesDir==null || (templatesDir.trim().length()==0) || templatesDir.trim().equals("null"))
-			templatesDir="."+File.separator+"templates";
+			templatesDir="templates";
 		templatesDir=templatesDir.trim();
 		
 		if (exportDir==null || exportDir.trim().length()==0 || exportDir.trim().equals("null"))
-			exportDir="."+File.separator+"export";
+			exportDir="export";
 		exportDir=exportDir.trim();
 		
 		if (dataDir==null || dataDir.trim().length()==0  || dataDir.trim().equals("null"))
-			dataDir="."+File.separator+"data";
+			dataDir="data";
 		dataDir=dataDir.trim();
 		
-		if (indexExportDir==null || indexExportDir.trim().length()==0  || indexExportDir.trim().equals("null"))
-			indexExportDir="."+File.separator+"torneo-cuba";
+		if (indexExportDir==null || indexExportDir.trim().length()==0 || indexExportDir.trim().equals("null"))
+			indexExportDir="torneos-web";
 		indexExportDir=indexExportDir.trim();
 		
-		
 	}
-
-	
-
-	
-	
-	
 	
 	
 }

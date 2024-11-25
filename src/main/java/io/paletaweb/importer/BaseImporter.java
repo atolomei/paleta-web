@@ -9,6 +9,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.paleta.logging.Logger;
 import io.paleta.util.Check;
 import io.paletaweb.club.tournament.TorneoCuba;
+import io.paletaweb.club.tournament.TournamentManager;
+import io.paletaweb.club.tournament.Tournament;
 import io.paletaweb.service.SettingsService;
 
 
@@ -25,16 +27,34 @@ public class BaseImporter {
 	
 	@Autowired
 	@JsonIgnore
-	protected TorneoCuba torneo;
+	protected TournamentManager tm;
 	
+	private final  String tournamentDir;
 	
 	private final String sourceFile;
 	
+	private final String key;
 	
 
-	public  BaseImporter(String sourceFile) {
+	
+
+	public  BaseImporter(String tournamentDir, String sourceFile) {
 		Check.requireNonNullStringArgument(sourceFile, "sourceFile is null");
 		this.sourceFile=sourceFile;
+		this.tournamentDir=tournamentDir;
+		this.key=tournamentDir;
+	}
+	
+	public Tournament getTournament() {
+		return tm.getTourmanent(key);
+	}
+	
+	public String getTournamentDirectory() {
+		return this.tournamentDir;
+	}
+	
+	public String getKey() {
+		return key;
 	}
 	
 	
@@ -51,15 +71,7 @@ public class BaseImporter {
 		this.settings = settings;
 	}
 
-	
-	public TorneoCuba getTorneo() {
-		return torneo;
-	}
-
-
-	public void setTorneo(TorneoCuba torneo) {
-		this.torneo = torneo;
-	}
+	 
 
 
 	

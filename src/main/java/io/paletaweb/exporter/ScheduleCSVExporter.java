@@ -3,7 +3,6 @@ package io.paletaweb.exporter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -20,17 +19,18 @@ import io.paleta.model.schedule.Schedule;
 
 @Component
 @Scope("prototype")
-public class ScheduleResultsExporter extends BaseExporter {
-			
-	static private Logger logger = Logger.getLogger(ScheduleResultsExporter.class.getName());
+public class ScheduleCSVExporter extends BaseExporter {
+				
+static private Logger logger = Logger.getLogger(ScheduleCSVExporter.class.getName());
 	
-	
-	public ScheduleResultsExporter(String tournamentDir, String dest_file, String html_template_file) {
-		super(tournamentDir, dest_file, html_template_file);
+										
+	public ScheduleCSVExporter(String key, String dest_file, String html_template_file) {
+		super(key, dest_file, html_template_file);
 	}
 	
 	
 	public void export() throws IOException, TemplateException {
+		
 		
 		Schedule schedule=getTournament().getSchedule();
 		
@@ -72,14 +72,7 @@ public class ScheduleResultsExporter extends BaseExporter {
 
 		html.flush();
         html.close();
-
-	    //Writer out = new OutputStreamWriter(System.out);
-    	//template.process(root, out);
-    	//out.flush();
-    	//out.close();
+		
 	}
-		
-	
-		
 	
 }

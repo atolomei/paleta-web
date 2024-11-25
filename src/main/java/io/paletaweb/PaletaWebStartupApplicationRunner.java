@@ -65,8 +65,6 @@ public class PaletaWebStartupApplicationRunner implements ApplicationRunner {
 		startupLogger.info	("done");
 		
 		
-		//TorneoCuba torneo = new TorneoCuba("Torneo fin de año CUBA"); 
-		//torneo.execute();
 		
 		
 	}

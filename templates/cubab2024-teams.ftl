@@ -9,10 +9,10 @@
     <link rel="icon" href="./images/favicon.gif" type="image/x-icon" />
     <link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon" />
 
-    <meta name="title" content="Torneo Paleta CUBA Viamonte" />
-    <meta name="description" content="Torneo de Paleta CUBA Viamonte" />
-    <meta name="Keywords" content="paleta pelota, pelotari, torneo" />
-	<meta name="language" content="Spanish" />
+    <meta name="title" content="${meta.title!"Torneo"}" />
+    <meta name="description" content="${meta.description!"Torneo de Paleta"}" />
+    <meta name="Keywords" content="${meta.keywords!"paleta"}" />
+	<meta name="language" content="${meta.language!"Spanish"}" />
 
     <meta
       name="viewport"
@@ -20,11 +20,11 @@
     />
     <meta name="robots" content="all" />
 
-    <link rel="stylesheet" type="text/css" href="./css/kbee.css" />
-    <link rel="stylesheet" type="text/css" href="./css/kbee-1000-1600.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/kbee.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/kbee-1000-1600.css" />
 
 
-    <link rel="stylesheet" type="text/css" href="./css/bootstrap-5.3.3-dist/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/bootstrap-5.3.3-dist/css/bootstrap.css" />
     
     <script src="./js/csi.min.js"></script>
 
@@ -50,7 +50,7 @@
   
     <!-- TOP TOOLBAR -------------------------------------------------------- -->
 
-    <section class="image-banner-container">
+    <section class="image-banner-container bkflor">
       <nav id="toolbar" class="toolbar">
         <div class="odilon-logo">
           <div class="toolbar-item">
@@ -86,7 +86,7 @@
         <div class="canvas-container" style="background: transparent">
           <div class="text-container" style="float: right">
             <div class="text centered">
-              <h2 class="main-banner">Torneo de Paleta CUBA Viamonte</h2>
+              <h2 class="main-banner">Torneo Clausura Categoría B CUBA</h2>
             </div>
           </div>
         </div>
@@ -113,20 +113,27 @@
 
 	<!-- ALERTAS -------------------------------------------------- -->
 	
+	<#if alert?has_content>
 	<section id="alert" class="section light">
 			<div class="section-internal-container">
 				<div class="section-content alert-container">
 					<div class="row">
 						  	<div class="col-lg-12 col-md-12 col-xs-12">
 							  		
-							  		<div class="alert alert-warning" role="alert">
-								 			<h6>Fecha del 27/11</h6><p>La fecha del Miércoles <b>27 de Noviembre</b> se adelantará 30 minutos, comenzando a las <b>18.30</b> hs debido a que se jugará en CUBA el partido <b>Ferro</b> vs <b>Deprop</b> del torneo de 1era.</p><p>ver <a class=link" title="fixture" href="index.html#fixture">Fixture</a>.</p>
+							  		<div class="alert ${alert.alertClass}" role="alert">
+								 		<#if alert.title?has_content>
+								 		<h5>${alert.title}</h5>
+								 		</#if>	
+								 		<#if alert.text?has_content>
+								 			${alert.text}
+								 		</#if>
 								 	</div>
 						 	</div>
 					</div>
 				</div>
 			</div>
 	</section>
+	</#if>		
 	
 <!-- EQUIPOS -------------------------------------------------- -->
 															
@@ -139,88 +146,22 @@
 			  </div>
 		  </div>
 		  <div class="row">
+			  	<#list teams>
 					 	<ul class="group-list col-lg-12 col-md-12 col-xs-12" style="text-align:center;">
+								<#items as team>
 								<li class="list-item">  
-									<h5>Centro Navarro</h5>
+									<h5>${team.name}</h5>
+									<#if team.players?has_content>
 										<div class="row">		
 											<div class="col-lg-12 col-md-12 col-xs-12">
-											Federico Domine, Juan Martín Fernández, Joaquín Salvador		
+											${team.playersStr}		
 											</div>
 										</div>
+									</#if>
 								</li>
-								<li class="list-item">  
-									<h5>Cuba A</h5>
-										<div class="row">		
-											<div class="col-lg-12 col-md-12 col-xs-12">
-											Patricio Diaz, Enrique Figini, Alejandro Tolomei, Pedro Trapaglia		
-											</div>
-										</div>
-								</li>
-								<li class="list-item">  
-									<h5>Cuba B</h5>
-										<div class="row">		
-											<div class="col-lg-12 col-md-12 col-xs-12">
-											Carlos Cheret, Juan Ortiz de Zárate, Facundo Rocha		
-											</div>
-										</div>
-								</li>
-								<li class="list-item">  
-									<h5>Ferro A</h5>
-										<div class="row">		
-											<div class="col-lg-12 col-md-12 col-xs-12">
-											Sebastián Gómez, Cristian Sidero, Maximiliano Stefani		
-											</div>
-										</div>
-								</li>
-								<li class="list-item">  
-									<h5>Ferro B</h5>
-										<div class="row">		
-											<div class="col-lg-12 col-md-12 col-xs-12">
-											Walter Lupis, Omar Segovia		
-											</div>
-										</div>
-								</li>
-								<li class="list-item">  
-									<h5>GEBA</h5>
-										<div class="row">		
-											<div class="col-lg-12 col-md-12 col-xs-12">
-											Alejandro Gassmann, Mariano Gómez		
-											</div>
-										</div>
-								</li>
-								<li class="list-item">  
-									<h5>Gure Echea</h5>
-										<div class="row">		
-											<div class="col-lg-12 col-md-12 col-xs-12">
-											Javier Candi, Fernando Fontaine, Marcos Martinez		
-											</div>
-										</div>
-								</li>
-								<li class="list-item">  
-									<h5>Pilar</h5>
-										<div class="row">		
-											<div class="col-lg-12 col-md-12 col-xs-12">
-											Victor Stortini, Facundo Hernán Álvarez		
-											</div>
-										</div>
-								</li>
-								<li class="list-item">  
-									<h5>Urquiza</h5>
-										<div class="row">		
-											<div class="col-lg-12 col-md-12 col-xs-12">
-											Gastón D'onofrio, Martin Curioni, Martín Sánchez, Lucas Orsi		
-											</div>
-										</div>
-								</li>
-								<li class="list-item">  
-									<h5>Vasco Francés</h5>
-										<div class="row">		
-											<div class="col-lg-12 col-md-12 col-xs-12">
-											Pablo Facundo Rousseaux, Francisco Sosa, José Sosa		
-											</div>
-										</div>
-								</li>
+								</#items>
 							</ul>
+					</#list>
 		  </div>
          </div>
       </div>
@@ -230,47 +171,33 @@
 
  	<!-- CONTACTS ---------------------------------- -->
 
+	<#if contacts?has_content>
 	<section id="contacto" class="section dark">
       <div class="section-internal-container">
         <div class="section-content">
           <h2>Contacto</h2>
+	         	 <#list contacts>
 	          	  <div class="row">
 					<ul class="list-group col-lg-12 col-md-12 col-xs-12" style="margin-top:2em;">	
+			          <#items as contact>
 			          <li class="list-item">
 				          <div class="row">	
 					          <div class="col-lg-12 col-md-12 col-xs-12">
 					          <p>
-					            Alejandro Tolomei<br>
-					            +54 911 6119.4075<br>
+					            ${contact.name!""}<br>
+					            ${contact.contactMethod!""}<br>
 					          </p>
 					          </div>
 				          </div>
 			          </li>
-			          <li class="list-item">
-				          <div class="row">	
-					          <div class="col-lg-12 col-md-12 col-xs-12">
-					          <p>
-					            Luis Font<br>
-					            +54 9 11 5804.0446<br>
-					          </p>
-					          </div>
-				          </div>
-			          </li>
-			          <li class="list-item">
-				          <div class="row">	
-					          <div class="col-lg-12 col-md-12 col-xs-12">
-					          <p>
-					            Facundo Rocha<br>
-					            +54 911 4948.9094<br>
-					          </p>
-					          </div>
-				          </div>
-			          </li>
+		          	</#items>
 		          </ul>
 		          </div>
+	          </#list>
         </div>
       </div>
     </section>
+    </#if>
   
     
     <!-- ------------------- footer ---------------------------- -->
@@ -327,7 +254,7 @@
 	        </div>
       
   		     <div style="display: block; float: right; font-size:0.7em;">
-		      		<span style="color:#cccccc;"> 20 nov 2024 09:08</span>
+		      		<span style="color:#cccccc;"> ${dateexported}</span>
 		      		<a href="#top" class="link" style="margin-left:2.5em; color: #cccccc;"><span> subir </span> <span>^</span></a>
 		     </div>
 

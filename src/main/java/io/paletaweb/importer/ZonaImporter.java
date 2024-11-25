@@ -38,8 +38,8 @@ public class ZonaImporter extends BaseImporter {
 	@JsonIgnore
 	private TournamentGroup zona;
 
-	public ZonaImporter(String sourceFile, String name) {
-		super(sourceFile);
+	public ZonaImporter(String dir, String sourceFile, String name) {
+		super(dir, sourceFile);
 		this.name=name;
 	}
 	
@@ -48,8 +48,10 @@ public class ZonaImporter extends BaseImporter {
 		this.teams = new ArrayList<Team>();
 		
 		List<List<String>> records;
-																	
-		try (Stream<String> lines = Files.lines(Paths.get(getSettings().getDataDir() + File.separator + getSourceFile()))) {
+														
+		String path = getSettings().getTournamentDataDir( getTournamentDirectory() ) + File.separator + getSourceFile();
+		
+		try (Stream<String> lines = Files.lines(Paths.get(path))) {
 			records = lines.filter(line -> (!line.startsWith("#")) && (!line.isBlank()))
 						   .map(line -> Arrays.asList(line.split(",")))
 					       .collect(Collectors.toList());

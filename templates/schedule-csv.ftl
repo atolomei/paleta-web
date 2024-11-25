@@ -4,16 +4,10 @@
 # ----------------------------------------------------------------------------------------------
 #
 #
-
 $clasi
-
-
 <#list schedule.matchesClasificacion>
 <#items as match>
-<#if match.daybreak==1>
-				  		
-</#if>
-${match?index+1}, ${match.matchDateStr!"error"}, ${match.matchHourStr!"error"}:${match.matchMinStr!"error"}, <#if match.tournamentGroup?has_content>${match.tournamentGroup.name!"error"}<#else>group missing</#if>, ${match.local.name!"error"}, ${match.visitor.name!"error"}<#if match.result?has_content>, ${match.ResultCode}, ${match.setStr}</#if>
+${match.id!"error"}, ${match.matchDateStr!"error"}, ${match.matchHourStr!"error"}:${match.matchMinStr!"error"}, <#if match.tournamentGroup?has_content>${match.tournamentGroup.name!"error"}<#else>NA</#if>, ${match.local.name!"error"}, ${match.visitor.name!"error"}<#if match.result?has_content>, ${match.ResultCode}, ${match.setStr}</#if>
 </#items>
 </#list>
 

@@ -1,5 +1,6 @@
 package io.paletaweb.exporter;
 
+import java.io.File;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
@@ -9,7 +10,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import io.paleta.logging.Logger;
 import io.paleta.model.JsonObject;
+import io.paleta.util.Check;
 import io.paletaweb.club.tournament.TorneoCuba;
+import io.paletaweb.club.tournament.TournamentManager;
+import io.paletaweb.club.tournament.Tournament;
 import io.paletaweb.service.HTMLExportService;
 import io.paletaweb.service.SettingsService;
 
@@ -25,19 +29,45 @@ public class BaseExporter extends JsonObject {
 	
 	@Autowired
 	@JsonIgnore
-	protected TorneoCuba torneo;
+	protected TournamentManager tourmanentManager;
 	
 
 	@Autowired
 	@JsonIgnore
 	HTMLExportService htmlExportService;
 
+	private final  String tournamentDir;
 	
 	
-	public  BaseExporter() {
+	private final String key;
 	
+	private final String destFile;
+	private final String templateFile;
+	
+	public  BaseExporter(String tournamentDir, String destFile, String templateFile) {
+		
+		Check.requireNonNullStringArgument(destFile, "destFile is null");
+		Check.requireNonNullStringArgument(tournamentDir, "tournamentDir is null");
+		
+		this.templateFile=templateFile;
+		this.destFile=destFile;
+		this.tournamentDir=tournamentDir;
+		this.key=tournamentDir;
 	}
 	
+	
+	public String getTemplateFile() {
+		return this.templateFile;
+	}
+	
+	public Tournament getTournament() {
+		return getTourmanentManager().getTourmanent(getKey());
+	}
+	
+	
+	public String getTournamentDirectory() {
+		return this.tournamentDir;
+	}
 	
 	public SettingsService getSettings() {
 		return settings;
@@ -47,16 +77,22 @@ public class BaseExporter extends JsonObject {
 		this.settings = settings;
 	}
 
+	public String getDestFile() {
+		return destFile;
+	}
 	
-	
-	
-	public TorneoCuba getTorneo() {
-		return torneo;
+	//public Tournament getTournament() {
+	//	return tourmanentManager.getTourmanent("torneos"+ File.separator + "viamonte2024");
+	//}
+
+
+	public TournamentManager getTourmanentManager() {
+		return tourmanentManager;
 	}
 
 
-	public void setTorneo(TorneoCuba torneo) {
-		this.torneo = torneo;
+	public void setTourmanentManager(TournamentManager tourmanentManager) {
+		this.tourmanentManager = tourmanentManager;
 	}
 
 
@@ -68,5 +104,9 @@ public class BaseExporter extends JsonObject {
 		this.htmlExportService = htmlExportService;
 	}
 	
+	public String getKey() {
+		return key;
+	}
+
 
 }

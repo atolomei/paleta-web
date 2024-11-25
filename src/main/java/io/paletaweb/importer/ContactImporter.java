@@ -20,27 +20,26 @@ import io.paleta.model.Contact;
 @Scope("prototype")
 public class ContactImporter extends BaseImporter {
 	
-	String src;
-	List<Contact> list;
+	private List<Contact> list;
 	
 	
 	
-	public ContactImporter(String sourceFile) {
-		super(sourceFile);
+	public ContactImporter(String dir, String sourceFile) {
+		super(dir, sourceFile);
 	}
 	
 	
 	public List<Contact> execute() throws IOException {
 		
-		
-		File f = new File( getSettings().getDataDir() + File.separator + getSourceFile());
+		String path = getSettings().getTournamentDataDir( getTournamentDirectory() ) + File.separator + getSourceFile();
+		File f = new File(path);
 		
 		if (!f.exists())
 			return null;
 		
 		List<List<String>> records;
 		 
-		try (Stream<String> lines = Files.lines(Paths.get(getSettings().getDataDir() + File.separator + getSourceFile()))) {
+		try (Stream<String> lines = Files.lines(Paths.get( path ))) {
 			records = lines.filter(line -> (!line.startsWith("#")) && (!line.isBlank()))
 						   .map(line -> Arrays.asList(line.split(",")))
 					       .collect(Collectors.toList());
@@ -53,8 +52,9 @@ public class ContactImporter extends BaseImporter {
 		list = new ArrayList<Contact>();
 		
 		records.forEach( li -> {
-			if (li.size()>1) {
-				list.add( new Contact(li.get(0).trim(), li.get(1).trim()));
+			if (li.size()>0) {
+				list.add( new Contact(li.get(0).trim(), 
+						(li.size()>1?li.get(1).trim(): "")));
 			}
 		});
 		

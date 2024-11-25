@@ -13,19 +13,24 @@ import java.util.stream.Stream;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import io.paleta.logging.Logger;
 import io.paleta.model.Alert;
 import io.paleta.model.Meta;
 import io.paleta.util.Check;
+import io.paletaweb.service.HTMLExportService;
 
 @Component
 @Scope("prototype")
 public class MetaImporter extends BaseImporter {
+			
+	static private Logger logger = Logger.getLogger(MetaImporter.class.getName());
 
 	
 	private Meta meta = null;
 	
-	public  MetaImporter(String src) {
-		super(src);
+	
+	public  MetaImporter(String directory, String src) {
+		super(directory, src);
 		
 	}
 	
@@ -33,16 +38,27 @@ public class MetaImporter extends BaseImporter {
 	
 	public Meta execute() throws IOException {
 		
+		String path = getSettings().getTournamentDataDir( getTournamentDirectory() ) + File.separator + getSourceFile();
 		
-		File f = new File( getSettings().getDataDir() + File.separator + getSourceFile());
+		File f = new File(path);
 		
 		if (!f.exists())
 			return null;
 		
 		List<List<String>> records;
 		
-		try (Stream<String> lines = Files.lines(Paths.get(getSettings().getDataDir() + File.separator + getSourceFile()))) {
-			records = lines.filter(line -> (!line.startsWith("#")) && (!line.isBlank()))
+		
+		{
+			try (Stream<String> lines = Files.lines(Paths.get( path ))) {
+				lines.filter(line ->  ((!line.startsWith("#")) && (!line.isBlank())  && (line.contains("=")) )).forEach( i -> logger.debug(i.toString()));
+				
+			}
+		}
+
+		
+		
+		try (Stream<String> lines = Files.lines(Paths.get( path ))) {
+			records = lines.filter(line ->  ((!line.startsWith("#")) && (!line.isBlank())  && (line.contains("=")) ))
 						   .map(line -> Arrays.asList(line.split("=")))
 					       .collect(Collectors.toList());
 		}

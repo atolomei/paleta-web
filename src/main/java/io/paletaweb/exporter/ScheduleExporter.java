@@ -26,19 +26,18 @@ public class ScheduleExporter extends BaseExporter {
 				
 	static private Logger logger = Logger.getLogger(ScheduleExporter.class.getName());
 	
-	private String html_dest_file;
-	private String html_template_file;
+	//private String html_dest_file;
+	//private String html_template_file;
 
 	
-	public ScheduleExporter(String html_dest_file, String html_template_file) {
-		this.html_dest_file=html_dest_file;
-		this.html_template_file=html_template_file;
+	public ScheduleExporter (String tournamentDir, String dest_file, String html_template_file) {
+		super(tournamentDir, dest_file, html_template_file);
 	}
 	
 	
 	public void export() throws IOException, TemplateException {
 		
-		Schedule schedule=getTorneo().getSchedule();
+		Schedule schedule=getTournament().getSchedule();
 		
 		Check.requireNonNull(schedule);
 		
@@ -51,10 +50,13 @@ public class ScheduleExporter extends BaseExporter {
 		root.put("matchesSemifinal", schedule.getMatchesSemifinal());
 		root.put("matchFinal", schedule.getMatchFinal());		
 		
-		Template template = cfg.getTemplate( getTemplateFile());
-	     
-		Writer html = new FileWriter(new File(getSettings().getExportDir(), getDestFile()));
+
+		String templateExportFile =getSettings().getTemplatesDir() + File.separator + getTournamentDirectory()+"-"+getTemplateFile();
+		Template template = cfg.getTemplate(templateExportFile);
+		
+		Writer html = new FileWriter(new File(getSettings().getTournamentDataDir( getTournamentDirectory() ), getDestFile()));
         template.process(root, html);
+
 
 		html.flush();
         html.close();
@@ -66,14 +68,6 @@ public class ScheduleExporter extends BaseExporter {
 	}
 
 
-	private String getTemplateFile() {
-		return this.html_template_file;
-	}
-
-
-	private String getDestFile() {
-		return this.html_dest_file;
-	}
 		
 	
 }

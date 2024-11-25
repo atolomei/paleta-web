@@ -25,6 +25,12 @@ import io.paletaweb.service.SettingsService;
 @Scope("prototype")
 public class TableExporter extends BaseExporter {
 
+	public TableExporter(String tournamentDir, String destFile, String templateFile) {
+		super(tournamentDir, destFile, templateFile);
+		// TODO Auto-generated constructor stub
+	}
+
+
 	@SuppressWarnings("unused")
 	static private Logger logger = Logger.getLogger(TableExporter.class.getName());
 	
@@ -37,12 +43,14 @@ public class TableExporter extends BaseExporter {
 	@JsonIgnore
 	private TournamentGroupTable groupTable;
 
-	
+
+	/**
 	public TableExporter(TournamentGroupTable groupTable, String html_dest_file, String html_template_file) {
 		this.groupTable=groupTable;
 		this.dest_file=html_dest_file;
 		this.html_template_file=html_template_file;
 	}
+	**/
 	
 	
 	public TournamentGroupTable getGroupTable() {
@@ -55,10 +63,10 @@ public class TableExporter extends BaseExporter {
 	}
 
 
-	public TableExporter (TournamentGroupTable gt) {
-		this.groupTable=gt;
-		
-	}
+	//public TableExporter (TournamentGroupTable gt) {
+	//	this.groupTable=gt;
+	//	
+	//}
 	
 	
 	 
@@ -75,19 +83,23 @@ public class TableExporter extends BaseExporter {
 		root.put("group", getGroupTable().getTournamentGroup().getName());
 		root.put("tablepositions", getGroupTable().getTable());
 		
-
-		Template template = cfg.getTemplate(getTemplateFile());
+		/**
+		String templateExportFile = getTournamentDirectory() + File.separator + getSettings().getTemplatesDir() + File.separator + getTemplateFile();
+		Template template = cfg.getTemplate(templateExportFile);
 	     
-		Writer html = new FileWriter(new File(getSettings().getExportDir(), getDestFile()));
+		
+		String exportDir = getTournamentDirectory() + File.separator + getSettings().getExportDir();
+		
+		Writer html = new FileWriter(new File(exportDir, getDestFile()));
         template.process(root, html);
-
 		html.flush();
         html.close();
-
-	    Writer out = new OutputStreamWriter(System.out);
-    	template.process(root, out);
-    	out.flush();
-    	out.close();
+**/
+		
+	    //Writer out = new OutputStreamWriter(System.out);
+    	//template.process(root, out);
+    	//out.flush();
+    	//out.close();
 		
 	}
 	
@@ -99,14 +111,7 @@ public class TableExporter extends BaseExporter {
 		this.settings = settings;
 	}	
 	
-	private String getTemplateFile() {
-		return this.html_template_file;
-	}
-
-
-	private String getDestFile() {
-		return this.dest_file;
-	}
+	
 			
 
 }

@@ -1,0 +1,44 @@
+#
+# *1      *2      *3     *4     *5         *6                   7          8         9        10
+# id,     dia,  hora,  Zona, Local, Visitante, resultado (L, V, E), set1 L-V, set2 L-V, set3 L-V 
+# ----------------------------------------------------------------------------------------------
+#
+#
+
+$clasi
+
+1, 25/11, 3:49, Zona A, Alberdi - Laplacette, Astesiano - Guardo
+2, 25/11, 3:49, Zona A, Alberdi - Laplacette, Elizalde - Ragghianti
+3, 25/11, 3:49, Zona A, Alberdi - Laplacette, Rodolfo - Cheret
+4, 25/11, 3:49, Zona A, Alberdi - Laplacette, Roldán - Bovio
+5, 25/11, 3:49, Zona A, Astesiano - Guardo, Elizalde - Ragghianti
+6, 25/11, 3:49, Zona A, Astesiano - Guardo, Rodolfo - Cheret
+7, 25/11, 3:49, Zona A, Astesiano - Guardo, Roldán - Bovio
+8, 25/11, 3:49, Zona B, Chiesa - Puente, Demian - Lemberg
+9, 25/11, 3:49, Zona B, Chiesa - Puente, Espinosa - Garrido
+10, 25/11, 3:49, Zona B, Chiesa - Puente, Lavalle - Grimau
+11, 25/11, 3:49, Zona B, Chiesa - Puente, Rocha - D'Elia
+12, 25/11, 3:49, Zona B, Chiesa - Puente, Victorica - Victorica
+13, 25/11, 3:49, Zona B, Demian - Lemberg, Espinosa - Garrido
+14, 25/11, 3:49, Zona B, Demian - Lemberg, Lavalle - Grimau
+15, 25/11, 3:49, Zona B, Demian - Lemberg, Rocha - D'Elia
+16, 25/11, 3:49, Zona B, Demian - Lemberg, Victorica - Victorica
+17, 25/11, 3:49, Zona A, Elizalde - Ragghianti, Rodolfo - Cheret
+18, 25/11, 3:49, Zona A, Elizalde - Ragghianti, Roldán - Bovio
+19, 25/11, 3:49, Zona B, Espinosa - Garrido, Lavalle - Grimau
+20, 25/11, 3:49, Zona B, Espinosa - Garrido, Rocha - D'Elia
+21, 25/11, 3:49, Zona B, Espinosa - Garrido, Victorica - Victorica
+22, 25/11, 3:49, Zona B, Lavalle - Grimau, Rocha - D'Elia
+23, 25/11, 3:49, Zona B, Lavalle - Grimau, Victorica - Victorica
+24, 25/11, 3:49, Zona B, Rocha - D'Elia, Victorica - Victorica
+25, 25/11, 3:49, Zona A, Rodolfo - Cheret, Roldán - Bovio
+
+# $semi
+# 12/12, 19:00, semi, CUBA A, Ferro B   
+# 12/12, 19:30, semi, Gure Echea, GEBA   
+
+# $final
+# 12/12, 19:00, final, CUBA A, Ferro B   
+
+# Created: 25 nov 2024 03:53
+

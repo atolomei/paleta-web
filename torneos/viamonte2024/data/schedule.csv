@@ -1,35 +1,36 @@
 #
-# *1      *2      *3     *4     *5         *6                   7          8         9        10
+# *1      *2      *3     *4     *5          6                   7          8         9        10
 # id,     dia,  hora,  Zona, Local, Visitante, resultado (L, V, E), set1 L-V, set2 L-V, set3 L-V 
 # ----------------------------------------------------------------------------------------------
 #
 #
 
 $clasi
-
-1, 22/11, 19:00, Zona B, Cuba B, Centro Navarro
-2, 22/11, 19:30, Zona A, Urquiza, Pilar
-3, 22/11, 20:00, Zona A, Vasco Francés, Ferro B
-4, 22/11, 20:30, Zona B, Ferro A, GEBA
+  
+    
+1, 22/11, 19:00, Zona B, CUBA B, Centro Navarro, V, 20-25
+2, 22/11, 19:30, Zona A, CUBA A, Urquiza, V, 23-25
+3, 22/11, 20:00, Zona A, Vasco Francés, Ferro B, V, 12-25
+4, 22/11, 20:30, Zona B, Ferro A, GEBA, L, 25-14
 				  		
-5, 27/11, 18:30, Zona B, Cuba B, Gure Echea
+5, 27/11, 18:30, Zona B, CUBA B, Gure Echea
 6, 27/11, 19:00, Zona A, Vasco Francés, Urquiza
 7, 27/11, 19:30, Zona B, Ferro A, Centro Navarro
 				  		
 8, 29/11, 19:00, Zona A, Urquiza, Ferro B
 9, 29/11, 19:30, Zona B, Centro Navarro, Gure Echea
-10, 29/11, 20:00, Zona B, Cuba B, Ferro A
-11, 29/11, 20:30, Zona A, Cuba A, Pilar
-				  		
-12, 4/12, 19:00, Zona A, Cuba A, Vasco Francés
-13, 4/12, 19:30, Zona B, Cuba B, GEBA
-14, 4/12, 20:00, Zona B, Ferro A, Gure Echea
+10, 29/11, 20:00, Zona B, CUBA B, Ferro A
+11, 29/11, 20:30, Zona A, CUBA A, Pilar
+
+12, 4/12, 19:30, Zona B, CUBA B, GEBA
+13, 4/12, 19:30, Zona B, Ferro A, Gure Echea
+14, 4/12, 20:00, Zona A, Urquiza, Pilar
 				  		
 15, 6/12, 19:00, Zona B, Centro Navarro, GEBA
-16, 6/12, 19:30, Zona A, Cuba A, Urquiza
+16, 6/12, 19:30, Zona A, CUBA A, Vasco Francés
 17, 6/12, 20:00, Zona A, Ferro B, Pilar
 				  		
-18, 11/12, 19:00, Zona A, Cuba A, Ferro B
+18, 11/12, 19:00, Zona A, CUBA A, Ferro B
 19, 11/12, 19:30, Zona B, Gure Echea, GEBA
 20, 11/12, 20:00, Zona A, Vasco Francés, Pilar
 
@@ -39,6 +40,5 @@ $clasi
 
 # $final
 # 12/12, 19:00, final, CUBA A, Ferro B   
-
-# Created: 21 nov 2024 12:30
+#
 

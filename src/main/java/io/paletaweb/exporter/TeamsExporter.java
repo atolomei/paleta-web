@@ -18,16 +18,13 @@ import freemarker.template.TemplateException;
 
 @Component
 @Scope("prototype")
-public class PlayersExporter extends BaseExporter {
+public class TeamsExporter extends BaseExporter {
 
-	private String dest_file;
-	private String html_template_file;
 	
-	
-	public PlayersExporter(String dest_file, String html_template_file) {
-		this.dest_file=dest_file;
-		this.html_template_file=html_template_file;
+	public TeamsExporter(String tournamentDir, String dest_file, String html_template_file) {
+		super(tournamentDir, dest_file, html_template_file);
 	}
+	
 	
 	
 	public void export() throws IOException, TemplateException  {
@@ -39,26 +36,27 @@ public class PlayersExporter extends BaseExporter {
 		OffsetDateTime now = OffsetDateTime.now();
 		
 		root.put("exportdir", getSettings().getIndexExportDir());
-		root.put("teams", getTorneo().getTeams());
+		root.put("teams", getTournament().getTeams());
 		root.put("dateexported", full_spa.format(now));
 		
 		
-		root.put("torneo", getTorneo());
+		root.put("torneo", getTournament());
 
-		root.put("meta", getTorneo().getMeta());
-		root.put("alert", getTorneo().getAlert());
-		root.put("banner", getTorneo().getBanner());
+		root.put("meta", getTournament().getMeta());
+		root.put("alert", getTournament().getAlert());
+		root.put("banner", getTournament().getBanner());
 
-		root.put("groups", getTorneo().getTournamentGroups());
-		root.put("schedule", getTorneo().getSchedule());
-		root.put("grouptables", getTorneo().getGroupTableList());
-		root.put("contacts", getTorneo().getContacts());
+		root.put("groups", getTournament().getTournamentGroups());
+		root.put("schedule", getTournament().getSchedule());
+		root.put("grouptables", getTournament().getGroupTableList());
+		root.put("contacts", getTournament().getContacts());
 
 		
 		
-		Template template = cfg.getTemplate(getTemplateFile());
-	     
-		Writer html = new FileWriter(new File(getSettings().getIndexExportDir(), getDestFile()));
+		String templateExportFile = getTournamentDirectory()+"-"+getTemplateFile();
+		Template template = cfg.getTemplate(templateExportFile);
+		
+		Writer html = new FileWriter(new File(getSettings().getTournamentIndexExportDir( getTournamentDirectory() ), getDestFile()));
         template.process(root, html);
 
 		html.flush();
@@ -72,13 +70,5 @@ public class PlayersExporter extends BaseExporter {
 	}
 
 
-	private String getTemplateFile() {
-		return this.html_template_file;
-	}
-
-
-	private String getDestFile() {
-		return this.dest_file;
-	}
 
 }

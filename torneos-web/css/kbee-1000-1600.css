@@ -7,7 +7,11 @@
 											
 /* .image-banner-container {background: url(../images/flor7-phone.jpg) no-repeat 0 0 scroll; background-size: cover; float:left; width:100%;} */
 	
-.image-banner-container {background: url(../images/viamonte.jpg) no-repeat 0 0 scroll; background-size: cover; float:left; width:100%;}
+.image-banner-container {background-size: cover; float:left; width:100%;}
+.bkflor 				 {background: url(../images/flor7.jpg) no-repeat 0 0 scroll; background-size: cover;}
+.bkcubaviamonte 		 {background: url(../images/viamonte.jpg) no-repeat 0 0 scroll;  background-size: cover;}
+
+
 	
 body.kbee {font-size:20px; color:black; line-height: 1.5em; font-weight: 300;}
 
@@ -58,7 +62,11 @@ h4.kbee {font-size: 1.2em;  margin:0; text-align:center;}
 
 /** .image-banner-container {background: url(../images/flor7-phone.jpg) no-repeat 0 0 scroll; background-size: cover; float:left; width:100%;} */
 
-.image-banner-container {background: url(../images/viamonte2.jpg) no-repeat 0 0 scroll; background-size: cover; float:left; width:100%;}
+.image-banner-container {background-size: cover; float:left; width:100%;}
+
+.bkflor 				 {background: url(../images/flor7-phone.jpg) no-repeat 0 0 scroll; background-size: cover;}
+.bkcubaviamonte 		 {background: url(../images/viamonte2.jpg) no-repeat 0 0 scroll;  background-size: cover;}
+
 
 body.kbee {font-size:18px; }
 h1.kbee {font-size: 2.5em; margin: 0; text-align:center; line-height: 1.25em;}    
@@ -111,7 +119,10 @@ letter-spacing: -0.005em;	text-transform:none;
 	
 	/** .image-banner-container {background: url(../images/flor7-phone.jpg) no-repeat 0 0 scroll; background-size: cover; float:left; width:100%;} */
 	
-	.image-banner-container {background: url(../images/viamonte2.jpg) no-repeat 0 0 scroll; background-size: cover; float:left; width:100%;}
+	.image-banner-container  {background-size: cover; float:left; width:100%;}
+	.bkflor 				 {background: url(../images/flor7-phone.jpg) no-repeat 0 0 scroll; background-size: cover;}
+	.bkcubaviamonte 		 {background: url(../images/viamonte2.jpg) no-repeat 0 0 scroll;  background-size: cover;}
+	
 	
 	.hidden-lg {display:block;}
 	.hidden-xs {display:none;}
