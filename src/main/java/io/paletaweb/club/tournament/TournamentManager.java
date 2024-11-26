@@ -32,10 +32,15 @@ public class TournamentManager implements ApplicationContextAware  {
 
 	@Autowired
 	@JsonIgnore
-	TorneoPalermo torneoPalermo;
+	TorneoPalermoB torneoPalermoB;
 	
 
+
+	@Autowired
+	@JsonIgnore
+	TorneoPalermoC torneoPalermoC;
 	
+
 	Map<String, Tournament> map = new HashMap<String, Tournament>();
 	
 	public TournamentManager() {
@@ -51,14 +56,23 @@ public class TournamentManager implements ApplicationContextAware  {
 		
 		map.put(torneoViamonte.getKey(), torneoViamonte);
 		
-		torneoPalermo.setName("Torneo Clausura Categoría B");
-		torneoPalermo.setKey("cubab2024");
-		torneoPalermo.setBanner("Torneo Clausura Categoría B");
-		torneoPalermo.setPrintRawSchedule(Boolean.valueOf(true));
-		torneoPalermo.setPrintCalendarSchedule(Boolean.valueOf(false));
+		torneoPalermoB.setName("Torneo Clausura Categoría B");
+		torneoPalermoB.setKey("cubab2024");
+		torneoPalermoB.setBanner("Torneo Clausura Categoría B");
+		torneoPalermoB.setPrintRawSchedule(Boolean.valueOf(true));
+		torneoPalermoB.setPrintCalendarSchedule(Boolean.valueOf(false));
 		
-		map.put(torneoPalermo.getKey(),torneoPalermo);
+		map.put(torneoPalermoB.getKey(),torneoPalermoB);
 		
+		
+		
+		torneoPalermoC.setName("Torneo Clausura Categoría C");
+		torneoPalermoC.setKey("cubac2024");
+		torneoPalermoC.setBanner("Torneo Clausura Categoría C");
+		torneoPalermoC.setPrintRawSchedule(Boolean.valueOf(true));
+		torneoPalermoC.setPrintCalendarSchedule(Boolean.valueOf(false));
+		
+		map.put(torneoPalermoC.getKey(),torneoPalermoC);
 		
 		
 		

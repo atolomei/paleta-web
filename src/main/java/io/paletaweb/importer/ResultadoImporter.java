@@ -100,6 +100,11 @@ public class ResultadoImporter extends BaseImporter {
 					       .collect(Collectors.toList());
 		}
 		
+		getTournament().getSchedule().getMatchesClasificacion().forEach( i -> logger.debug(i.toString()));
+		
+		
+	
+		
 		
 		records.forEach( li -> {
 			

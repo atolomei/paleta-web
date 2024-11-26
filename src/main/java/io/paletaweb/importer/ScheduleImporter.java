@@ -113,7 +113,7 @@ public class ScheduleImporter extends BaseImporter {
 					if (li.size()<=VISITOR)
 						throw new IllegalArgumentException(" invalid line -> " + li.toString() + " | (items: " + li.size()+" and must be :" + String.valueOf(VISITOR+1) +") ");
 					
-					Match match = new Match(matchId++);
+					Match match = new Match( Long.valueOf( li.get(ID) ));
 					
 					OffsetDateTime date = parseDate(li.get(DATE), li.get(HOUR)); 
 					match.setDate(date);

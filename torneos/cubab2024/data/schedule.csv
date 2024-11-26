@@ -5,31 +5,22 @@
 #
 #
 $clasi
-1, 25/11, 3:49, Zona A, Alberdi - Laplacette, Astesiano - Guardo
-2, 25/11, 3:49, Zona A, Alberdi - Laplacette, Elizalde - Ragghianti
-3, 25/11, 3:49, Zona A, Alberdi - Laplacette, Rodolfo - Cheret
-4, 25/11, 3:49, Zona A, Alberdi - Laplacette, Roldán - Bovio
-5, 25/11, 3:49, Zona A, Astesiano - Guardo, Elizalde - Ragghianti
-6, 25/11, 3:49, Zona A, Astesiano - Guardo, Rodolfo - Cheret
-7, 25/11, 3:49, Zona A, Astesiano - Guardo, Roldán - Bovio
-8, 25/11, 3:49, Zona A, Elizalde - Ragghianti, Rodolfo - Cheret
-9, 25/11, 3:49, Zona A, Elizalde - Ragghianti, Roldán - Bovio
-10, 25/11, 3:49, Zona A, Rodolfo - Cheret, Roldán - Bovio
-11, 25/11, 3:49, Zona B, Chiesa - Puente, Demian - Lemberg
-12, 25/11, 3:49, Zona B, Chiesa - Puente, Espinosa - Garrido
-13, 25/11, 3:49, Zona B, Chiesa - Puente, Lavalle - Grimau
-14, 25/11, 3:49, Zona B, Chiesa - Puente, Rocha - D'Elia
-15, 25/11, 3:49, Zona B, Chiesa - Puente, Victorica - Victorica
-16, 25/11, 3:49, Zona B, Demian - Lemberg, Espinosa - Garrido
-17, 25/11, 3:49, Zona B, Demian - Lemberg, Lavalle - Grimau
-18, 25/11, 3:49, Zona B, Demian - Lemberg, Rocha - D'Elia
-19, 25/11, 3:49, Zona B, Demian - Lemberg, Victorica - Victorica
-20, 25/11, 3:49, Zona B, Espinosa - Garrido, Lavalle - Grimau
-21, 25/11, 3:49, Zona B, Espinosa - Garrido, Rocha - D'Elia
-22, 25/11, 3:49, Zona B, Espinosa - Garrido, Victorica - Victorica
-23, 25/11, 3:49, Zona B, Lavalle - Grimau, Rocha - D'Elia
-24, 25/11, 3:49, Zona B, Lavalle - Grimau, Victorica - Victorica
-25, 25/11, 3:49, Zona B, Rocha - D'Elia, Victorica - Victorica
+1, 26/11, 11:57, Zona A, Alberdi - Laplacette, Astesiano - Guardo
+2, 26/11, 11:57, Zona A, Alberdi - Laplacette, Elizalde - Ragghianti
+3, 26/11, 11:57, Zona A, Alberdi - Laplacette, Rodolfo - Cheret
+4, 26/11, 11:57, Zona A, Alberdi - Laplacette, Roldán - Bovio
+5, 26/11, 11:57, Zona A, Astesiano - Guardo, Elizalde - Ragghianti
+6, 26/11, 11:57, Zona A, Astesiano - Guardo, Rodolfo - Cheret
+7, 26/11, 11:57, Zona A, Astesiano - Guardo, Roldán - Bovio
+8, 26/11, 11:57, Zona A, Elizalde - Ragghianti, Rodolfo - Cheret
+9, 26/11, 11:57, Zona A, Elizalde - Ragghianti, Roldán - Bovio
+10, 26/11, 11:57, Zona A, Rodolfo - Cheret, Roldán - Bovio
+11, 26/11, 11:57, Zona B, Chiesa - Puente, de Elía - Rocha
+12, 26/11, 11:57, Zona B, Chiesa - Puente, Espinosa - Garrido
+13, 26/11, 11:57, Zona B, Chiesa - Puente, Ford - Victorica
+14, 26/11, 11:57, Zona B, de Elía - Rocha, Espinosa - Garrido
+15, 26/11, 11:57, Zona B, de Elía - Rocha, Ford - Victorica
+16, 26/11, 11:57, Zona B, Espinosa - Garrido, Ford - Victorica
 
 # $semi
 # 12/12, 19:00, semi, CUBA A, Ferro B   
@@ -38,5 +29,5 @@ $clasi
 # $final
 # 12/12, 19:00, final, CUBA A, Ferro B   
 
-# Created: 25 nov 2024 03:49
+# Created: 26 nov 2024 11:57
 

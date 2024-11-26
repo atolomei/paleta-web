@@ -47,7 +47,7 @@
     
     <!-- TOP TOOLBAR -------------------------------------------------------- -->
 
-    <section class="image-banner-container bkcubaviamonte">
+    <section class="image-banner-container bkflor">
       <nav id="toolbar" class="toolbar">
         <div class="odilon-logo">
           <div class="toolbar-item">
@@ -82,7 +82,7 @@
         <div class="canvas-container" style="background: transparent">
           <div class="text-container" style="float: right">
             <div class="text centered">
-              <h2 class="main-banner">${banner!"Torneo de Paleta CUBA Viamonte"}</h2>
+              <h2 class="main-banner">${banner!"Torneo Clausura Categoría C"}</h2>
             </div>
           </div>
         </div>
@@ -127,46 +127,22 @@
 							    </#if>
 								
 								<h2>El Torneo</h2>
-								<p>Torneo de Paleta en CUBA Viamonte<br/>
-								<a href="https://maps.app.goo.gl/7uwQc7W8cM9SiqsR6" target="_blank">Viamonte 1560, CABA</a>
+								<p>Torneo Clausura Categoría C<br/>
+								<a href="https://maps.app.goo.gl/MTw1qqN5H3UgHXPR8" target="_blank">CUBA Palermo</a>
 								</p>
-								<p>
-								Miércoles y Viernes de 19.00 a 20.30 hs<br/>
-								excepto semis y final que es un Jueves.
-								</p>
-								<h4>Inicio</h4>
-								<p>
-								Viernes 22 de Noviembre de 2024. 
-								</p>
-								<h4>Fin</h4>
-								<p>
-								Jueves 12 de Diciembre de 2024.
+								<p>Se juega en Palermo la última semana de Noviembre y primera de Diciembre de 2024.
 								</p>
 								<h4>Clasificación</h4>
 								<p>
-								10 equipos en dos zonas de 5, cada equipo juega contra los otros de su zona.<br/>
+								5 equipos en una zona, cada equipo juega contra los otros de su zona.<br/>
 								Partidos a 25 puntos, sin alargue.<br/>
-								Clasifican 2 primeros de cada zona, desempate por diferencia de sets, diferencia de tantos, tantos a favor, sorteo.<br/>
-								Semifinales y Final se juegan a 3 sets de 15, 15 y 10.
-								</p>
-								<h4>Finales</h4>
-								<p>
-								Semis y final jueves 12 Diciembre 2024<br/>
-								Luego comida en CUBA.
 								</p>
 								
 								<h4>Información adicional</h4>
-									<p>
-									Para quienes vienen en bicicleta es posible guardar bicicletas dentro del club.
-									</p>
-									
-									<p>
-									<a href="/torneos/cubab2024/index.html">Torneo interno CUBA Categoría B</a>
-									</p>
-									<p>
-									<a href="/torneos/cubac2024/index.html">Torneo interno CUBA Categoría C</a>
-									</p>
-									
+								<p>
+									<a href="../cubab2024/index.html">Torneo de la Categoría B</a>
+								</p>
+								
 							</div>
 						</div>
 						
@@ -175,7 +151,6 @@
     <!-- ZONAS -------------------------------------------------------- -->
     
     <section id="zonas" class="section dark">
-
         <div class="section-internal-container">
 	        <div class="section-content">
 			  <div class="row">
@@ -186,7 +161,7 @@
 			  <div class="row">
 						<#list groups>
 					  	  	<#items as group>
-								  <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+								  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 									<h4>${group.name}</h4>
 									<#list group.teams>
 										<table class="table table-bordered table-hover table-responsive">
@@ -225,9 +200,15 @@
       </div>
     </section>
 
-
+    <!-- -------------------------------------------------------- -->
+    
+    
+    
+    
+    
     <!-- -------------------------------------------------------- -->
 
+	
 	<section id="fixture" class="section light">
       <div class="section-internal-container">
         <div class="section-content">
@@ -239,15 +220,55 @@
 
 			<div class="row">
 			  <div class="col-lg-12 col-md-12 col-xs-12">
-			  <h4>Clasificación</h4>
+			  <h3 style="margin:0.5em 0;">Clasificación</h3>
 			  </div>
 		  </div>
 		  
-		  <div class="row">
-			
-			<!-- 1 -->
+		  <#if rawSchedule=="yes">
+			  <!-- Match x Group ------------------------------------------------ -->
+			  <div class="row">
+							<#list groups>
+						  	  	<#items as group>
+									  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+										<h4>${group.name}</h4>
+										<#list group.matches>
+											<table class="table table-bordered table-hover table-responsive">
+											  <thead class="table-dark">
+												<tr>
+												  <th scope="col">#</th>
+						  						  <th scope="col" title="Equipo 1">Eq. 1</th>
+												  <th scope="col" title="Equipo 2">Eq. 2</th>
+												  <th scope="col" title="Resultado">Res.</th>
+												</tr>
+											  </thead>
+												<tbody>
+												<#items as match>
+													<tr>
+													  <th scope="row">${match?index+1}</th>
+													  <td>${match.local.name!"error"}</td>              
+													  <td>${match.visitor.name!"error"}</td>              
+													  <td>
+													  <#if match.result?has_content>
+													  		${match.setStr}
+													  </#if>
+													  </td>              
+													</tr>
+												</#items>
+												</tbody>
+											</table>
+										<#else>
+							    			<p>No hay partidos en la zona</p>
+										</#list>
+							    		</div>		
+						    	</#items>
+							</#list>
+				    </div>		  
+		  </#if>
+		  
+		  <#if calendarSchedule=="yes">
+		  <!-- ------------------------------------------------------------ -->
+		  <div class="row">			
 			<div class="col-lg-12 col-md-12 col-xs-12">
-			
 			<#list schedule.matchesClasificacion>
 					<table class="table table-bordered table-hover">
 					<thead class="table-dark">
@@ -262,42 +283,44 @@
 					</thead>
 					
 					<tbody>
-
-					<#items as match>
-				  		<#if match.daybreak==1>
-				  			<tr class="separator">
-					  			<th class=separator" scope="row"></th>
-					  			<td></td>              
-					  			<td></td>              
-					  			<td></td>              
-					  			<td></td>              
-					  			<td></td>              
+						<#items as match>
+					  		<#if match.daybreak==1>
+					  			<tr class="separator">
+						  			<th class=separator" scope="row"></th>
+						  			<td></td>              
+						  			<td></td>              
+						  			<td></td>              
+						  			<td></td>              
+						  			<td></td>              
+								</tr>
+							</#if>
+																			
+							<tr>
+							  <th scope="row">${match?index+1}</th>
+							  <td>${match.matchDateStr!"error"}</td>              
+							  <td>${match.matchHourStr!"error"}:${match.matchMinStr!"error"}</td>              
+							  <td>${match.local.name!"error"}</td>              
+							  <td>${match.visitor.name!"error"}</td>              
+							  <td>
+							  <#if match.result?has_content>
+							  		${match.setStr}
+							  </#if>
+							  </td>              
 							</tr>
-						</#if>
-																		
-						<tr>
-						  <th scope="row">${match?index+1}</th>
-						  <td>${match.matchDateStr!"error"}</td>              
-						  <td>${match.matchHourStr!"error"}:${match.matchMinStr!"error"}</td>              
-						  <td>${match.local.name!"error"}</td>              
-						  <td>${match.visitor.name!"error"}</td>              
-						  <td>
-						  <#if match.result?has_content>
-						  		${match.setStr}
-						  </#if>
-						  </td>              
-						</tr>
-					</#items>
+						</#items>
 					</tbody>
-			</table>
-			</#list>
-			  </div>
+				</table>
+				</#list>
+			</div>
 		  </div>
+		  </#if>
+		  <!-- ------------------------------------------------------------ -->
+		  
 		  
 
   		 <div class="row">
 			  <div class="col-lg-12 col-md-12 col-xs-12">
-			  <h4 id="semis">Semifinales</h4>
+			  <h3 style="margin:0.5em 0;" id="semis">Semifinales</h3>
 			  </div>
 		  </div>
 		  
@@ -372,7 +395,7 @@
 					
   			<div class="row">
 			  <div class="col-lg-12 col-md-12 col-xs-12">
-			  <h4 id="final">Final</h4>
+			  <h3 style="margin:0.5em 0;" id="final">Final</h3>
 			  </div>
 		  </div>
 		  

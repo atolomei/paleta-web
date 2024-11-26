@@ -1,0 +1,24 @@
+
+# empty if start now
+alert.startdate=
+
+# empty if no end date
+alert.enddate=22/11/2224 09:00 
+
+# info, danger, warning, success, neutral
+#
+alert.class=alert-warning
+
+# Optional 
+#
+# alert.title=Cambio en Fixture (19/11/24)
+
+# Optional
+# simple httml text
+
+# alert.text=<h6>Fecha del 27/11</h6><p>La fecha del Miércoles <b>27 de Noviembre</b> se adelantará 30 minutos, comenzando a las <b>18.30</b> hs debido a que se jugará en CUBA el partido <b>Ferro</b> vs <b>Deprop</b> del torneo de 1era.</p><p>ver <a class=link" title="fixture" href="index.html#fixture">Fixture</a>.</p>
+
+
+
+
+

@@ -148,6 +148,67 @@ public class SiteExportService extends BaseService {
 			}
 		}
 
+		
+		
+		
+		{
+			
+			
+			String key ="cubac2024";
+			Tournament to = tm.getTourmanent(key);
+			map.put(to.getKey(), new HashMap<File, Long>());
+			
+			ref.put(to.getKey(), Boolean.valueOf(false));
+			{
+				
+				String path = getSettings().getTournamentDataDir(to.getKey()); 
+				File dataDir = new File(path);
+				
+				if (dataDir.exists() && dataDir.isDirectory()) {
+					File files[] = dataDir.listFiles();
+					for (File fi:files) {
+						if (!fi.isDirectory()) {
+							if (fi.getName().endsWith(".csv") || fi.getName().endsWith(".txt") || fi.getName().endsWith(".info") || fi.getName().endsWith(".html")) {
+								map.get( to.getKey() ).put(fi,  Long.MIN_VALUE);
+							}
+						}
+					}
+				}
+			}
+			
+			{
+				String path = getSettings().getTemplatesDir();
+				File dataDir = new File(path);
+				
+				if (dataDir.exists() && dataDir.isDirectory()) {
+					File files[] = dataDir.listFiles();
+					for (File fi:files) {
+						if (!fi.isDirectory()) {
+							if ( fi.getName().endsWith(".ftl") && fi.getName().startsWith(key)) {	
+								map.get( to.getKey() ).put(fi,  Long.MIN_VALUE);
+							}
+						}
+					}
+				}
+			}
+		}
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		/**
 		{
 			map.put("templates", new HashMap<File, Long>());
@@ -177,6 +238,8 @@ public class SiteExportService extends BaseService {
 					
 				SiteExportService.this.processExport("viamonte2024");
 				SiteExportService.this.processExport("cubab2024");
+				SiteExportService.this.processExport("cubac2024");
+				
 				} catch (Exception e) {
 					logger.error(e);
 				}

@@ -9,10 +9,10 @@
     <link rel="icon" href="./images/favicon.gif" type="image/x-icon" />
     <link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon" />
 
-    <meta name="title" content="Torneo Clausura Categoría B" />
-    <meta name="description" content="Torneo de Paleta CUBA Viamonte" />
-    <meta name="Keywords" content="paleta pelota, pelotari, torneo" />
-	<meta name="language" content="Spanish" />
+    <meta name="title" content="${meta.title!"Torneo"}" />
+    <meta name="description" content="${meta.description!"Torneo de Paleta"}" />
+    <meta name="Keywords" content="${meta.keywords!"paleta"}" />
+	<meta name="language" content="${meta.language!"Spanish"}" />
 
     <meta
       name="viewport"
@@ -86,7 +86,7 @@
         <div class="canvas-container" style="background: transparent">
           <div class="text-container" style="float: right">
             <div class="text centered">
-              <h2 class="main-banner">Torneo Clausura Categoría B CUBA</h2>
+				<h2 class="main-banner">Torneo Clausura Categoría C</h2>
             </div>
           </div>
         </div>
@@ -113,6 +113,27 @@
 
 	<!-- ALERTAS -------------------------------------------------- -->
 	
+	<#if alert?has_content>
+	<section id="alert" class="section light">
+			<div class="section-internal-container">
+				<div class="section-content alert-container">
+					<div class="row">
+						  	<div class="col-lg-12 col-md-12 col-xs-12">
+							  		
+							  		<div class="alert ${alert.alertClass}" role="alert">
+								 		<#if alert.title?has_content>
+								 		<h5>${alert.title}</h5>
+								 		</#if>	
+								 		<#if alert.text?has_content>
+								 			${alert.text}
+								 		</#if>
+								 	</div>
+						 	</div>
+					</div>
+				</div>
+			</div>
+	</section>
+	</#if>		
 	
 <!-- EQUIPOS -------------------------------------------------- -->
 															
@@ -125,35 +146,22 @@
 			  </div>
 		  </div>
 		  <div class="row">
+			  	<#list teams>
 					 	<ul class="group-list col-lg-12 col-md-12 col-xs-12" style="text-align:center;">
+								<#items as team>
 								<li class="list-item">  
-									<h5>Alberdi - Laplacette</h5>
+									<h5>${team.name}</h5>
+									<#if team.players?has_content>
+										<div class="row">		
+											<div class="col-lg-12 col-md-12 col-xs-12">
+											${team.playersStr}		
+											</div>
+										</div>
+									</#if>
 								</li>
-								<li class="list-item">  
-									<h5>Astesiano - Guardo</h5>
-								</li>
-								<li class="list-item">  
-									<h5>Chiesa - Puente</h5>
-								</li>
-								<li class="list-item">  
-									<h5>de Elía - Rocha</h5>
-								</li>
-								<li class="list-item">  
-									<h5>Elizalde - Ragghianti</h5>
-								</li>
-								<li class="list-item">  
-									<h5>Espinosa - Garrido</h5>
-								</li>
-								<li class="list-item">  
-									<h5>Ford - Victorica</h5>
-								</li>
-								<li class="list-item">  
-									<h5>Rodolfo - Cheret</h5>
-								</li>
-								<li class="list-item">  
-									<h5>Roldán - Bovio</h5>
-								</li>
+								</#items>
 							</ul>
+					</#list>
 		  </div>
          </div>
       </div>
@@ -163,37 +171,33 @@
 
  	<!-- CONTACTS ---------------------------------- -->
 
+	<#if contacts?has_content>
 	<section id="contacto" class="section dark">
       <div class="section-internal-container">
         <div class="section-content">
           <h2>Contacto</h2>
+	         	 <#list contacts>
 	          	  <div class="row">
 					<ul class="list-group col-lg-12 col-md-12 col-xs-12" style="margin-top:2em;">	
+			          <#items as contact>
 			          <li class="list-item">
 				          <div class="row">	
 					          <div class="col-lg-12 col-md-12 col-xs-12">
 					          <p>
-					            Alejandro Tolomei<br>
-					            +54 911 6119.4075<br>
+					            ${contact.name!""}<br>
+					            ${contact.contactMethod!""}<br>
 					          </p>
 					          </div>
 				          </div>
 			          </li>
-			          <li class="list-item">
-				          <div class="row">	
-					          <div class="col-lg-12 col-md-12 col-xs-12">
-					          <p>
-					            Grupo de Whatsapp Paleta Palermo 100 años<br>
-					            <br>
-					          </p>
-					          </div>
-				          </div>
-			          </li>
+		          	</#items>
 		          </ul>
 		          </div>
+	          </#list>
         </div>
       </div>
     </section>
+    </#if>
   
     
     <!-- ------------------- footer ---------------------------- -->
@@ -250,7 +254,7 @@
 	        </div>
       
   		     <div style="display: block; float: right; font-size:0.7em;">
-		      		<span style="color:#cccccc;"> 26 nov 2024 13:08</span>
+		      		<span style="color:#cccccc;"> ${dateexported}</span>
 		      		<a href="#top" class="link" style="margin-left:2.5em; color: #cccccc;"><span> subir </span> <span>^</span></a>
 		     </div>
 

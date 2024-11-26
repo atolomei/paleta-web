@@ -1,0 +1,27 @@
+#
+# *1      *2      *3     *4     *5         *6                   7          8         9        10
+# id,     dia,  hora,  Zona, Local, Visitante, resultado (L, V, E), set1 L-V, set2 L-V, set3 L-V 
+# ----------------------------------------------------------------------------------------------
+#
+#
+$clasi
+1, 26/11, 11:28, Zona A, de Elía - Vasconet, Grimau - Guido Lavalle
+2, 26/11, 11:28, Zona A, de Elía - Vasconet, Lensberg - Sfair
+3, 26/11, 11:28, Zona A, de Elía - Vasconet, Maya - Maya
+4, 26/11, 11:28, Zona A, de Elía - Vasconet, Victorica - Victorica
+5, 26/11, 11:28, Zona A, Grimau - Guido Lavalle, Lensberg - Sfair
+6, 26/11, 11:28, Zona A, Grimau - Guido Lavalle, Maya - Maya
+7, 26/11, 11:28, Zona A, Grimau - Guido Lavalle, Victorica - Victorica
+8, 26/11, 11:28, Zona A, Lensberg - Sfair, Maya - Maya
+9, 26/11, 11:28, Zona A, Lensberg - Sfair, Victorica - Victorica
+10, 26/11, 11:28, Zona A, Maya - Maya, Victorica - Victorica
+
+# $semi
+# 12/12, 19:00, semi, CUBA A, Ferro B   
+# 12/12, 19:30, semi, Gure Echea, GEBA   
+
+# $final
+# 12/12, 19:00, final, CUBA A, Ferro B   
+
+# Created: 26 nov 2024 11:28
+

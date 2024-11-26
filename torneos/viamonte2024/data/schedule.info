@@ -12,26 +12,27 @@ $clasi
 3, 22/11, 20:00, Zona A, Vasco Francés, Ferro B, V, 12-25
 4, 22/11, 20:30, Zona B, Ferro A, GEBA, L, 25-14
 				  		
-5, 27/11, 18:30, Zona B, CUBA B, Gure Echea
-6, 27/11, 19:00, Zona A, Vasco Francés, Urquiza
-7, 27/11, 19:30, Zona B, Ferro A, Centro Navarro
+5, 27/11, 18:00, Zona A, Vasco Francés, Urquiza
+6, 27/11, 18:30, Zona B, CUBA B, Gure Echea
+7, 27/11, 19:00, Zona B, CUBA B, GEBA
+8, 27/11, 20:00, Zona B, Ferro A, Centro Navarro
 				  		
-8, 29/11, 19:00, Zona A, Urquiza, Ferro B
-9, 29/11, 19:30, Zona B, Centro Navarro, Gure Echea
-10, 29/11, 20:00, Zona B, CUBA B, Ferro A
-11, 29/11, 20:30, Zona A, CUBA A, Pilar
+9, 29/11, 18:30, Zona A, Urquiza, Ferro B
+10, 29/11, 19:00, Zona B, Centro Navarro, Gure Echea
+11, 29/11, 19:30, Zona B, CUBA B, Ferro A
+12, 29/11, 20:00, Zona A, CUBA A, Pilar
+
+13, 4/12, 18:30, Zona B, Ferro A, Gure Echea
+14, 4/12, 19:00, Zona A, Urquiza, Pilar
 				  		
-12, 4/12, 19:30, Zona B, CUBA B, GEBA
-13, 4/12, 19:30, Zona B, Ferro A, Gure Echea
-14, 4/12, 20:00, Zona A, Urquiza, Pilar
+15, 6/12, 18:40, Zona B, Centro Navarro, GEBA
+16, 6/12, 19:00, Zona A, CUBA A, Vasco Francés
+17, 6/12, 19:30, Zona A, Ferro B, Pilar
 				  		
-15, 6/12, 19:00, Zona B, Centro Navarro, GEBA
-16, 6/12, 19:30, Zona A, CUBA A, Vasco Francés
-17, 6/12, 20:00, Zona A, Ferro B, Pilar
-				  		
-18, 11/12, 19:00, Zona A, CUBA A, Ferro B
-19, 11/12, 19:30, Zona B, Gure Echea, GEBA
-20, 11/12, 20:00, Zona A, Vasco Francés, Pilar
+18, 11/12, 18:30, Zona A, CUBA A, Ferro B
+19, 11/12, 19:00, Zona B, Gure Echea, GEBA
+20, 11/12, 19:30, Zona A, Vasco Francés, Pilar
+
 
 # $semi
 # 12/12, 19:00, semi, CUBA A, Ferro B   

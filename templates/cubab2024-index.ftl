@@ -138,6 +138,13 @@
 								Partidos a 25 puntos, sin alargue.<br/>
 								Clasifican 2 primeros de cada zona, desempate por diferencia de sets, diferencia de tantos, tantos a favor, sorteo.<br/>
 								</p>
+								
+								<h4>Información adicional</h4>
+								<p>
+									<a href="../cubac2024/index.html">Torneo de la Categoría C</a>
+								</p>
+
+
 							</div>
 						</div>
 						
