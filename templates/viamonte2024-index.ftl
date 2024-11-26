@@ -166,7 +166,6 @@
 									<p>
 									<a href="/torneos/cubac2024/index.html">Torneo interno CUBA Categoría C</a>
 									</p>
-									
 							</div>
 						</div>
 						
