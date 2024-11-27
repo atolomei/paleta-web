@@ -3,23 +3,30 @@
 
 $clasi
 
+3,  Zona A, Alberdi - Laplacette, Rodolfo - Cheret, V, 14-25
+9,  Zona B, Chiesa - Puente, Espinosa - Garrido, V, 19-25
+
+15, Zona B, Espinosa - Garrido, Ford - Victorica, V, 23-25 
+
+
 1,  Zona A, Alberdi - Laplacette, Astesiano - Guardo
 2,  Zona A, Alberdi - Laplacette, Elizalde - Ragghianti
 
-3,  Zona A, Alberdi - Laplacette, Rodolfo - Cheret, V, 14-25
 
 4,  Zona A, Alberdi - Laplacette, Roldán - Bovio
 5,  Zona A, Astesiano - Guardo, Elizalde - Ragghianti
 6,  Zona A, Astesiano - Guardo, Rodolfo - Cheret
 7,  Zona A, Astesiano - Guardo, Roldán - Bovio
 8,  Zona B, Chiesa - Puente, de Elía - Rocha
-9,  Zona B, Chiesa - Puente, Espinosa - Garrido
+
+
+
 10, Zona B, Chiesa - Puente, Ford - Victorica
 11, Zona B, de Elía - Rocha, Espinosa - Garrido
 12, Zona B, de Elía - Rocha, Ford - Victorica
 13, Zona A, Elizalde - Ragghianti, Rodolfo - Cheret
 14, Zona A, Elizalde - Ragghianti, Roldán - Bovio
-15, Zona B, Espinosa - Garrido, Ford - Victorica
+
 16, Zona A, Rodolfo - Cheret, Roldán - Bovio
 
 

@@ -143,6 +143,10 @@
 									<a href="../cubab2024/index.html">Torneo de la Categoría B</a>
 								</p>
 								
+								<p>
+									<a href="/torneos/viamonte2024/index.html">Torneo interclubes CUBA Viamonte</a>
+								</p>
+								
 							</div>
 						</div>
 						

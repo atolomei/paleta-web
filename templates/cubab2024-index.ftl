@@ -143,6 +143,10 @@
 								<p>
 									<a href="../cubac2024/index.html">Torneo de la Categoría C</a>
 								</p>
+								
+								<p>
+									<a href="/torneos/viamonte2024/index.html">Torneo interclubes CUBA Viamonte</a>
+								</p>
 
 
 							</div>
